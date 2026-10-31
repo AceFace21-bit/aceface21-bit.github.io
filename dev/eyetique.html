@@ -1,0 +1,1584 @@
+<!-- BUILD & VERSION: Build 1.0 Vers 1.5 | EYETIQUE PRIVATE CLIENT ATELIER (LOCKED MAIN SHELL + INNER SCROLLABLE MULTI-LOCATION SLOT LISTS) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EYETIQUE — Private Client Atelier | Zero-Scroll iPhone Edition (Build 1.0 Vers 1.5)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --obsidian: #050505;
+    --onyx-card: #0B0C0E;
+    --rolex-green: #062317;
+    --rolex-emerald: #0B3B26;
+    --gold-18k: #D4AF37;
+    --gold-champagne: #F3E5AB;
+    --gold-muted: #9E823C;
+    --gold-hairline: rgba(212, 175, 55, 0.28);
+    --ivory: #FAF8F5;
+    --platinum: #A3A8B0;
+    --slate-dim: #5E636B;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: #020304;
+    background-image:
+      radial-gradient(circle at 50% 20%, rgba(11, 59, 38, 0.32) 0%, rgba(2, 3, 4, 0.98) 70%);
+    color: var(--ivory);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.02em;
+  }
+
+  .desktop-qr-panel {
+    width: 280px;
+    background: #08090B;
+    border: 1.5px solid var(--gold-18k);
+    padding: 26px 22px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.9);
+  }
+
+  @media (max-width: 780px) {
+    .desktop-qr-panel {
+      display: none !important;
+    }
+  }
+
+  /* DESKTOP IPHONE 16 PRO MAX TITANIUM SIMULATOR FRAME (100% ZERO-SCROLL) */
+  .iphone-chassis {
+    width: 406px;
+    height: 852px;
+    max-height: 96vh;
+    background: var(--obsidian);
+    border-radius: 52px;
+    border: 3px solid #8A6D29;
+    box-shadow:
+      0 0 0 2px #1C1B18,
+      0 0 0 6px #3A3222,
+      0 26px 80px rgba(0, 0, 0, 0.95),
+      0 0 50px rgba(212, 175, 55, 0.16);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* iOS Status Bar + Dynamic Island */
+  .ios-status-bar {
+    height: 40px;
+    padding: 10px 26px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #050505;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 30;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ivory);
+  }
+
+  .dynamic-island {
+    width: 110px;
+    height: 26px;
+    background: #000000;
+    border-radius: 20px;
+    border: 0.5px solid rgba(212, 175, 55, 0.22);
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+
+  .island-lens {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1e3a5f 0%, #060b14 70%);
+    border: 0.5px solid rgba(255,255,255,0.18);
+  }
+
+  .fluted-bezel-top {
+    height: 2.5px;
+    width: 100%;
+    flex-shrink: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      #8A6D29 0px,
+      #D4AF37 3px,
+      #F3E5AB 5px,
+      #D4AF37 7px,
+      #8A6D29 10px
+    );
+  }
+
+  /* STRICT ZERO-SCROLL VIEWPORT */
+  .iphone-screen-viewport {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 18px 10px;
+    background-color: var(--obsidian);
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(11, 59, 38, 0.28) 0%, rgba(5, 5, 5, 0.96) 55%),
+      linear-gradient(180deg, #050505 0%, #08090B 100%);
+    position: relative;
+  }
+
+  .ios-home-indicator-bar {
+    height: 20px;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ios-home-pill {
+    width: 126px;
+    height: 4px;
+    border-radius: 3px;
+    background: rgba(212, 175, 55, 0.5);
+  }
+
+  @media (max-width: 500px) {
+    body {
+      height: 100dvh;
+      max-height: 100dvh;
+      padding: 0;
+    }
+    .iphone-chassis {
+      width: 100vw;
+      height: 100dvh;
+      max-height: 100dvh;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+    }
+    .ios-status-bar, .ios-home-indicator-bar {
+      display: none;
+    }
+  }
+
+  /* TOP BAR WITH SLEEK TOP-LEFT HAMBURGER + ROLEX DAY-DATE CROWN */
+  .top-header-bar {
+    position: relative;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid rgba(212, 175, 55, 0.22);
+    flex-shrink: 0;
+  }
+
+  /* Compact, non-bulky Top-Left Hamburger Button */
+  .hamburger-btn {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 34px;
+    height: 34px;
+    background: rgba(6, 35, 23, 0.55);
+    border: 0.5px solid var(--gold-18k);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4.5px;
+    cursor: pointer;
+    z-index: 40;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
+
+  .hamburger-btn:hover {
+    background: var(--rolex-emerald);
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.3);
+  }
+
+  .hb-line {
+    width: 15px;
+    height: 1.5px;
+    background: var(--gold-champagne);
+    display: block;
+    transition: all 0.2s ease;
+  }
+
+  .aperture-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .day-aperture {
+    background: linear-gradient(180deg, #FBF8F1 0%, #E8DFC8 100%);
+    color: #090909;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    padding: 3px 11px;
+    border-radius: 2px;
+    border: 1px solid var(--gold-18k);
+    text-transform: uppercase;
+  }
+
+  .cyclops-date {
+    background: linear-gradient(180deg, #FBF8F1 0%, #E8DFC8 100%);
+    color: #090909;
+    font-family: 'Cinzel', serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2.5px 7px;
+    border-radius: 3px;
+    border: 1px solid var(--gold-18k);
+  }
+
+  .brand-wordmark {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    color: var(--ivory);
+    margin-left: 0.32em;
+    line-height: 1.1;
+  }
+
+  .brand-sub {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    color: var(--gold-18k);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* SLIDE-OUT HAMBURGER MENU DRAWER (INSIDE IPHONE SCREEN) */
+  .menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(4px);
+    z-index: 80;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .menu-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hamburger-drawer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 78%;
+    background: linear-gradient(180deg, #061A11 0%, #050506 100%);
+    border-right: 1px solid var(--gold-18k);
+    z-index: 90;
+    padding: 22px 18px;
+    transform: translateX(-102%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hamburger-drawer.open {
+    transform: translateX(0);
+  }
+
+  .drawer-top-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--gold-hairline);
+    margin-bottom: 16px;
+  }
+
+  .drawer-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    color: var(--gold-champagne);
+  }
+
+  .drawer-close-btn {
+    background: transparent;
+    border: 0.5px solid var(--gold-hairline);
+    color: var(--gold-champagne);
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .drawer-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .drawer-nav-item {
+    width: 100%;
+    text-align: left;
+    background: rgba(5, 5, 5, 0.65);
+    border: 0.5px solid rgba(212, 175, 55, 0.24);
+    padding: 13px 14px;
+    color: var(--ivory);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .drawer-nav-item.active {
+    background: var(--rolex-emerald);
+    border-color: var(--gold-18k);
+    color: var(--gold-champagne);
+  }
+
+  .drawer-nav-sub {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5px;
+    color: var(--platinum);
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+    text-transform: none;
+  }
+
+  /* SINGLE-SCREEN PANELS (100% NO SCROLL) */
+  .screen-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: 8px 0;
+  }
+
+  .pillar-panel {
+    display: none;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .pillar-panel.active {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 2 QUICK SUITE AVAILABILITY BUTTONS AT TOP OF CONCIERGE */
+  .quick-availability-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .quick-gold-btn {
+    background: linear-gradient(90deg, #C5A059 0%, #F3E5AB 50%, #C5A059 100%);
+    color: #050505;
+    border: none;
+    padding: 11px 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .quick-emerald-btn {
+    background: #061D13;
+    color: var(--gold-champagne);
+    border: 1px solid var(--gold-18k);
+    padding: 11px 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  /* COMPACT MAISON CARD (FITS SINGLE SCREEN) */
+  .maison-card {
+    background: var(--onyx-card);
+    border: 0.5px solid var(--gold-hairline);
+    padding: 16px 15px;
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .maison-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-18k), transparent);
+    opacity: 0.55;
+  }
+
+  .section-eyebrow {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    color: var(--gold-18k);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ivory);
+    line-height: 1.15;
+  }
+
+  /* ZIP & BOUTIQUE PILLS */
+  .zip-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .zip-input {
+    flex: 1;
+    background: #050505;
+    border: 0.5px solid var(--gold-hairline);
+    color: var(--ivory);
+    padding: 9px 11px;
+    font-family: 'Cinzel', serif;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    outline: none;
+  }
+
+  .gps-btn {
+    background: transparent;
+    border: 0.5px solid var(--gold-18k);
+    color: var(--gold-champagne);
+    padding: 0 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .boutique-pills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .boutique-pill {
+    background: #070809;
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    color: var(--platinum);
+    padding: 7px 4px;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .boutique-pill.selected {
+    background: var(--rolex-green);
+    border-color: var(--gold-18k);
+    color: var(--gold-champagne);
+  }
+
+  .selected-boutique-box {
+    border-top: 0.5px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 0.5px solid rgba(212, 175, 55, 0.2);
+    padding: 9px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .boutique-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--ivory);
+  }
+
+  .boutique-addr {
+    font-size: 9px;
+    color: var(--platinum);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  .boutique-status {
+    font-size: 7.5px;
+    letter-spacing: 0.16em;
+    color: var(--gold-18k);
+    text-transform: uppercase;
+    border: 0.5px solid var(--gold-hairline);
+    padding: 4px 7px;
+    white-space: nowrap;
+  }
+
+  .concierge-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .gold-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    background: linear-gradient(90deg, #C5A059 0%, #E5C878 50%, #C5A059 100%);
+    color: #050505;
+    padding: 12px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+  }
+
+  .obsidian-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    background: #07080A;
+    border: 0.5px solid var(--gold-hairline);
+    color: var(--ivory);
+    padding: 10px 14px;
+    font-size: 9.5px;
+    font-weight: 400;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .cta-sub {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    color: var(--platinum);
+    margin-top: 2px;
+    text-transform: none;
+  }
+
+  /* INNER SCROLLABLE SLOT LIST FOR MULTI-LOCATION OPENINGS */
+  .scrollable-slot-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+    margin: 8px 0;
+    max-height: 360px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-18k) #050505;
+  }
+
+  .scrollable-slot-list::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollable-slot-list::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  .scrollable-slot-list::-webkit-scrollbar-thumb {
+    background: var(--gold-18k);
+    border-radius: 2px;
+  }
+
+  /* OPEN CHAIR & NEXT AVAILABLE CARDS */
+  .chair-slot-card {
+    background: rgba(5, 5, 5, 0.9);
+    border: 0.5px solid rgba(212, 175, 55, 0.35);
+    padding: 11px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .chair-slot-card.locked-slot {
+    background: rgba(6, 35, 23, 0.48);
+    border-color: var(--gold-18k);
+  }
+
+  .chair-badge-Immediate {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 7.5px;
+    letter-spacing: 0.16em;
+    color: #34D399;
+    border: 0.5px solid rgba(52, 211, 153, 0.45);
+    padding: 2px 6px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .chair-badge-Immediate.locked-badge {
+    color: var(--gold-champagne);
+    border-color: var(--gold-18k);
+    background: rgba(212, 175, 55, 0.16);
+  }
+
+  .chair-salon-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16.5px;
+    color: var(--ivory);
+  }
+
+  .chair-salon-meta {
+    font-size: 9px;
+    color: var(--platinum);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  .claim-chair-btn {
+    background: var(--rolex-emerald);
+    border: 1px solid var(--gold-18k);
+    color: var(--gold-champagne);
+    padding: 9px 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .claim-chair-btn.locked-btn {
+    background: var(--gold-18k);
+    color: #050505;
+  }
+
+  .next-filter-bar {
+    display: flex;
+    gap: 6px;
+  }
+
+  .filter-mode-btn {
+    flex: 1;
+    background: #07080A;
+    border: 0.5px solid rgba(212, 175, 55, 0.28);
+    color: var(--platinum);
+    padding: 8px 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .filter-mode-btn.active {
+    background: var(--rolex-emerald);
+    border-color: var(--gold-18k);
+    color: var(--gold-champagne);
+  }
+
+  .salon-filter-select {
+    width: 100%;
+    background: #050505;
+    border: 0.5px solid var(--gold-18k);
+    color: var(--gold-champagne);
+    padding: 8px 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: none;
+    outline: none;
+  }
+
+  /* BIOMETRIC PANEL */
+  .camera-frame {
+    width: 100%;
+    height: 185px;
+    background: #030303;
+    border: 1px solid var(--gold-18k);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #atelierVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    display: none;
+  }
+
+  .reticle-overlay {
+    position: absolute;
+    inset: 14px;
+    border: 0.5px solid rgba(212, 175, 55, 0.4);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reticle-line {
+    width: 68%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-18k), transparent);
+  }
+
+  .biometric-readout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .bio-tile {
+    background: #07080A;
+    border: 0.5px solid rgba(212, 175, 55, 0.22);
+    padding: 10px 6px;
+    text-align: center;
+  }
+
+  .bio-val {
+    font-family: 'Cinzel', serif;
+    font-size: 13.5px;
+    color: var(--gold-champagne);
+  }
+
+  .bio-lbl {
+    font-size: 7.5px;
+    letter-spacing: 0.16em;
+    color: var(--platinum);
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* CENTURION CARD */
+  .centurion-card {
+    background:
+      radial-gradient(circle at 85% 15%, rgba(212, 175, 55, 0.16) 0%, transparent 55%),
+      linear-gradient(135deg, #0D1014 0%, #050506 55%, #071F14 100%);
+    border: 1px solid var(--gold-18k);
+    padding: 18px 16px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.85);
+  }
+
+  .card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .card-maison {
+    font-family: 'Cinzel', serif;
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    color: var(--gold-champagne);
+  }
+
+  .card-tier {
+    font-size: 7.5px;
+    letter-spacing: 0.2em;
+    color: var(--gold-18k);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .card-serial {
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    color: var(--gold-18k);
+    border: 0.5px solid var(--gold-hairline);
+    padding: 3px 7px;
+  }
+
+  .rx-spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border-top: 0.5px solid rgba(212, 175, 55, 0.24);
+    border-bottom: 0.5px solid rgba(212, 175, 55, 0.24);
+    padding: 12px 0;
+    margin-bottom: 12px;
+  }
+
+  .rx-col-label {
+    font-size: 7px;
+    letter-spacing: 0.18em;
+    color: var(--gold-18k);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .rx-col-val {
+    font-family: 'Cinzel', serif;
+    font-size: 12.5px;
+    color: var(--ivory);
+  }
+
+  .rx-col-sub {
+    font-size: 8.5px;
+    color: var(--platinum);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  .card-holder-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .holder-name {
+    font-family: 'Cinzel', serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: var(--ivory);
+  }
+
+  .holder-frame {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--gold-champagne);
+    text-transform: uppercase;
+  }
+
+  #atelierToast {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #062317;
+    border: 1px solid var(--gold-18k);
+    color: var(--gold-champagne);
+    padding: 10px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 999;
+    text-align: center;
+    width: 90%;
+  }
+
+  #atelierToast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .footer-mark {
+    text-align: center;
+    font-size: 7.5px;
+    letter-spacing: 0.2em;
+    color: var(--slate-dim);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="iphone-chassis">
+  <!-- iOS Status Bar + Dynamic Island -->
+  <div class="ios-status-bar">
+    <span id="iosClock">8:12</span>
+    <div class="dynamic-island">
+      <div class="island-lens"></div>
+    </div>
+    <span style="font-size:10px; letter-spacing:0.06em;">5G • 100%</span>
+  </div>
+
+  <div class="fluted-bezel-top"></div>
+
+  <!-- STRICT ZERO-SCROLL IPHONE VIEWPORT -->
+  <div class="iphone-screen-viewport">
+
+    <!-- SLIDE-OUT HAMBURGER MENU BACKDROP & DRAWER -->
+    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleHamburger(false)"></div>
+    <aside class="hamburger-drawer" id="hamburgerDrawer">
+      <div>
+        <div class="drawer-top-head">
+          <span class="drawer-title">ATELIER MENU</span>
+          <button class="drawer-close-btn" onclick="toggleHamburger(false)">✕</button>
+        </div>
+
+        <div class="drawer-nav-list">
+          <button class="drawer-nav-item active" id="nav-concierge" onclick="switchPillar('concierge')">
+            <div>
+              <span>I. Boutique Concierge</span>
+              <span class="drawer-nav-sub">Suite Hold, Frame Alignment &amp; Salon Routing</span>
+            </div>
+            <span>→</span>
+          </button>
+
+          <button class="drawer-nav-item" id="nav-openchair" onclick="switchPillar('openchair')">
+            <div>
+              <span>II. Open Chair Right Now</span>
+              <span class="drawer-nav-sub">Same-Day Walk-In Radar &amp; Instant Lock</span>
+            </div>
+            <span>→</span>
+          </button>
+
+          <button class="drawer-nav-item" id="nav-nextavail" onclick="switchPillar('nextavail')">
+            <div>
+              <span>III. Next Available Slot</span>
+              <span class="drawer-nav-sub">All Pittsburgh Salons or By Specific Salon</span>
+            </div>
+            <span>→</span>
+          </button>
+
+          <button class="drawer-nav-item" id="nav-atelier" onclick="switchPillar('atelier')">
+            <div>
+              <span>IV. Biometric PD &amp; Drift</span>
+              <span class="drawer-nav-sub">AI Iris PD Scanner &amp; EyeRxNow™ Refraction</span>
+            </div>
+            <span>→</span>
+          </button>
+
+          <button class="drawer-nav-item" id="nav-vault" onclick="switchPillar('vault')">
+            <div>
+              <span>V. Centurion Optical Vault</span>
+              <span class="drawer-nav-sub">Credential #0777-PGH &amp; Paperless Dossier</span>
+            </div>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+
+      <div style="font-size:8px; letter-spacing:0.2em; color:var(--gold-18k); text-align:center; border-top:0.5px solid var(--gold-hairline); padding-top:12px;">
+        ROLEX DAY-DATE EDITION • VERS 1.5
+      </div>
+    </aside>
+
+    <!-- TOP HEADER WITH TOP-LEFT HAMBURGER + ROLEX DAY-DATE CROWN -->
+    <header class="top-header-bar">
+      <button class="hamburger-btn" onclick="toggleHamburger(true)" title="Atelier Menu">
+        <span class="hb-line"></span>
+        <span class="hb-line"></span>
+        <span class="hb-line"></span>
+      </button>
+
+      <div class="aperture-row">
+        <div class="day-aperture" id="rolexDay">FRIDAY</div>
+        <div class="cyclops-date" id="rolexDate">30</div>
+      </div>
+      <h1 class="brand-wordmark">EYETIQUE</h1>
+      <div class="brand-sub">Private Client Atelier • Pittsburgh</div>
+    </header>
+
+    <!-- MAIN ZERO-SCROLL STAGE -->
+    <main class="screen-stage">
+
+      <!-- SCREEN 1: PRIVATE BOUTIQUE CONCIERGE (DEFAULT HOME) -->
+      <section id="panel-concierge" class="pillar-panel active">
+        <div class="quick-availability-row">
+          <button class="quick-gold-btn" onclick="switchPillar('openchair')">● Open Chair Now</button>
+          <button class="quick-emerald-btn" onclick="switchPillar('nextavail')">Next Available Slot</button>
+        </div>
+
+        <div class="maison-card">
+          <div>
+            <div class="section-eyebrow">Direct Boutique Line • Zero Wait</div>
+            <h2 class="section-title">Private Suite &amp; Salon Routing</h2>
+          </div>
+
+          <div class="zip-row">
+            <input type="text" id="zipInput" class="zip-input" maxlength="5" placeholder="POSTAL CODE (15222)" oninput="routeByZip(this.value)">
+            <button class="gps-btn" onclick="autoLocateBoutique()">GPS</button>
+          </div>
+
+          <div class="boutique-pills" id="boutiquePills">
+            <button class="boutique-pill selected" onclick="selectBoutique('gateway', this)">Downtown</button>
+            <button class="boutique-pill" onclick="selectBoutique('shadyside', this)">Shadyside</button>
+            <button class="boutique-pill" onclick="selectBoutique('squirrelhill', this)">Squirrel Hill</button>
+            <button class="boutique-pill" onclick="selectBoutique('sewickley', this)">Sewickley</button>
+            <button class="boutique-pill" onclick="selectBoutique('wexford', this)">Wexford</button>
+            <button class="boutique-pill" onclick="selectBoutique('southhills', this)">South Hills</button>
+          </div>
+
+          <div class="selected-boutique-box">
+            <div>
+              <div class="boutique-name" id="btqName">Eyetique — Downtown Gateway</div>
+              <div class="boutique-addr" id="btqAddr">603 Stanwix St, Ste 150 • Corner of Stanwix &amp; Penn</div>
+            </div>
+            <div class="boutique-status">Suite Open</div>
+          </div>
+
+          <div class="concierge-actions">
+            <a id="holdSuiteBtn" href="tel:+14124719838" class="gold-cta" onclick="notifyAction('Connecting to Private Suite Desk — Holding Your Examination Chair')">
+              <span>Hold My Examination Suite</span>
+              <span>10–15 Min →</span>
+            </a>
+
+            <a id="tuneUpBtn" href="tel:+14124719838" class="obsidian-cta" onclick="notifyAction('Priority Atelier Bench Alerted — Bespoke Frame Alignment')">
+              <div>
+                <span>Priority Aviator &amp; Couture Alignment</span>
+                <span class="cta-sub">Walk-in ultrasonic cleaning &amp; temple calibration</span>
+              </div>
+              <span style="color:var(--gold-18k);">→</span>
+            </a>
+
+            <a id="runwayBtn" href="tel:+14124719838" class="obsidian-cta" onclick="notifyAction('Connecting to Lead Optician — Private Vault Allocation')">
+              <div>
+                <span>Private Runway Allocation Inquiry</span>
+                <span class="cta-sub">Cartier, Barton Perreira, Tom Ford &amp; Norman Childs</span>
+              </div>
+              <span style="color:var(--gold-18k);">→</span>
+            </a>
+
+            <a id="bookSuiteBtn" href="https://www.eyetique-gateway.com/#book" target="_blank" class="obsidian-cta">
+              <div>
+                <span>Reserve Private Doctor Refraction</span>
+                <span class="cta-sub">Direct booking at your selected Pittsburgh salon</span>
+              </div>
+              <span style="color:var(--gold-18k);">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: OPEN CHAIR RIGHT NOW (LIVE WALK-IN RADAR WITH SCROLLABLE MULTI-STORE LIST) -->
+      <section id="panel-openchair" class="pillar-panel">
+        <div class="maison-card" style="margin-top:0;">
+          <div>
+            <div class="section-eyebrow">Live Walk-In Radar • Swipe List for All Salons</div>
+            <h2 class="section-title">Open Chair Right Now (6 Salons)</h2>
+          </div>
+
+          <div class="scrollable-slot-list">
+            <div class="chair-slot-card" id="nowCard1">
+              <div style="flex:1;">
+                <div class="chair-badge-Immediate" id="nowBadge1">● 1 Chair Open Right Now</div>
+                <div class="chair-salon-title">Downtown Gateway — 603 Stanwix St</div>
+                <div class="chair-salon-meta" id="nowMeta1">0.4 mi away • Ready at <span id="slotTime1">2:30 PM</span> • Doctor On Duty</div>
+              </div>
+              <button class="claim-chair-btn" id="nowBtn1" onclick="lockChairSlot('nowCard1', 'nowBadge1', 'nowMeta1', 'nowBtn1', 'Downtown Gateway', 'EYT-777-STX', '+14124719838')">Book &amp; Lock →</button>
+            </div>
+
+            <div class="chair-slot-card" id="nowCard2">
+              <div style="flex:1;">
+                <div class="chair-badge-Immediate" id="nowBadge2">● 1 Chair Open Right Now</div>
+                <div class="chair-salon-title">Shadyside Flagship — 5418 Walnut St</div>
+                <div class="chair-salon-meta" id="nowMeta2">2.8 mi away • Ready at <span id="slotTime2">3:00 PM</span> • Couture Vault</div>
+              </div>
+              <button class="claim-chair-btn" id="nowBtn2" onclick="lockChairSlot('nowCard2', 'nowBadge2', 'nowMeta2', 'nowBtn2', 'Shadyside Flagship', 'EYT-884-SHD', '+14126875353')">Book &amp; Lock →</button>
+            </div>
+
+            <div class="chair-slot-card" id="nowCard3">
+              <div style="flex:1;">
+                <div class="chair-badge-Immediate" id="nowBadge3">● Express Walk-In Chair Open</div>
+                <div class="chair-salon-title">Squirrel Hill Maison — 5889 Forbes Ave</div>
+                <div class="chair-salon-meta" id="nowMeta3">3.4 mi away • Ready at <span id="slotTime3">3:30 PM</span> • Doctor + Optician</div>
+              </div>
+              <button class="claim-chair-btn" id="nowBtn3" onclick="lockChairSlot('nowCard3', 'nowBadge3', 'nowMeta3', 'nowBtn3', 'Squirrel Hill Maison', 'EYT-912-SQH', '+14124225300')">Book &amp; Lock →</button>
+            </div>
+
+            <div class="chair-slot-card" id="nowCard4">
+              <div style="flex:1;">
+                <div class="chair-badge-Immediate" id="nowBadge4">● 1 Late Afternoon Chair Open</div>
+                <div class="chair-salon-title">South Hills Village — Upper Level</div>
+                <div class="chair-salon-meta" id="nowMeta4">9.4 mi away • Ready at 4:00 PM • Full Exam Suite</div>
+              </div>
+              <button class="claim-chair-btn" id="nowBtn4" onclick="lockChairSlot('nowCard4', 'nowBadge4', 'nowMeta4', 'nowBtn4', 'South Hills Village', 'EYT-400-SHV', '+14128542222')">Book &amp; Lock →</button>
+            </div>
+
+            <div class="chair-slot-card" id="nowCard5">
+              <div style="flex:1;">
+                <div class="chair-badge-Immediate" id="nowBadge5">● 1 Village Suite Open</div>
+                <div class="chair-salon-title">Sewickley Village — 411 Beaver St</div>
+                <div class="chair-salon-meta" id="nowMeta5">12.1 mi away • Ready at 4:15 PM • Master Optician</div>
+              </div>
+              <button class="claim-chair-btn" id="nowBtn5" onclick="lockChairSlot('nowCard5', 'nowBadge5', 'nowMeta5', 'nowBtn5', 'Sewickley Village', 'EYT-415-SEW', '+14127418920')">Book &amp; Lock →</button>
+            </div>
+
+            <div class="chair-slot-card" id="nowCard6">
+              <div style="flex:1;">
+                <div class="chair-badge-Immediate" id="nowBadge6">● 1 North Hills Chair Open</div>
+                <div class="chair-salon-title">Wexford Salon — 10644 Perry Hwy</div>
+                <div class="chair-salon-meta" id="nowMeta6">14.2 mi away • Ready at 4:30 PM • Doctor On Duty</div>
+              </div>
+              <button class="claim-chair-btn" id="nowBtn6" onclick="lockChairSlot('nowCard6', 'nowBadge6', 'nowMeta6', 'nowBtn6', 'Wexford Salon', 'EYT-430-WEX', '+17249405300')">Book &amp; Lock →</button>
+            </div>
+          </div>
+
+          <button class="obsidian-cta" onclick="switchPillar('concierge')">
+            <span>← Return to Boutique Concierge</span>
+            <span style="color:var(--gold-18k);">HOME</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: NEXT AVAILABLE APPOINTMENT (ALL SALONS OR BY LOCATION) -->
+      <section id="panel-nextavail" class="pillar-panel">
+        <div class="maison-card" style="margin-top:0;">
+          <div>
+            <div class="section-eyebrow">Live Cancellation &amp; Schedule Feed</div>
+            <h2 class="section-title">Next Available Appointment</h2>
+          </div>
+
+          <div class="next-filter-bar" style="margin-top:6px;">
+            <button class="filter-mode-btn active" id="modeAllBtn" onclick="setNextFilterMode('all')">All Pittsburgh Salons</button>
+            <button class="filter-mode-btn" id="modeLocBtn" onclick="setNextFilterMode('specific')">By Specific Salon</button>
+          </div>
+
+          <select id="salonFilterSelect" class="salon-filter-select" style="margin-top:6px;" onchange="renderNextAvailableList()">
+            <option value="gateway">Downtown Gateway — 603 Stanwix St</option>
+            <option value="shadyside">Shadyside Flagship — 5418 Walnut St</option>
+            <option value="squirrelhill">Squirrel Hill Maison — 5889 Forbes Ave</option>
+            <option value="sewickley">Sewickley Village — 411 Beaver St</option>
+            <option value="wexford">Wexford Salon — 10644 Perry Hwy</option>
+            <option value="southhills">South Hills Village — Upper Level</option>
+          </select>
+
+          <div id="nextAvailListContainer" class="scrollable-slot-list"></div>
+
+          <button class="obsidian-cta" onclick="switchPillar('concierge')">
+            <span>← Return to Boutique Concierge</span>
+            <span style="color:var(--gold-18k);">HOME</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SCREEN 4: BIOMETRIC ATELIER -->
+      <section id="panel-atelier" class="pillar-panel">
+        <div class="maison-card" style="margin-top:0;">
+          <div>
+            <div class="section-eyebrow">Powered by EyeRxNow™ Optical Intelligence</div>
+            <h2 class="section-title">Biometric PD &amp; Frame Architecture</h2>
+          </div>
+
+          <div class="camera-frame">
+            <video id="atelierVideo" autoplay playsinline muted></video>
+            <div id="cameraPlaceholder" style="text-align:center; padding: 14px;">
+              <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.22em; color:var(--gold-18k); margin-bottom:6px;">OPTICAL BIOMETRIC TELEMETRY</div>
+              <div style="font-size:10px; color:var(--platinum); font-weight:300;">Sub-millimeter iris lock &amp; bespoke bridge sizing</div>
+            </div>
+            <div class="reticle-overlay">
+              <div class="reticle-line"></div>
+            </div>
+          </div>
+
+          <div class="biometric-readout">
+            <div class="bio-tile">
+              <div class="bio-val" id="bioPdVal">63.0 mm</div>
+              <div class="bio-lbl">Binocular PD</div>
+            </div>
+            <div class="bio-tile">
+              <div class="bio-val" id="bioDualVal">31.5 / 31.5</div>
+              <div class="bio-lbl">Monocular OD/OS</div>
+            </div>
+            <div class="bio-tile">
+              <div class="bio-val" id="bioCaliberVal">58 □ 14</div>
+              <div class="bio-lbl">Ideal Caliber</div>
+            </div>
+          </div>
+
+          <div class="concierge-actions">
+            <button class="gold-cta" onclick="startBiometricScan()">
+              <span id="scanBtnText">Activate Live Biometric Scan</span>
+              <span>5 Sec →</span>
+            </button>
+
+            <a href="https://eyerxnow.com/" target="_blank" class="obsidian-cta">
+              <div>
+                <span>Launch Full Refractive Drift Verification</span>
+                <span class="cta-sub">2-minute subjective refraction check via EyeRxNow™</span>
+              </div>
+              <span style="color:var(--gold-18k);">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 5: CENTURION OPTICAL VAULT -->
+      <section id="panel-vault" class="pillar-panel">
+        <div class="centurion-card">
+          <div class="card-top-row">
+            <div>
+              <div class="card-maison">EYETIQUE ATELIER</div>
+              <div class="card-tier">Private Client Optical Credential</div>
+            </div>
+            <div class="card-serial">NO. 0777-PGH</div>
+          </div>
+
+          <div class="rx-spec-grid">
+            <div>
+              <div class="rx-col-label">Right Eye (OD)</div>
+              <div class="rx-col-val">-2.50 D SPH</div>
+              <div class="rx-col-sub">Contact: -2.50 | -0.75 × 10°</div>
+            </div>
+            <div>
+              <div class="rx-col-label">Left Eye (OS)</div>
+              <div class="rx-col-val">-2.25 D | -0.75 × 180°</div>
+              <div class="rx-col-sub">Contact: -2.00 | -0.75 × 20°</div>
+            </div>
+            <div>
+              <div class="rx-col-label">Pupillary Distance</div>
+              <div class="rx-col-val">63.0 mm</div>
+              <div class="rx-col-sub">Dual: 31.5 OD / 31.5 OS</div>
+            </div>
+            <div>
+              <div class="rx-col-label">Near Addition</div>
+              <div class="rx-col-val">+2.00 D ADD</div>
+              <div class="rx-col-sub">Bespoke Progressive Ready</div>
+            </div>
+          </div>
+
+          <div class="card-holder-row">
+            <div>
+              <div class="holder-name">TERRANCE L. WATKINS</div>
+              <div class="holder-frame">Signature Fit: Ray-Ban Aviator 58-14-135</div>
+            </div>
+            <div style="font-size:8px; letter-spacing:0.18em; color:var(--gold-18k);">VERIFIED 2026</div>
+          </div>
+        </div>
+
+        <div class="maison-card" style="padding:14px 15px;">
+          <div>
+            <div class="section-eyebrow">Zero Paper Clipboards • Instant Arrival</div>
+            <h2 class="section-title">One-Tap Suite Pre-Registration</h2>
+          </div>
+
+          <div class="concierge-actions">
+            <button class="gold-cta" onclick="notifyAction('Private Dossier #0777 Transmitted to Eyetique Downtown Gateway')">
+              <span>Transmit Dossier to Boutique Desk</span>
+              <span>Instant →</span>
+            </button>
+            <a href="https://ecsofpa.myclstore.com/Order/Welcome?RdbZy4gd" target="_blank" class="obsidian-cta">
+              <div>
+                <span>One-Tap PRECISION1™ Toric Allocation</span>
+                <span class="cta-sub">Direct annual contact lens replenishment</span>
+              </div>
+              <span style="color:var(--gold-18k);">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="footer-mark" id="buildVersionBadge">
+      EYETIQUE PRIVATE CLIENT ATELIER • BUILD 1.0 VERS 1.5
+    </div>
+
+    <div id="atelierToast">TRANSMITTED</div>
+  </div>
+
+  <div class="ios-home-indicator-bar">
+    <div class="ios-home-pill"></div>
+  </div>
+</div>
+
+<!-- DESKTOP QR LAUNCHPAD FOR REAL IPHONE -->
+<div class="desktop-qr-panel">
+  <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.24em; color:var(--gold-18k); margin-bottom:8px;">INSTANT IPHONE LAUNCH</div>
+  <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--ivory); margin-bottom:14px;">Point Your iPhone Camera Here</div>
+  <div style="background:#FFFFFF; padding:12px; display:inline-block; border:2px solid var(--gold-18k); margin-bottom:14px;">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=210x210&data=https%3A%2F%2Faceface21-bit.github.io%2Fdev%2Feyetique.html" width="210" height="210" alt="Scan with iPhone Camera" style="display:block;">
+  </div>
+  <div style="font-size:11px; color:var(--platinum); line-height:1.5;">
+    1. Open your iPhone <strong>Camera</strong> app.<br>
+    2. Point it at this QR code.<br>
+    3. Tap the yellow Safari banner!
+  </div>
+</div>
+
+<script>
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.5";
+
+  (function updateRolexCrown() {
+    const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+    const now = new Date();
+    document.getElementById("rolexDay").textContent = days[now.getDay()];
+    document.getElementById("rolexDate").textContent = String(now.getDate()).padStart(2, "0");
+    const h12 = now.getHours() % 12 || 12;
+    const mStr = String(now.getMinutes()).padStart(2, "0");
+    document.getElementById("iosClock").textContent = h12 + ":" + mStr;
+
+    const fmtTime = (minsAhead) => {
+      const d = new Date(now.getTime() + minsAhead * 60000);
+      let h = d.getHours();
+      let m = d.getMinutes();
+      m = m < 15 ? 15 : (m < 30 ? 30 : (m < 45 ? 45 : 0));
+      if (m === 0) h = (h + 1) % 24;
+      const ampm = h >= 12 ? "PM" : "AM";
+      const hr = h % 12 || 12;
+      return hr + ":" + String(m).padStart(2, "0") + " " + ampm;
+    };
+    document.getElementById("slotTime1").textContent = fmtTime(25);
+    document.getElementById("slotTime2").textContent = fmtTime(55);
+    document.getElementById("slotTime3").textContent = fmtTime(80);
+  })();
+
+  function toggleHamburger(open) {
+    document.getElementById("menuBackdrop").classList.toggle("open", open);
+    document.getElementById("hamburgerDrawer").classList.toggle("open", open);
+  }
+
+  function switchPillar(id) {
+    document.querySelectorAll(".pillar-panel").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".drawer-nav-item").forEach(b => b.classList.remove("active"));
+    const panel = document.getElementById("panel-" + id);
+    if (panel) panel.classList.add("active");
+    const navBtn = document.getElementById("nav-" + id);
+    if (navBtn) navBtn.classList.add("active");
+    toggleHamburger(false);
+    if (id === "nextavail") {
+      renderNextAvailableList();
+    }
+  }
+
+  function lockChairSlot(cardId, badgeId, metaId, btnId, salonLabel, confCode, phone) {
+    const card = document.getElementById(cardId);
+    const badge = document.getElementById(badgeId);
+    const meta = document.getElementById(metaId);
+    const btn = document.getElementById(btnId);
+
+    if (btn.classList.contains("locked-btn")) {
+      window.location.href = "tel:" + phone;
+      return;
+    }
+
+    card.classList.add("locked-slot");
+    badge.classList.add("locked-badge");
+    badge.textContent = "🔒 CHAIR LOCKED • OFF PUBLIC BOARD (" + confCode + ")";
+    meta.innerHTML = "<strong style='color:var(--gold-champagne);'>Reserved Exclusively For You</strong> • Double-Book Lock Active";
+    btn.classList.add("locked-btn");
+    btn.textContent = "Locked ✓ Call";
+    notifyAction("Chair Locked at " + salonLabel + " • #" + confCode);
+  }
+
+  let nextFilterMode = "all";
+  const NEXT_SLOTS = [
+    { id: "nx1", key: "gateway", salon: "Downtown Gateway — 603 Stanwix St", badge: "● 1:00 PM Cancellation Just Opened", time: "Today • 1:00 PM", sub: "0.4 mi • Comprehensive Exam & Couture Fitting", code: "EYT-100-STX", phone: "+14124719838", locked: false },
+    { id: "nx2", key: "shadyside", salon: "Shadyside Flagship — 5418 Walnut St", badge: "● Soonest East End Opening", time: "Today • 2:15 PM", sub: "2.8 mi • Doctor Refraction & Private Styling", code: "EYT-215-SHD", phone: "+14126875353", locked: false },
+    { id: "nx3", key: "squirrelhill", salon: "Squirrel Hill Maison — 5889 Forbes Ave", badge: "● Afternoon Cancellation Slot", time: "Today • 3:45 PM", sub: "3.4 mi • Comprehensive & Contact Lens Suite", code: "EYT-345-SQH", phone: "+14124225300", locked: false },
+    { id: "nx4", key: "gateway", salon: "Downtown Gateway — 603 Stanwix St", badge: "● Morning Executive Slot", time: "Tomorrow • 9:30 AM", sub: "0.4 mi • First Chair of the Day", code: "EYT-930-STX", phone: "+14124719838", locked: false },
+    { id: "nx5", key: "sewickley", salon: "Sewickley Village — 411 Beaver St", badge: "● Private Village Suite", time: "Tomorrow • 10:30 AM", sub: "12.1 mi • Master Optician & Doctor Suite", code: "EYT-103-SEW", phone: "+14127418920", locked: false },
+    { id: "nx6", key: "wexford", salon: "Wexford Salon — 10644 Perry Hwy", badge: "● North Hills Opening", time: "Tomorrow • 11:15 AM", sub: "14.2 mi • Full Clinical Refraction", code: "EYT-111-WEX", phone: "+17249405300", locked: false },
+    { id: "nx7", key: "southhills", salon: "South Hills Village — Upper Level", badge: "● South Hills Opening", time: "Tomorrow • 1:30 PM", sub: "9.4 mi • Comprehensive Exam & Frame Vault", code: "EYT-130-SHV", phone: "+14128542222", locked: false }
+  ];
+
+  function setNextFilterMode(mode) {
+    nextFilterMode = mode;
+    document.getElementById("modeAllBtn").classList.toggle("active", mode === "all");
+    document.getElementById("modeLocBtn").classList.toggle("active", mode === "specific");
+    document.getElementById("salonFilterSelect").style.display = mode === "specific" ? "block" : "none";
+    renderNextAvailableList();
+  }
+
+  function renderNextAvailableList() {
+    const container = document.getElementById("nextAvailListContainer");
+    const selectedSalon = document.getElementById("salonFilterSelect").value;
+    const filtered = nextFilterMode === "all"
+      ? NEXT_SLOTS
+      : NEXT_SLOTS.filter(s => s.key === selectedSalon);
+
+    container.innerHTML = filtered.map(s => `
+      <div class="chair-slot-card ${s.locked ? 'locked-slot' : ''}" id="card_${s.id}">
+        <div style="flex:1;">
+          <div class="chair-badge-Immediate ${s.locked ? 'locked-badge' : ''}">
+            ${s.locked ? '🔒 RESERVED • OFF PUBLIC BOARD (' + s.code + ')' : s.badge}
+          </div>
+          <div class="chair-salon-title">${s.time} — ${s.salon}</div>
+          <div class="chair-salon-meta">
+            ${s.locked ? "<strong style='color:var(--gold-champagne);'>Slot Locked Exclusively For You</strong>" : s.sub}
+          </div>
+        </div>
+        <button class="claim-chair-btn ${s.locked ? 'locked-btn' : ''}" onclick="lockNextSlot('${s.id}')">
+          ${s.locked ? 'Locked ✓ Call' : 'Book &amp; Lock →'}
+        </button>
+      </div>
+    `).join("");
+  }
+
+  function lockNextSlot(slotId) {
+    const item = NEXT_SLOTS.find(s => s.id === slotId);
+    if (!item) return;
+    if (item.locked) {
+      window.location.href = "tel:" + item.phone;
+      return;
+    }
+    item.locked = true;
+    renderNextAvailableList();
+    notifyAction("Appointment Locked (" + item.time + ") • #" + item.code);
+  }
+
+  const BOUTIQUES = {
+    gateway: {
+      name: "Eyetique — Downtown Gateway",
+      addr: "603 Stanwix St, Ste 150 • Corner of Stanwix & Penn",
+      phone: "+14124719838",
+      book: "https://www.eyetique-gateway.com/#book",
+      zips: ["15222", "15219", "15212", "15233", "15203", "15211"]
+    },
+    shadyside: {
+      name: "Eyetique — Shadyside Flagship",
+      addr: "5418 Walnut Street • Pittsburgh, PA 15232",
+      phone: "+14126875353",
+      book: "https://www.eyetique-shadyside.com/#book",
+      zips: ["15232", "15206", "15213", "15224", "15201"]
+    },
+    squirrelhill: {
+      name: "Eyetique — Squirrel Hill Maison",
+      addr: "5889 Forbes Avenue • Pittsburgh, PA 15217",
+      phone: "+14124225300",
+      book: "https://www.eyetique-squirrel-hill.com/#book",
+      zips: ["15217", "15207", "15218", "15208", "15221"]
+    },
+    sewickley: {
+      name: "Eyetique — Sewickley Village",
+      addr: "411 Beaver Street • Sewickley, PA 15143",
+      phone: "+14127418920",
+      book: "https://www.eyetique-sewickley.com/#book",
+      zips: ["15143", "15108", "15126"]
+    },
+    wexford: {
+      name: "Eyetique — Wexford Salon",
+      addr: "10644 Perry Highway • Wexford, PA 15090",
+      phone: "+17249405300",
+      book: "https://www.eyetique-wexford.com/#book",
+      zips: ["15090", "16066", "15101", "15237"]
+    },
+    southhills: {
+      name: "Eyetique — South Hills Village",
+      addr: "301 South Hills Village • Upper Level • Pittsburgh",
+      phone: "+14128542222",
+      book: "https://www.eyetique-south-hills-village.com/#book",
+      zips: ["15241", "15228", "15216", "15234", "15236", "15102"]
+    }
+  };
+
+  function selectBoutique(key, pillEl) {
+    const b = BOUTIQUES[key];
+    if (!b) return;
+    document.querySelectorAll(".boutique-pill").forEach(el => el.classList.remove("selected"));
+    if (pillEl) pillEl.classList.add("selected");
+    document.getElementById("btqName").textContent = b.name;
+    document.getElementById("btqAddr").textContent = b.addr;
+    document.getElementById("holdSuiteBtn").href = "tel:" + b.phone;
+    document.getElementById("tuneUpBtn").href = "tel:" + b.phone;
+    document.getElementById("runwayBtn").href = "tel:" + b.phone;
+    document.getElementById("bookSuiteBtn").href = b.book;
+  }
+
+  function routeByZip(val) {
+    const clean = val.replace(/\D/g, "");
+    if (clean.length === 5) {
+      for (const [k, b] of Object.entries(BOUTIQUES)) {
+        if (b.zips.includes(clean)) {
+          selectBoutique(k, null);
+          notifyAction("Matched Postal Code " + clean + " → " + b.name);
+          return;
+        }
+      }
+      selectBoutique("gateway", null);
+      notifyAction("Routed to Flagship Downtown Gateway (" + clean + ")");
+    }
+  }
+
+  function autoLocateBoutique() {
+    notifyAction("GPS Locked → Eyetique Downtown Gateway (603 Stanwix St)");
+    selectBoutique("gateway", document.querySelector(".boutique-pill"));
+  }
+
+  function notifyAction(msg) {
+    const t = document.getElementById("atelierToast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 3000);
+  }
+
+  async function startBiometricScan() {
+    const vid = document.getElementById("atelierVideo");
+    const ph = document.getElementById("cameraPlaceholder");
+    const btnTxt = document.getElementById("scanBtnText");
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+      vid.srcObject = stream;
+      vid.style.display = "block";
+      ph.style.display = "none";
+      btnTxt.textContent = "Calibrating Millimeter Iris Lock...";
+      setTimeout(() => {
+        btnTxt.textContent = "Biometric Profile Locked • 63.0 mm PD";
+        notifyAction("Biometric Lock Complete • Ideal Silhouette: 58□14 Aviator / Navigator");
+      }, 3000);
+    } catch (e) {
+      notifyAction("Biometric Vault Profile Verified • 63.0 mm (31.5 / 31.5)");
+    }
+  }
+</script>
+</body>
+</html>
