@@ -1100,6 +1100,40 @@
   <!-- STRICT ZERO-SCROLL IPHONE VIEWPORT -->
   <div class="iphone-screen-viewport">
 
+    <!-- LUXURY ONBOARDING & WELCOME SCREEN (BUILD 1.0 VERS 1.7) -->
+    <div class="welcome-gate" id="atelierWelcomeGate">
+      <div class="welcome-crest-box">
+        <div class="welcome-crown-pill">👑 EST. 1979 • SQUIRREL HILL &amp; DOWNTOWN PGH</div>
+        <div class="welcome-wordmark">EYETIQUE</div>
+        <div class="welcome-sub">Private Client Atelier &amp; Optical Concierge</div>
+      </div>
+
+      <div class="welcome-pillars">
+        <div class="welcome-pillar-card">
+          <div class="welcome-pillar-tag">I • LIVE SALON TELEMETRY</div>
+          <div class="welcome-pillar-title">Same-Day Open Chair Radar</div>
+          <div class="welcome-pillar-desc">View real-time open chairs across all 6 Pittsburgh salons &amp; lock your slot off the public board in 1 tap.</div>
+        </div>
+
+        <div class="welcome-pillar-card">
+          <div class="welcome-pillar-tag">II • 468-POINT IRIS BIOMETRICS</div>
+          <div class="welcome-pillar-title">Millimeter PD &amp; Rx Drift Check</div>
+          <div class="welcome-pillar-desc">Pre-verify your Pupillary Distance and sphere drift via camera telemetry before stepping into the exam suite.</div>
+        </div>
+
+        <div class="welcome-pillar-card">
+          <div class="welcome-pillar-tag">III • WHITE-GLOVE FRAME CARE</div>
+          <div class="welcome-pillar-title">Complimentary Aviator &amp; Couture Tune-Up</div>
+          <div class="welcome-pillar-desc">Precision temple &amp; bridge alignment, ultrasonic deep bath, and private styling suite hold with zero wait.</div>
+        </div>
+      </div>
+
+      <div class="welcome-cta-stack">
+        <button class="welcome-enter-btn" onclick="dismissWelcomeGate('concierge')">Enter Private Atelier →</button>
+        <button class="welcome-fast-btn" onclick="dismissWelcomeGate('openchair')">● View Open Chairs Right Now (6 Salons)</button>
+      </div>
+    </div>
+
     <!-- SLIDE-OUT HAMBURGER MENU BACKDROP & DRAWER -->
     <div class="menu-backdrop" id="menuBackdrop" onclick="toggleHamburger(false)"></div>
     <aside class="hamburger-drawer" id="hamburgerDrawer">
@@ -1110,6 +1144,14 @@
         </div>
 
         <div class="drawer-nav-list">
+          <button class="drawer-nav-item" id="nav-welcome" onclick="showWelcomeGate()">
+            <div>
+              <span>0. Welcome &amp; Atelier Intro</span>
+              <span class="drawer-nav-sub">3-Pillar Luxury Onboarding Screen</span>
+            </div>
+            <span>→</span>
+          </button>
+
           <button class="drawer-nav-item active" id="nav-concierge" onclick="switchPillar('concierge')">
             <div>
               <span>I. Boutique Concierge</span>
