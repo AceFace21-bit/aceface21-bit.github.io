@@ -1536,7 +1536,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge">
-      EYETIQUE PRIVATE CLIENT ATELIER • BUILD 1.0 VERS 1.8
+      EYETIQUE PRIVATE CLIENT ATELIER • BUILD 1.0 VERS 1.9
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1562,19 +1562,7 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.8";
-
-  function dismissWelcomeGate(targetPillar) {
-    const gate = document.getElementById("atelierWelcomeGate");
-    if (gate) gate.classList.add("dismissed");
-    if (targetPillar) switchPillar(targetPillar);
-  }
-
-  function showWelcomeGate() {
-    toggleHamburger(false);
-    const gate = document.getElementById("atelierWelcomeGate");
-    if (gate) gate.classList.remove("dismissed");
-  }
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.9";
 
   (function updateRolexCrown() {
     const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
