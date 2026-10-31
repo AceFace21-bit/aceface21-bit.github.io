@@ -1,4 +1,4 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.54 | EYETIQUE SELECT CLIENT APPLICATION (CENTERED VISIT A DOCTOR NOW + +20% BLOCK SPACING + REMOVED RETURN TO VIP HOME WHITE BLOCK) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.55 | EYETIQUE SELECT CLIENT APPLICATION (1-TAP CHECK-IN REFINEMENTS: ERASED HEADERS, CENTERED NAME, REVERSE-GREEN PILLS, CONCIERGE SERVICE + CONDITIONAL OTHER BOX, EYETIQUE.COM REORDER SCRIPT) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>EYETIQUE — Select Client Application (Build 1.0 Vers 1.54)</title>
+<title>EYETIQUE — Select Client Application (Build 1.0 Vers 1.55)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -560,10 +560,12 @@
 
   .boutique-pill {
     background: #F3F0E6;
-    border: 0.5px solid rgba(28, 31, 27, 0.16);
-    color: var(--platinum);
-    padding: 7px 4px;
-    font-size: 8px;
+    border: 1px solid #B5A482;
+    box-shadow: inset 0 0 0 1px rgba(181, 164, 130, 0.18);
+    color: #1C1F1B;
+    padding: 8px 6px;
+    font-size: 8.5px;
+    font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
@@ -571,11 +573,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 2px;
+    transition: all 0.18s ease;
   }
 
   .boutique-pill.selected {
     background: #2C3E31;
-    border-color: #2C3E31;
+    border-color: #1F3325;
+    box-shadow: 0 2px 8px rgba(31, 51, 37, 0.18);
     color: #FAF8F2;
   }
 
@@ -1535,23 +1540,18 @@
         <div style="margin-top:0; display:flex; flex-direction:column; justify-content:space-between; flex:1; padding:2px 2px 4px; background:transparent; border:none;">
 
           <!-- DRY CLEANER SAME-DAY PICK-UP / DROP-OFF COUPLE HERO PHOTO WITH ATELIER DOUBLE-MAT BORDER -->
-          <div style="width:100%; height:112px; padding:3px; background:#FAF8F2; border:1.5px solid #B5A482; border-radius:4px; box-shadow:0 6px 16px rgba(28,31,27,0.10), inset 0 0 0 0.5px rgba(181,164,130,0.45); flex-shrink:0;">
+          <div style="width:100%; height:118px; padding:3px; background:#FAF8F2; border:1.5px solid #B5A482; border-radius:4px; box-shadow:0 6px 16px rgba(28,31,27,0.10), inset 0 0 0 0.5px rgba(181,164,130,0.45); flex-shrink:0;">
             <div style="width:100%; height:100%; overflow:hidden; border:0.5px solid #C8B99B; border-radius:2px;">
               <img src="https://raw.githubusercontent.com/AceFace21-bit/aceface21-bit.github.io/main/dev/eyetique_drycleaner_checkin_hd.jpg?v=1.51" alt="Eyetique Select Client Application — 1-Tap Returning Client Check-In" style="width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block; filter:contrast(1.03) saturate(1.03); image-rendering:-webkit-optimize-contrast;">
             </div>
           </div>
 
-          <div style="text-align:left; margin-top:2px;">
-            <div style="font-family:'Inter',sans-serif; font-size:8px; font-weight:500; letter-spacing:0.15em; color:#5A5D55; margin-bottom:1px; text-transform:uppercase;">• RETURNING EYETIQUE CLIENT #0777 • RECORDS ON FILE</div>
-            <h2 style="font-family:'Cormorant Garamond', 'Cinzel', serif; font-size:20px; font-weight:500; letter-spacing:0.05em; color:#1C1F1B; line-height:1.1;">1-TAP CHECK-IN &amp; ON-FILE RX</h2>
-          </div>
-
-          <div style="background:#FAF8F2; border:1px solid #D5D1C5; box-shadow:0 4px 12px rgba(28,31,27,0.04), inset 0 0 0 2px #F3F0E6; padding:8px 11px; border-radius:2px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-              <span style="font-family:'Cinzel',serif; font-size:9px; font-weight:700; letter-spacing:0.13em; color:#1C1F1B;">TERRANCE L. WATKINS</span>
-              <span style="font-family:'Inter',sans-serif; font-size:8px; font-weight:600; letter-spacing:0.12em; color:#6B5B3E;">OCT 14, 2025</span>
+          <div style="background:#FAF8F2; border:1px solid #D5D1C5; box-shadow:0 4px 12px rgba(28,31,27,0.04), inset 0 0 0 2px #F3F0E6; padding:9px 11px; border-radius:2px;">
+            <div style="text-align:center; margin-bottom:6px; position:relative;">
+              <div style="font-family:'Cinzel',serif; font-size:10px; font-weight:700; letter-spacing:0.15em; color:#1C1F1B;">TERRANCE L. WATKINS</div>
+              <div style="font-family:'Inter',sans-serif; font-size:8px; font-weight:600; letter-spacing:0.13em; color:#6B5B3E; margin-top:2px;">OCT 14, 2025</div>
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 0.8fr; gap:6px; border-top:1px solid #E2DED3; padding-top:5px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr 0.8fr; gap:6px; border-top:1px solid #E2DED3; padding-top:6px; text-align:center;">
               <div>
                 <div style="font-size:6.5px; letter-spacing:0.13em; color:#6B5B3E; text-transform:uppercase; font-weight:600;">Right Eye (OD)</div>
                 <div style="font-family:'Cinzel',serif; font-size:10px; color:#1C1F1B; font-weight:600;">-2.50 SPH</div>
@@ -1568,18 +1568,18 @@
           </div>
 
           <div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
-              <button type="button" class="boutique-pill selected" style="padding:7px 4px;" onclick="this.classList.toggle('selected')">✓ Same Insurance On File</button>
-              <button type="button" class="boutique-pill selected" style="padding:7px 4px;" onclick="this.classList.toggle('selected')">✓ Same Mobile &amp; Address</button>
-              <button type="button" class="boutique-pill selected" style="padding:7px 4px; grid-column:span 2;" onclick="this.classList.toggle('selected')">✓ No Medical Changes</button>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+              <button type="button" class="boutique-pill" onclick="toggleVaultCheckPill(this, 'Same Insurance On File')">Same Insurance On File</button>
+              <button type="button" class="boutique-pill" onclick="toggleVaultCheckPill(this, 'Same Mobile & Address')">Same Mobile &amp; Address</button>
+              <button type="button" class="boutique-pill" style="grid-column:span 2;" onclick="toggleVaultCheckPill(this, 'Any Medical Changes')">Any Medical Changes</button>
             </div>
           </div>
 
-          <div style="display:flex; flex-direction:column; gap:5px;">
+          <div style="display:flex; flex-direction:column; gap:6px;">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
               <div>
-                <div style="font-size:7px; letter-spacing:0.15em; color:#6B5B3E; text-transform:uppercase; margin-bottom:2px; font-weight:600;">Check-In to Eyetique</div>
-                <select id="intakeSalon" class="zip-input" style="width:100%; padding:6px 6px; font-size:8.5px; color:#1C1F1B; background:#FAF8F2; border:1px solid #D5D1C5;">
+                <div style="font-size:7.5px; letter-spacing:0.16em; color:#6B5B3E; text-transform:uppercase; margin-bottom:3px; font-weight:600; text-align:center;">Check-In</div>
+                <select id="intakeSalon" class="zip-input" style="width:100%; padding:7px 6px; font-size:8.5px; color:#1C1F1B; background:#FAF8F2; border:1px solid #B5A482; border-radius:2px;">
                   <option value="Downtown Gateway (603 Stanwix St)">Downtown — 603 Stanwix</option>
                   <option value="Shadyside (5418 Walnut St)">Shadyside — 5418 Walnut</option>
                   <option value="Squirrel Hill (5889 Forbes Ave)">Squirrel Hill — 5889 Forbes</option>
@@ -1589,23 +1589,23 @@
                 </select>
               </div>
               <div>
-                <div style="font-size:7px; letter-spacing:0.15em; color:#6B5B3E; text-transform:uppercase; margin-bottom:2px; font-weight:600;">Today's Need</div>
-                <select id="intakeIns" class="zip-input" style="width:100%; padding:6px 6px; font-size:8.5px; color:#1C1F1B; background:#FAF8F2; border:1px solid #D5D1C5;">
-                  <option>Annual Exam + New Lenses</option>
-                  <option>Contact Lens Renewal</option>
-                  <option>Put New Lenses in My Frames</option>
-                  <option>Frame Tune-Up</option>
+                <div style="font-size:7.5px; letter-spacing:0.16em; color:#6B5B3E; text-transform:uppercase; margin-bottom:3px; font-weight:600; text-align:center;">Today's Need</div>
+                <select id="intakeIns" class="zip-input" onchange="handleTodayNeedChange(this.value)" style="width:100%; padding:7px 6px; font-size:8.5px; color:#1C1F1B; background:#FAF8F2; border:1px solid #B5A482; border-radius:2px;">
+                  <option value="Annual Exam">Annual Exam</option>
+                  <option value="Contact Lens Renewal">Contact Lens Renewal</option>
+                  <option value="Concierge Service">Concierge Service</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
             </div>
-            <div>
-              <input type="text" id="intakeOtherNote" placeholder="Other — Not Mandatory" style="width:100%; padding:7px 10px; font-family:'Inter',sans-serif; font-size:8.5px; color:#1C1F1B; background:#E6E3DA; border:1px solid #CFCBC0; border-radius:2px; outline:none;">
+            <div id="intakeOtherWrap" style="display:none; gap:5px; align-items:center;">
+              <input type="text" id="intakeOtherNote" placeholder="Optional — briefly describe (Not Mandatory)" style="flex:1; padding:7px 9px; font-family:'Inter',sans-serif; font-size:8.5px; color:#1C1F1B; background:#E6E3DA; border:1px solid #B5A482; border-radius:2px; outline:none;">
+              <button type="button" onclick="submitOtherNeedNote()" style="background:#2C3E31; border:1px solid #1F3325; color:#FAF8F2; padding:7px 11px; font-family:'Inter',sans-serif; font-size:8px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border-radius:2px; cursor:pointer; white-space:nowrap;">Submit</button>
             </div>
           </div>
 
           <div class="concierge-actions" style="gap:5px;">
-            <a href="https://ecsofpa.myclstore.com/Order/Welcome?RdbZy4gd" target="_blank" style="width:100%; background:#1C1F1B; border:1px solid #B5A482; color:#FAF8F2; padding:12px 16px; font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; text-decoration:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; border-radius:2px; box-shadow:0 4px 12px rgba(28,31,27,0.10);">
+            <a href="https://www.eyetique.com/" target="_blank" style="width:100%; background:#1C1F1B; border:1px solid #B5A482; color:#FAF8F2; padding:12px 16px; font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; text-decoration:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; border-radius:2px; box-shadow:0 4px 12px rgba(28,31,27,0.10);">
               <span>Reorder Script</span>
               <span style="color:#B5A482; font-size:14px;">⟶</span>
             </a>
@@ -1616,7 +1616,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge" style="border-top:0.5px solid #DCD8CC; padding-top:8px; color:#6E716A;">
-      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.54
+      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.55
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1642,7 +1642,41 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.54";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.55";
+
+  function toggleVaultCheckPill(btn, label) {
+    btn.classList.toggle("selected");
+    if (btn.classList.contains("selected")) {
+      btn.textContent = "✓ " + label;
+    } else {
+      btn.textContent = label;
+    }
+  }
+
+  function handleTodayNeedChange(val) {
+    const wrap = document.getElementById("intakeOtherWrap");
+    if (!wrap) return;
+    if (val === "Other") {
+      wrap.style.display = "flex";
+      const inp = document.getElementById("intakeOtherNote");
+      if (inp) setTimeout(() => inp.focus(), 50);
+    } else {
+      wrap.style.display = "none";
+    }
+  }
+
+  function submitOtherNeedNote() {
+    const wrap = document.getElementById("intakeOtherWrap");
+    if (wrap) {
+      const btn = wrap.querySelector("button");
+      if (btn) {
+        btn.textContent = "✓ Saved";
+      }
+    }
+    if (typeof notifyAction === "function") {
+      notifyAction("Check-In Note Recorded");
+    }
+  }
 
   // Hard Anti-Zoom Lock + Refresh Snap-Back to Unzoomed Welcome Page (iOS Safari)
   (function lockZoomAndSnapWelcome() {
