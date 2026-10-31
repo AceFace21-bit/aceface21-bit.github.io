@@ -1,10 +1,10 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.7 | EYETIQUE PRIVATE CLIENT ATELIER (LUXURY ONBOARDING & WELCOME GATE + 2.5-CARD PEEK) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.8 | EYETIQUE PRIVATE CLIENT ATELIER (ZERO-SCROLL 2x3 LUXURY SQUARE GRID + WELCOME GATE) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>EYETIQUE — Private Client Atelier | Zero-Scroll iPhone Edition (Build 1.0 Vers 1.7)</title>
+<title>EYETIQUE — Private Client Atelier | Zero-Scroll iPhone Edition (Build 1.0 Vers 1.8)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1535,7 +1535,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge">
-      EYETIQUE PRIVATE CLIENT ATELIER • BUILD 1.0 VERS 1.7
+      EYETIQUE PRIVATE CLIENT ATELIER • BUILD 1.0 VERS 1.8
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1561,7 +1561,7 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.7";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.8";
 
   function dismissWelcomeGate(targetPillar) {
     const gate = document.getElementById("atelierWelcomeGate");
@@ -1630,8 +1630,8 @@
 
     card.classList.add("locked-slot");
     badge.classList.add("locked-badge");
-    badge.textContent = "🔒 CHAIR LOCKED • OFF PUBLIC BOARD (" + confCode + ")";
-    meta.innerHTML = "<strong style='color:var(--gold-champagne);'>Reserved Exclusively For You</strong> • Double-Book Lock Active";
+    badge.textContent = "🔒 LOCKED #" + confCode;
+    meta.innerHTML = "<strong style='color:var(--gold-champagne);'>Reserved For You</strong>";
     btn.classList.add("locked-btn");
     btn.textContent = "Locked ✓ Call";
     notifyAction("Chair Locked at " + salonLabel + " • #" + confCode);
@@ -1639,13 +1639,12 @@
 
   let nextFilterMode = "all";
   const NEXT_SLOTS = [
-    { id: "nx1", key: "gateway", salon: "Downtown Gateway — 603 Stanwix St", badge: "● 1:00 PM Cancellation Just Opened", time: "Today • 1:00 PM", sub: "0.4 mi • Comprehensive Exam & Couture Fitting", code: "EYT-100-STX", phone: "+14124719838", locked: false },
-    { id: "nx2", key: "shadyside", salon: "Shadyside Flagship — 5418 Walnut St", badge: "● Soonest East End Opening", time: "Today • 2:15 PM", sub: "2.8 mi • Doctor Refraction & Private Styling", code: "EYT-215-SHD", phone: "+14126875353", locked: false },
-    { id: "nx3", key: "squirrelhill", salon: "Squirrel Hill Maison — 5889 Forbes Ave", badge: "● Afternoon Cancellation Slot", time: "Today • 3:45 PM", sub: "3.4 mi • Comprehensive & Contact Lens Suite", code: "EYT-345-SQH", phone: "+14124225300", locked: false },
-    { id: "nx4", key: "gateway", salon: "Downtown Gateway — 603 Stanwix St", badge: "● Morning Executive Slot", time: "Tomorrow • 9:30 AM", sub: "0.4 mi • First Chair of the Day", code: "EYT-930-STX", phone: "+14124719838", locked: false },
-    { id: "nx5", key: "sewickley", salon: "Sewickley Village — 411 Beaver St", badge: "● Private Village Suite", time: "Tomorrow • 10:30 AM", sub: "12.1 mi • Master Optician & Doctor Suite", code: "EYT-103-SEW", phone: "+14127418920", locked: false },
-    { id: "nx6", key: "wexford", salon: "Wexford Salon — 10644 Perry Hwy", badge: "● North Hills Opening", time: "Tomorrow • 11:15 AM", sub: "14.2 mi • Full Clinical Refraction", code: "EYT-111-WEX", phone: "+17249405300", locked: false },
-    { id: "nx7", key: "southhills", salon: "South Hills Village — Upper Level", badge: "● South Hills Opening", time: "Tomorrow • 1:30 PM", sub: "9.4 mi • Comprehensive Exam & Frame Vault", code: "EYT-130-SHV", phone: "+14128542222", locked: false }
+    { id: "nx1", key: "gateway", salon: "DOWNTOWN", addr: "603 Stanwix St", badge: "● TODAY 1:00 PM", code: "EYT-100", phone: "+14124719838", locked: false },
+    { id: "nx2", key: "shadyside", salon: "SHADYSIDE", addr: "5418 Walnut St", badge: "● TODAY 2:15 PM", code: "EYT-215", phone: "+14126875353", locked: false },
+    { id: "nx3", key: "squirrelhill", salon: "SQUIRREL HILL", addr: "5889 Forbes Ave", badge: "● TODAY 3:45 PM", code: "EYT-345", phone: "+14124225300", locked: false },
+    { id: "nx4", key: "southhills", salon: "SOUTH HILLS", addr: "301 S Hills Vlg", badge: "● TOMORROW 9:30 AM", code: "EYT-930", phone: "+14128542222", locked: false },
+    { id: "nx5", key: "sewickley", salon: "SEWICKLEY", addr: "411 Beaver St", badge: "● TOMORROW 10:30 AM", code: "EYT-103", phone: "+14127418920", locked: false },
+    { id: "nx6", key: "wexford", salon: "WEXFORD", addr: "10644 Perry Hwy", badge: "● TOMORROW 11:15 AM", code: "EYT-111", phone: "+17249405300", locked: false }
   ];
 
   function setNextFilterMode(mode) {
@@ -1664,18 +1663,18 @@
       : NEXT_SLOTS.filter(s => s.key === selectedSalon);
 
     container.innerHTML = filtered.map(s => `
-      <div class="chair-slot-card ${s.locked ? 'locked-slot' : ''}" id="card_${s.id}">
-        <div style="flex:1;">
-          <div class="chair-badge-Immediate ${s.locked ? 'locked-badge' : ''}">
-            ${s.locked ? '🔒 RESERVED • OFF PUBLIC BOARD (' + s.code + ')' : s.badge}
-          </div>
-          <div class="chair-salon-title">${s.time} — ${s.salon}</div>
-          <div class="chair-salon-meta">
-            ${s.locked ? "<strong style='color:var(--gold-champagne);'>Slot Locked Exclusively For You</strong>" : s.sub}
+      <div class="chair-square-tile ${s.locked ? 'locked-slot' : ''}" id="card_${s.id}">
+        <div class="sq-status-dot ${s.locked ? 'locked-badge' : ''}">
+          ${s.locked ? '🔒 LOCKED #' + s.code : s.badge}
+        </div>
+        <div>
+          <div class="sq-salon-name">${s.salon}</div>
+          <div class="sq-salon-addr">
+            ${s.locked ? "<strong style='color:var(--gold-champagne);'>Reserved For You</strong>" : s.addr}
           </div>
         </div>
-        <button class="claim-chair-btn ${s.locked ? 'locked-btn' : ''}" onclick="lockNextSlot('${s.id}')">
-          ${s.locked ? 'Locked ✓ Call' : 'Book &amp; Lock →'}
+        <button class="sq-book-btn ${s.locked ? 'locked-btn' : ''}" onclick="lockNextSlot('${s.id}')">
+          ${s.locked ? 'Locked ✓ Call' : 'Book &amp; Lock'}
         </button>
       </div>
     `).join("");
