@@ -50,72 +50,42 @@
   }
 
   body {
-    background-color: #020304;
-    background-image:
-      radial-gradient(circle at 50% 20%, rgba(11, 59, 38, 0.32) 0%, rgba(2, 3, 4, 0.98) 70%);
+    background-color: var(--obsidian);
     color: var(--ivory);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     display: flex;
-    flex-direction: row;
-    gap: 36px;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     letter-spacing: 0.02em;
   }
 
-  .desktop-qr-panel {
-    width: 280px;
-    background: #08090B;
-    border: 1.5px solid var(--gold-18k);
-    padding: 26px 22px;
-    text-align: center;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.9);
+  .desktop-qr-panel,
+  .ios-status-bar,
+  .ios-home-indicator-bar {
+    display: none !important;
   }
 
-  @media (max-width: 780px) {
-    body {
-      height: 100dvh !important;
-      width: 100vw !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-    .desktop-qr-panel,
-    .ios-status-bar,
-    .ios-home-indicator-bar {
-      display: none !important;
-    }
-    .iphone-chassis {
-      width: 100vw !important;
-      height: 100dvh !important;
-      max-height: 100dvh !important;
-      border-radius: 0 !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
-    .iphone-screen-viewport {
-      padding: 10px 14px 8px !important;
-    }
-  }
-
-  /* DESKTOP IPHONE 16 PRO MAX TITANIUM SIMULATOR FRAME (100% ZERO-SCROLL) */
   .iphone-chassis {
-    width: 406px;
-    height: 852px;
-    max-height: 96vh;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
     background: var(--obsidian);
-    border-radius: 52px;
-    border: 3px solid #8A6D29;
-    box-shadow:
-      0 0 0 2px #1C1B18,
-      0 0 0 6px #3A3222,
-      0 26px 80px rgba(0, 0, 0, 0.95),
-      0 0 50px rgba(212, 175, 55, 0.16);
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
     position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+  }
+
+  .iphone-screen-viewport {
+    padding: 10px 14px 8px !important;
   }
 
   /* iOS Status Bar + Dynamic Island */
@@ -1783,9 +1753,29 @@
       const m = html.match(/const APP_BUILD_VERSION = "([^"]+)"/);
       if (m && m[1] && m[1] !== APP_BUILD_VERSION) {
         window.__HOT_LOADED_FROM_API = true;
-        document.open();
-        document.write(html);
-        document.close();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const newStyles = doc.querySelectorAll("style");
+        if (newStyles.length) {
+          document.querySelectorAll("style").forEach(s => s.remove());
+          newStyles.forEach(s => document.head.appendChild(document.importNode(s, true)));
+        }
+        const newChassis = doc.querySelector(".iphone-chassis");
+        const curChassis = document.querySelector(".iphone-chassis");
+        if (newChassis && curChassis) {
+          curChassis.innerHTML = newChassis.innerHTML;
+        }
+        const newScripts = doc.querySelectorAll("body script");
+        newScripts.forEach(sc => {
+          if (sc.textContent) {
+            const cleanCode = sc.textContent
+              .replace(/const APP_BUILD_VERSION =/g, "window.APP_BUILD_VERSION =")
+              .replace(/\(async function checkInstantLiveBuild[\s\S]*?\}\)\(\);/, "");
+            try { (0, eval)(cleanCode); } catch (e) {}
+          }
+        });
+        document.title = doc.title || document.title;
+        window.scrollTo(0, 0);
       }
     } catch (e) {}
   })();
