@@ -1314,67 +1314,67 @@
         </div>
       </section>
 
-      <!-- SCREEN 2: OPEN CHAIR RIGHT NOW (LIVE WALK-IN RADAR WITH SCROLLABLE MULTI-STORE LIST) -->
+      <!-- SCREEN 2: OPEN CHAIR RIGHT NOW (ZERO-SCROLL 2x3 SQUARE GRID) -->
       <section id="panel-openchair" class="pillar-panel">
         <div class="maison-card" style="margin-top:0;">
           <div>
-            <div class="section-eyebrow">Live Walk-In Radar • Swipe List for All Salons</div>
-            <h2 class="section-title">Open Chair Right Now (6 Salons)</h2>
+            <div class="section-eyebrow">Immediate Walk-In Chairs • Zero Scroll</div>
+            <h2 class="section-title">Open Chair Right Now</h2>
           </div>
 
-          <div class="scrollable-slot-list">
-            <div class="chair-slot-card" id="nowCard1">
-              <div style="flex:1;">
-                <div class="chair-badge-Immediate" id="nowBadge1">● 1 Chair Open Right Now</div>
-                <div class="chair-salon-title">Downtown Gateway — 603 Stanwix St</div>
-                <div class="chair-salon-meta" id="nowMeta1">0.4 mi away • Ready at <span id="slotTime1">2:30 PM</span> • Doctor On Duty</div>
+          <div class="square-slot-grid">
+            <div class="chair-square-tile" id="nowCard1">
+              <div class="sq-status-dot" id="nowBadge1">● OPEN <span id="slotTime1">2:30 PM</span></div>
+              <div>
+                <div class="sq-salon-name">DOWNTOWN</div>
+                <div class="sq-salon-addr" id="nowMeta1">603 Stanwix St</div>
               </div>
-              <button class="claim-chair-btn" id="nowBtn1" onclick="lockChairSlot('nowCard1', 'nowBadge1', 'nowMeta1', 'nowBtn1', 'Downtown Gateway', 'EYT-777-STX', '+14124719838')">Book &amp; Lock →</button>
+              <button class="sq-book-btn" id="nowBtn1" onclick="lockChairSlot('nowCard1', 'nowBadge1', 'nowMeta1', 'nowBtn1', 'Downtown Gateway', 'EYT-777', '+14124719838')">Book &amp; Lock</button>
             </div>
 
-            <div class="chair-slot-card" id="nowCard2">
-              <div style="flex:1;">
-                <div class="chair-badge-Immediate" id="nowBadge2">● 1 Chair Open Right Now</div>
-                <div class="chair-salon-title">Shadyside Flagship — 5418 Walnut St</div>
-                <div class="chair-salon-meta" id="nowMeta2">2.8 mi away • Ready at <span id="slotTime2">3:00 PM</span> • Couture Vault</div>
+            <div class="chair-square-tile" id="nowCard2">
+              <div class="sq-status-dot" id="nowBadge2">● OPEN <span id="slotTime2">3:00 PM</span></div>
+              <div>
+                <div class="sq-salon-name">SHADYSIDE</div>
+                <div class="sq-salon-addr" id="nowMeta2">5418 Walnut St</div>
               </div>
-              <button class="claim-chair-btn" id="nowBtn2" onclick="lockChairSlot('nowCard2', 'nowBadge2', 'nowMeta2', 'nowBtn2', 'Shadyside Flagship', 'EYT-884-SHD', '+14126875353')">Book &amp; Lock →</button>
+              <button class="sq-book-btn" id="nowBtn2" onclick="lockChairSlot('nowCard2', 'nowBadge2', 'nowMeta2', 'nowBtn2', 'Shadyside', 'EYT-884', '+14126875353')">Book &amp; Lock</button>
             </div>
 
-            <div class="chair-slot-card" id="nowCard3">
-              <div style="flex:1;">
-                <div class="chair-badge-Immediate" id="nowBadge3">● Express Walk-In Chair Open</div>
-                <div class="chair-salon-title">Squirrel Hill Maison — 5889 Forbes Ave</div>
-                <div class="chair-salon-meta" id="nowMeta3">3.4 mi away • Ready at <span id="slotTime3">3:30 PM</span> • Doctor + Optician</div>
+            <div class="chair-square-tile" id="nowCard3">
+              <div class="sq-status-dot" id="nowBadge3">● OPEN <span id="slotTime3">3:30 PM</span></div>
+              <div>
+                <div class="sq-salon-name">SQUIRREL HILL</div>
+                <div class="sq-salon-addr" id="nowMeta3">5889 Forbes Ave</div>
               </div>
-              <button class="claim-chair-btn" id="nowBtn3" onclick="lockChairSlot('nowCard3', 'nowBadge3', 'nowMeta3', 'nowBtn3', 'Squirrel Hill Maison', 'EYT-912-SQH', '+14124225300')">Book &amp; Lock →</button>
+              <button class="sq-book-btn" id="nowBtn3" onclick="lockChairSlot('nowCard3', 'nowBadge3', 'nowMeta3', 'nowBtn3', 'Squirrel Hill', 'EYT-912', '+14124225300')">Book &amp; Lock</button>
             </div>
 
-            <div class="chair-slot-card" id="nowCard4">
-              <div style="flex:1;">
-                <div class="chair-badge-Immediate" id="nowBadge4">● 1 Late Afternoon Chair Open</div>
-                <div class="chair-salon-title">South Hills Village — Upper Level</div>
-                <div class="chair-salon-meta" id="nowMeta4">9.4 mi away • Ready at 4:00 PM • Full Exam Suite</div>
+            <div class="chair-square-tile" id="nowCard4">
+              <div class="sq-status-dot" id="nowBadge4">● OPEN 4:00 PM</div>
+              <div>
+                <div class="sq-salon-name">SOUTH HILLS</div>
+                <div class="sq-salon-addr" id="nowMeta4">301 S Hills Vlg</div>
               </div>
-              <button class="claim-chair-btn" id="nowBtn4" onclick="lockChairSlot('nowCard4', 'nowBadge4', 'nowMeta4', 'nowBtn4', 'South Hills Village', 'EYT-400-SHV', '+14128542222')">Book &amp; Lock →</button>
+              <button class="sq-book-btn" id="nowBtn4" onclick="lockChairSlot('nowCard4', 'nowBadge4', 'nowMeta4', 'nowBtn4', 'South Hills', 'EYT-400', '+14128542222')">Book &amp; Lock</button>
             </div>
 
-            <div class="chair-slot-card" id="nowCard5">
-              <div style="flex:1;">
-                <div class="chair-badge-Immediate" id="nowBadge5">● 1 Village Suite Open</div>
-                <div class="chair-salon-title">Sewickley Village — 411 Beaver St</div>
-                <div class="chair-salon-meta" id="nowMeta5">12.1 mi away • Ready at 4:15 PM • Master Optician</div>
+            <div class="chair-square-tile" id="nowCard5">
+              <div class="sq-status-dot" id="nowBadge5">● OPEN 4:15 PM</div>
+              <div>
+                <div class="sq-salon-name">SEWICKLEY</div>
+                <div class="sq-salon-addr" id="nowMeta5">411 Beaver St</div>
               </div>
-              <button class="claim-chair-btn" id="nowBtn5" onclick="lockChairSlot('nowCard5', 'nowBadge5', 'nowMeta5', 'nowBtn5', 'Sewickley Village', 'EYT-415-SEW', '+14127418920')">Book &amp; Lock →</button>
+              <button class="sq-book-btn" id="nowBtn5" onclick="lockChairSlot('nowCard5', 'nowBadge5', 'nowMeta5', 'nowBtn5', 'Sewickley', 'EYT-415', '+14127418920')">Book &amp; Lock</button>
             </div>
 
-            <div class="chair-slot-card" id="nowCard6">
-              <div style="flex:1;">
-                <div class="chair-badge-Immediate" id="nowBadge6">● 1 North Hills Chair Open</div>
-                <div class="chair-salon-title">Wexford Salon — 10644 Perry Hwy</div>
-                <div class="chair-salon-meta" id="nowMeta6">14.2 mi away • Ready at 4:30 PM • Doctor On Duty</div>
+            <div class="chair-square-tile" id="nowCard6">
+              <div class="sq-status-dot" id="nowBadge6">● OPEN 4:30 PM</div>
+              <div>
+                <div class="sq-salon-name">WEXFORD</div>
+                <div class="sq-salon-addr" id="nowMeta6">10644 Perry Hwy</div>
               </div>
-              <button class="claim-chair-btn" id="nowBtn6" onclick="lockChairSlot('nowCard6', 'nowBadge6', 'nowMeta6', 'nowBtn6', 'Wexford Salon', 'EYT-430-WEX', '+17249405300')">Book &amp; Lock →</button>
+              <button class="sq-book-btn" id="nowBtn6" onclick="lockChairSlot('nowCard6', 'nowBadge6', 'nowMeta6', 'nowBtn6', 'Wexford', 'EYT-430', '+17249405300')">Book &amp; Lock</button>
             </div>
           </div>
 
@@ -1385,7 +1385,7 @@
         </div>
       </section>
 
-      <!-- SCREEN 3: NEXT AVAILABLE APPOINTMENT (ALL SALONS OR BY LOCATION) -->
+      <!-- SCREEN 3: NEXT AVAILABLE APPOINTMENT (ZERO-SCROLL 2x3 SQUARE GRID) -->
       <section id="panel-nextavail" class="pillar-panel">
         <div class="maison-card" style="margin-top:0;">
           <div>
@@ -1393,12 +1393,12 @@
             <h2 class="section-title">Next Available Appointment</h2>
           </div>
 
-          <div class="next-filter-bar" style="margin-top:6px;">
+          <div class="next-filter-bar" style="margin-top:4px;">
             <button class="filter-mode-btn active" id="modeAllBtn" onclick="setNextFilterMode('all')">All Pittsburgh Salons</button>
             <button class="filter-mode-btn" id="modeLocBtn" onclick="setNextFilterMode('specific')">By Specific Salon</button>
           </div>
 
-          <select id="salonFilterSelect" class="salon-filter-select" style="margin-top:6px;" onchange="renderNextAvailableList()">
+          <select id="salonFilterSelect" class="salon-filter-select" style="margin-top:4px;" onchange="renderNextAvailableList()">
             <option value="gateway">Downtown Gateway — 603 Stanwix St</option>
             <option value="shadyside">Shadyside Flagship — 5418 Walnut St</option>
             <option value="squirrelhill">Squirrel Hill Maison — 5889 Forbes Ave</option>
@@ -1407,7 +1407,7 @@
             <option value="southhills">South Hills Village — Upper Level</option>
           </select>
 
-          <div id="nextAvailListContainer" class="scrollable-slot-list"></div>
+          <div id="nextAvailListContainer" class="square-slot-grid"></div>
 
           <button class="obsidian-cta" onclick="switchPillar('concierge')">
             <span>← Return to Boutique Concierge</span>
