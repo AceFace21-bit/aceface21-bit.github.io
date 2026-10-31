@@ -1,4 +1,4 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.59 | EYETIQUE SELECT CLIENT APPLICATION (HARD ZERO-MOVEMENT / ZERO-RUBBER-BAND SCREEN LOCK ON RETURNING CLIENT & ALL PAGES) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.60 | EYETIQUE SELECT CLIENT APPLICATION (CENTERED EXAM UNDER ANNUAL EXAM IN TODAY'S NEED & LOCATION SELECTORS) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>EYETIQUE — Select Client Application (Build 1.0 Vers 1.59)</title>
+<title>EYETIQUE — Select Client Application (Build 1.0 Vers 1.60)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1613,23 +1613,37 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
               <div>
                 <div style="font-size:7.5px; letter-spacing:0.16em; color:#6B5B3E; text-transform:uppercase; margin-bottom:3px; font-weight:600; text-align:center;">Location</div>
-                <select id="intakeSalon" class="zip-input" style="width:100%; padding:7px 6px; font-size:8.5px; color:#1C1F1B; background:#FAF8F2; border:1px solid #B5A482; border-radius:2px;">
-                  <option value="Downtown Gateway (603 Stanwix St)">Downtown — 603 Stanwix</option>
-                  <option value="Shadyside (5418 Walnut St)">Shadyside — 5418 Walnut</option>
-                  <option value="Squirrel Hill (5889 Forbes Ave)">Squirrel Hill — 5889 Forbes</option>
-                  <option value="South Hills Village">South Hills Village</option>
-                  <option value="Sewickley (411 Beaver St)">Sewickley — 411 Beaver</option>
-                  <option value="Wexford (10644 Perry Hwy)">Wexford — 10644 Perry</option>
-                </select>
+                <div style="position:relative; width:100%; min-height:36px; background:#FAF8F2; border:1px solid #B5A482; border-radius:2px; display:flex; align-items:center; justify-content:center; padding:5px 16px 5px 16px;">
+                  <div id="intakeSalonDisplay" style="width:100%; text-align:center; font-family:'Cinzel',serif; font-size:8.5px; font-weight:600; letter-spacing:0.11em; color:#1C1F1B; line-height:1.25; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                    <span>DOWNTOWN —</span>
+                    <span>603 STANWIX</span>
+                  </div>
+                  <span style="position:absolute; right:5px; top:50%; transform:translateY(-50%); font-size:8px; color:#6B5B3E; pointer-events:none;">▾</span>
+                  <select id="intakeSalon" onchange="updateIntakeSalonDisplay(this)" style="position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; z-index:2; font-size:16px;">
+                    <option value="Downtown Gateway (603 Stanwix St)" data-line1="DOWNTOWN —" data-line2="603 STANWIX">Downtown — 603 Stanwix</option>
+                    <option value="Shadyside (5418 Walnut St)" data-line1="SHADYSIDE —" data-line2="5418 WALNUT">Shadyside — 5418 Walnut</option>
+                    <option value="Squirrel Hill (5889 Forbes Ave)" data-line1="SQUIRREL HILL —" data-line2="5889 FORBES">Squirrel Hill — 5889 Forbes</option>
+                    <option value="South Hills Village" data-line1="SOUTH HILLS" data-line2="VILLAGE">South Hills Village</option>
+                    <option value="Sewickley (411 Beaver St)" data-line1="SEWICKLEY —" data-line2="411 BEAVER">Sewickley — 411 Beaver</option>
+                    <option value="Wexford (10644 Perry Hwy)" data-line1="WEXFORD —" data-line2="10644 PERRY">Wexford — 10644 Perry</option>
+                  </select>
+                </div>
               </div>
               <div>
                 <div style="font-size:7.5px; letter-spacing:0.16em; color:#6B5B3E; text-transform:uppercase; margin-bottom:3px; font-weight:600; text-align:center;">Today's Need</div>
-                <select id="intakeIns" class="zip-input" onchange="handleTodayNeedChange(this.value)" style="width:100%; padding:7px 6px; font-size:8.5px; color:#1C1F1B; background:#FAF8F2; border:1px solid #B5A482; border-radius:2px;">
-                  <option value="Annual Exam">Annual Exam</option>
-                  <option value="Contact Lens Renewal">Contact Lens Renewal</option>
-                  <option value="Concierge Service">Concierge Service</option>
-                  <option value="Other">Other</option>
-                </select>
+                <div style="position:relative; width:100%; min-height:36px; background:#FAF8F2; border:1px solid #B5A482; border-radius:2px; display:flex; align-items:center; justify-content:center; padding:5px 16px 5px 16px;">
+                  <div id="intakeInsDisplay" style="width:100%; text-align:center; font-family:'Cinzel',serif; font-size:8.5px; font-weight:600; letter-spacing:0.11em; color:#1C1F1B; line-height:1.25; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                    <span>ANNUAL</span>
+                    <span>EXAM</span>
+                  </div>
+                  <span style="position:absolute; right:5px; top:50%; transform:translateY(-50%); font-size:8px; color:#6B5B3E; pointer-events:none;">▾</span>
+                  <select id="intakeIns" onchange="handleTodayNeedChange(this.value, this)" style="position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; z-index:2; font-size:16px;">
+                    <option value="Annual Exam" data-line1="ANNUAL" data-line2="EXAM">Annual Exam</option>
+                    <option value="Contact Lens Renewal" data-line1="CONTACT LENS" data-line2="RENEWAL">Contact Lens Renewal</option>
+                    <option value="Concierge Service" data-line1="CONCIERGE" data-line2="SERVICE">Concierge Service</option>
+                    <option value="Other" data-line1="OTHER" data-line2="REQUEST">Other</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div id="intakeOtherWrap" style="display:none; gap:5px; align-items:center;">
@@ -1650,7 +1664,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge" style="border-top:0.5px solid #DCD8CC; padding-top:8px; color:#6E716A;">
-      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.59
+      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.60
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1676,13 +1690,32 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.59";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.60";
 
   function toggleVaultCheckPill(btn) {
     btn.classList.toggle("selected");
   }
 
-  function handleTodayNeedChange(val) {
+  function updateIntakeSalonDisplay(sel) {
+    const disp = document.getElementById("intakeSalonDisplay");
+    if (!disp || !sel) return;
+    const opt = sel.options[sel.selectedIndex];
+    if (!opt) return;
+    const l1 = opt.getAttribute("data-line1") || opt.text;
+    const l2 = opt.getAttribute("data-line2") || "";
+    disp.innerHTML = l2 ? ("<span>" + l1 + "</span><span>" + l2 + "</span>") : ("<span>" + l1 + "</span>");
+  }
+
+  function handleTodayNeedChange(val, sel) {
+    if (sel) {
+      const disp = document.getElementById("intakeInsDisplay");
+      const opt = sel.options[sel.selectedIndex];
+      if (disp && opt) {
+        const l1 = opt.getAttribute("data-line1") || opt.text;
+        const l2 = opt.getAttribute("data-line2") || "";
+        disp.innerHTML = l2 ? ("<span>" + l1 + "</span><span>" + l2 + "</span>") : ("<span>" + l1 + "</span>");
+      }
+    }
     const wrap = document.getElementById("intakeOtherWrap");
     if (!wrap) return;
     if (val === "Other") {
