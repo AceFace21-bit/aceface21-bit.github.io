@@ -1,4 +1,4 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.79 | EYETIQUE SELECT CLIENT PORTAL (VISUAL VIEWPORT FRAME LOCK + GENEROUS LEFT/RIGHT MARGIN SO ZERO LETTERS CUT OFF ON WELCOME PAGE) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.80 | EYETIQUE SELECT CLIENT PORTAL (VIP PHONE BRIDGE SYSTEM: CALLER ID PREFIX TAGGING + SIMULTANEOUS QUEUE HUNTING + RECEPTIONIST WHISPER + ,0777 DTMF MEMBER ID PASSING) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>EYETIQUE — Select Client Portal (Build 1.0 Vers 1.79)</title>
+<title>EYETIQUE — Select Client Portal (Build 1.0 Vers 1.80)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1359,12 +1359,12 @@
           </div>
 
           <div class="concierge-actions">
-            <a id="holdSuiteBtn" href="tel:+14124719838" class="gold-cta" onclick="notifyAction('Connecting to Private Suite Desk — Holding Your Examination Chair')">
+            <a id="holdSuiteBtn" href="tel:+14124719838,0777" class="gold-cta" onclick="notifyAction('★ VIP Bridge #0777 → Whispering to Private Suite Desk')">
               <span>Hold My Examination Suite</span>
               <span>10–15 Min →</span>
             </a>
 
-            <a id="tuneUpBtn" href="tel:+14124719838" class="obsidian-cta" onclick="notifyAction('Priority Atelier Bench Alerted — Bespoke Frame Alignment')">
+            <a id="tuneUpBtn" href="tel:+14124719838,0777" class="obsidian-cta" onclick="notifyAction('★ VIP Bridge #0777 → Priority Atelier Bench Alerted')">
               <div>
                 <span>Priority Aviator &amp; Couture Alignment</span>
                 <span class="cta-sub">Walk-in ultrasonic cleaning &amp; temple calibration</span>
@@ -1372,7 +1372,7 @@
               <span style="color:var(--gold-18k);">→</span>
             </a>
 
-            <a id="runwayBtn" href="tel:+14124719838" class="obsidian-cta" onclick="notifyAction('Connecting to Lead Optician — Private Vault Allocation')">
+            <a id="runwayBtn" href="tel:+14124719838,0777" class="obsidian-cta" onclick="notifyAction('★ VIP Bridge #0777 → Connecting to Lead Optician')">
               <div>
                 <span>Private Runway Allocation Inquiry</span>
                 <span class="cta-sub">Cartier, Barton Perreira, Tom Ford &amp; Norman Childs</span>
@@ -1675,7 +1675,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge" style="border-top:0.5px solid #DCD8CC; padding-top:8px; color:#6E716A;">
-      EYETIQUE SELECT CLIENT PORTAL • BUILD 1.0 VERS 1.79
+      EYETIQUE SELECT CLIENT PORTAL • BUILD 1.0 VERS 1.80
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1701,7 +1701,54 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.79";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.80";
+
+  // ============================================================================
+  // EYETIQUE VIP BRIDGE PHONE SYSTEM (CALLER ID PREFIX TAG + SIMULTANEOUS QUEUE
+  // HUNTING + RECEPTIONIST WHISPER COACHING + DYNAMIC ,0777 DTMF MEMBER ID)
+  // ============================================================================
+  const EYETIQUE_VIP_PHONE_BRIDGE = {
+    cnamDisplay: "★ SELECT CLIENT VIP",
+    twilioVipBridgeNumber: "+14125550777",
+    useTwilioGlobalHunt: false, // Set true once Twilio number +14125550777 is live
+    defaultMemberId: "0777",
+    huntClinics: [
+      { name: "Downtown", phone: "+14124719838" },
+      { name: "Squirrel Hill", phone: "+14124225300" },
+      { name: "Shadyside", phone: "+14126875353" },
+      { name: "Sewickley", phone: "+14127411800" },
+      { name: "Wexford", phone: "+17249405300" },
+      { name: "South Hills Village", phone: "+14128542222" }
+    ]
+  };
+
+  function getActiveVipMemberDigits() {
+    const sub = document.querySelector(".brand-sub");
+    if (sub && sub.textContent) {
+      const m = sub.textContent.match(/#(\d{3,6})/);
+      if (m && m[1]) return m[1];
+    }
+    return EYETIQUE_VIP_PHONE_BRIDGE.defaultMemberId;
+  }
+
+  function buildVipTelHref(targetPhone) {
+    const memberDigits = getActiveVipMemberDigits();
+    const baseNumber = EYETIQUE_VIP_PHONE_BRIDGE.useTwilioGlobalHunt
+      ? EYETIQUE_VIP_PHONE_BRIDGE.twilioVipBridgeNumber
+      : (targetPhone || EYETIQUE_VIP_PHONE_BRIDGE.twilioVipBridgeNumber);
+    const cleanBase = String(baseNumber).split(",")[0].trim();
+    return "tel:" + cleanBase + "," + memberDigits;
+  }
+
+  function launchVipBridgeCall(targetPhone, salonLabel, confCode) {
+    const memberDigits = getActiveVipMemberDigits();
+    const spokenDigits = memberDigits.split("").join("-");
+    const tagMsg = "★ VIP BRIDGE #" + memberDigits + " → Whispering \"Member " + spokenDigits + "\" to " + (salonLabel || "Eyetique") + " Desk";
+    if (typeof notifyAction === "function") {
+      notifyAction(tagMsg);
+    }
+    window.location.href = buildVipTelHref(targetPhone);
+  }
 
   function toggleVaultCheckPill(btn) {
     btn.classList.toggle("selected");
@@ -1899,18 +1946,18 @@
     const btn = document.getElementById(btnId);
 
     if (btn.classList.contains("locked-btn")) {
-      window.location.href = "tel:" + phone;
+      launchVipBridgeCall(phone, salonLabel, confCode);
       return;
     }
 
     card.classList.add("locked-slot");
     badge.classList.add("locked-badge");
     badge.textContent = "🔒 LOCKED #" + confCode;
-    meta.innerHTML = "<strong style='color:var(--gold-champagne);'>Reserved For You</strong>";
+    meta.innerHTML = "<strong style='color:var(--gold-champagne);'>VIP #" + getActiveVipMemberDigits() + " Reserved</strong>";
     btn.classList.add("locked-btn");
-    btn.textContent = "Locked ✓ Call";
+    btn.textContent = "Locked ✓ VIP Call";
     updateLiveDoctorCount();
-    notifyAction("Chair Locked at " + salonLabel + " • #" + confCode);
+    notifyAction("★ VIP Chair Locked at " + salonLabel + " • #" + confCode + " (Tap Again to Dial VIP Bridge)");
   }
 
   let nextFilterMode = "all";
@@ -1960,12 +2007,12 @@
     const item = NEXT_SLOTS.find(s => s.id === slotId);
     if (!item) return;
     if (item.locked) {
-      window.location.href = "tel:" + item.phone;
+      launchVipBridgeCall(item.phone, item.salon, item.code);
       return;
     }
     item.locked = true;
     renderNextAvailableList();
-    notifyAction("Appointment Locked (" + item.time + ") • #" + item.code);
+    notifyAction("★ VIP Appointment Locked • #" + item.code + " (Tap Again to Dial VIP Bridge)");
   }
 
   const BOUTIQUES = {
@@ -2020,9 +2067,9 @@
     if (pillEl) pillEl.classList.add("selected");
     document.getElementById("btqName").textContent = b.name;
     document.getElementById("btqAddr").textContent = b.addr;
-    document.getElementById("holdSuiteBtn").href = "tel:" + b.phone;
-    document.getElementById("tuneUpBtn").href = "tel:" + b.phone;
-    document.getElementById("runwayBtn").href = "tel:" + b.phone;
+    document.getElementById("holdSuiteBtn").href = buildVipTelHref(b.phone);
+    document.getElementById("tuneUpBtn").href = buildVipTelHref(b.phone);
+    document.getElementById("runwayBtn").href = buildVipTelHref(b.phone);
     document.getElementById("bookSuiteBtn").href = b.book;
   }
 
