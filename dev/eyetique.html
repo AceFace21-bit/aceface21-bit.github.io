@@ -1,10 +1,10 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.8 | EYETIQUE PRIVATE CLIENT ATELIER (ZERO-SCROLL 2x3 LUXURY SQUARE GRID + WELCOME GATE) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.9 | EYETIQUE PRIVATE CLIENT ATELIER (STAGE-INTEGRATED WELCOME SCREEN — HAMBURGER & FOOTER ALWAYS VISIBLE) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>EYETIQUE — Private Client Atelier | Zero-Scroll iPhone Edition (Build 1.0 Vers 1.8)</title>
+<title>EYETIQUE — Private Client Atelier | Zero-Scroll iPhone Edition (Build 1.0 Vers 1.9)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1189,7 +1189,7 @@
       </div>
 
       <div style="font-size:8px; letter-spacing:0.2em; color:var(--gold-18k); text-align:center; border-top:0.5px solid var(--gold-hairline); padding-top:12px;">
-        ROLEX DAY-DATE EDITION • VERS 1.8
+        ROLEX DAY-DATE EDITION • VERS 1.9
       </div>
     </aside>
 
@@ -1212,8 +1212,43 @@
     <!-- MAIN ZERO-SCROLL STAGE -->
     <main class="screen-stage">
 
-      <!-- SCREEN 1: PRIVATE BOUTIQUE CONCIERGE (DEFAULT HOME) -->
-      <section id="panel-concierge" class="pillar-panel active">
+      <!-- SCREEN 0: LUXURY ONBOARDING & WELCOME SCREEN (HAMBURGER & FOOTER STAY 100% VISIBLE) -->
+      <section id="panel-welcome" class="pillar-panel active">
+        <div class="maison-card" style="margin-top:0; display:flex; flex-direction:column; justify-content:space-between; flex:1;">
+          <div style="text-align:center;">
+            <div class="welcome-crown-pill" style="margin-bottom:6px;">👑 EST. 1979 • SQUIRREL HILL &amp; DOWNTOWN PGH</div>
+            <h2 class="section-title" style="font-size:20px;">Welcome to the Private Atelier</h2>
+          </div>
+
+          <div class="welcome-pillars" style="margin:6px 0;">
+            <div class="welcome-pillar-card">
+              <div class="welcome-pillar-tag">I • LIVE SALON TELEMETRY</div>
+              <div class="welcome-pillar-title">Same-Day Open Chair Radar</div>
+              <div class="welcome-pillar-desc">View real-time open chairs across all 6 Pittsburgh salons &amp; lock your slot off the public board in 1 tap.</div>
+            </div>
+
+            <div class="welcome-pillar-card">
+              <div class="welcome-pillar-tag">II • 468-POINT IRIS BIOMETRICS</div>
+              <div class="welcome-pillar-title">Millimeter PD &amp; Rx Drift Check</div>
+              <div class="welcome-pillar-desc">Pre-verify your Pupillary Distance &amp; sphere drift via camera telemetry before stepping into the exam suite.</div>
+            </div>
+
+            <div class="welcome-pillar-card">
+              <div class="welcome-pillar-tag">III • WHITE-GLOVE FRAME CARE</div>
+              <div class="welcome-pillar-title">Complimentary Aviator &amp; Couture Tune-Up</div>
+              <div class="welcome-pillar-desc">Precision temple &amp; bridge alignment, ultrasonic deep bath, and private styling suite hold with zero wait.</div>
+            </div>
+          </div>
+
+          <div class="welcome-cta-stack">
+            <button class="welcome-enter-btn" onclick="switchPillar('concierge')">Enter Private Atelier →</button>
+            <button class="welcome-fast-btn" onclick="switchPillar('openchair')">● View Open Chairs Right Now (6 Salons)</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 1: PRIVATE BOUTIQUE CONCIERGE -->
+      <section id="panel-concierge" class="pillar-panel">
         <div class="quick-availability-row">
           <button class="quick-gold-btn" onclick="switchPillar('openchair')">● Open Chair Now</button>
           <button class="quick-emerald-btn" onclick="switchPillar('nextavail')">Next Available Slot</button>
