@@ -1,10 +1,10 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.5 | EYETIQUE PRIVATE CLIENT ATELIER (LOCKED MAIN SHELL + INNER SCROLLABLE MULTI-LOCATION SLOT LISTS) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.6 | EYETIQUE PRIVATE CLIENT ATELIER (2.5-CARD PEEK SCROLL AFFORDANCE — HALF OF CARD #3 VISIBLE) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>EYETIQUE — Private Client Atelier | Zero-Scroll iPhone Edition (Build 1.0 Vers 1.5)</title>
+<title>EYETIQUE — Private Client Atelier | Zero-Scroll iPhone Edition (Build 1.0 Vers 1.6)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -625,16 +625,20 @@
     text-transform: none;
   }
 
-  /* INNER SCROLLABLE SLOT LIST FOR MULTI-LOCATION OPENINGS */
+  /* 2.5-CARD PEEK SCROLL BOX: SHOWS 2 FULL CARDS + TOP HALF OF CARD #3 CUT OFF SO USER KNOWS TO SCROLL */
   .scrollable-slot-list {
-    flex: 1;
+    height: 194px;
+    max-height: 194px;
+    flex: 0 0 194px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding-right: 4px;
-    margin: 8px 0;
-    max-height: 360px;
+    padding: 6px;
+    margin: 6px 0;
+    background: #040506;
+    border: 0.5px solid rgba(212, 175, 55, 0.42);
+    box-shadow: inset 0 -18px 22px -10px rgba(0, 0, 0, 0.92);
     scrollbar-width: thin;
     scrollbar-color: var(--gold-18k) #050505;
   }
@@ -650,11 +654,14 @@
     border-radius: 2px;
   }
 
-  /* OPEN CHAIR & NEXT AVAILABLE CARDS */
+  /* OPEN CHAIR & NEXT AVAILABLE CARDS (EXACT 74PX HEIGHT SO 2.5 CARDS = 194PX) */
   .chair-slot-card {
-    background: rgba(5, 5, 5, 0.9);
+    height: 74px;
+    min-height: 74px;
+    max-height: 74px;
+    background: rgba(9, 11, 14, 0.95);
     border: 0.5px solid rgba(212, 175, 55, 0.35);
-    padding: 11px 12px;
+    padding: 9px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
