@@ -1,4 +1,4 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.58 | EYETIQUE SELECT CLIENT APPLICATION (LOCATION LABEL INSTEAD OF CHECK-IN ON RETURNING CLIENT PAGE) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.59 | EYETIQUE SELECT CLIENT APPLICATION (HARD ZERO-MOVEMENT / ZERO-RUBBER-BAND SCREEN LOCK ON RETURNING CLIENT & ALL PAGES) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>EYETIQUE — Select Client Application (Build 1.0 Vers 1.58)</title>
+<title>EYETIQUE — Select Client Application (Build 1.0 Vers 1.59)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -39,9 +39,14 @@
   }
 
   html, body {
-    touch-action: manipulation;
+    touch-action: none;
     -webkit-text-size-adjust: 100%;
     overscroll-behavior: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
   body {
@@ -1645,7 +1650,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge" style="border-top:0.5px solid #DCD8CC; padding-top:8px; color:#6E716A;">
-      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.58
+      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.59
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1671,7 +1676,7 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.58";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.59";
 
   function toggleVaultCheckPill(btn) {
     btn.classList.toggle("selected");
@@ -1702,7 +1707,7 @@
     }
   }
 
-  // Hard Anti-Zoom Lock + Refresh Snap-Back to Unzoomed Welcome Page (iOS Safari)
+  // Hard Anti-Zoom + Zero-Scroll / Zero-Rubber-Band Screen Lock + Refresh Snap-Back to Welcome Page (iOS Safari)
   (function lockZoomAndSnapWelcome() {
     const resetZoomAndWelcome = () => {
       const vp = document.getElementById("eyetiqueViewportMeta") || document.querySelector('meta[name="viewport"]');
@@ -1720,7 +1725,7 @@
       document.addEventListener(evt, e => e.preventDefault(), { passive: false });
     });
     document.addEventListener("touchmove", e => {
-      if (e.touches && e.touches.length > 1) e.preventDefault();
+      e.preventDefault();
     }, { passive: false });
     let lastTouchEnd = 0;
     document.addEventListener("touchend", e => {
