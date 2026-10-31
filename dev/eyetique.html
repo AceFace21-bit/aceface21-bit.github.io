@@ -560,28 +560,57 @@
 
   .boutique-pill {
     background: #F3F0E6;
-    border: 1px solid #B5A482;
-    box-shadow: inset 0 0 0 1px rgba(181, 164, 130, 0.18);
+    border: 1.5px solid #2C3E31;
+    box-shadow: 0 2px 5px rgba(28, 31, 27, 0.12), inset 0 1px 0 #FFFFFF;
     color: #1C1F1B;
-    padding: 8px 6px;
+    padding: 8px 7px;
     font-size: 8.5px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
     cursor: pointer;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.16s ease;
+  }
+
+  .boutique-pill .pill-checkbox {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    border: 1.5px solid #2C3E31;
+    background: #FFFFFF;
     border-radius: 2px;
-    transition: all 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    box-shadow: inset 0 1px 2px rgba(28, 31, 27, 0.12);
+    transition: all 0.16s ease;
   }
 
   .boutique-pill.selected {
     background: #2C3E31;
     border-color: #1F3325;
-    box-shadow: 0 2px 8px rgba(31, 51, 37, 0.18);
+    box-shadow: 0 2px 8px rgba(31, 51, 37, 0.24), inset 0 0 0 1px rgba(181, 164, 130, 0.35);
     color: #FAF8F2;
+  }
+
+  .boutique-pill.selected .pill-checkbox {
+    background: #FAF8F2;
+    border-color: #B5A482;
+    color: #2C3E31;
+    box-shadow: none;
   }
 
   .selected-boutique-box {
@@ -1569,9 +1598,9 @@
 
           <div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-              <button type="button" class="boutique-pill" onclick="toggleVaultCheckPill(this, 'Same Insurance On File')">Same Insurance On File</button>
-              <button type="button" class="boutique-pill" onclick="toggleVaultCheckPill(this, 'Same Mobile & Address')">Same Mobile &amp; Address</button>
-              <button type="button" class="boutique-pill" style="grid-column:span 2;" onclick="toggleVaultCheckPill(this, 'Any Medical Changes')">Any Medical Changes</button>
+              <button type="button" class="boutique-pill" onclick="toggleVaultCheckPill(this)"><span class="pill-checkbox">✓</span><span>Same Insurance On File</span></button>
+              <button type="button" class="boutique-pill" onclick="toggleVaultCheckPill(this)"><span class="pill-checkbox">✓</span><span>Same Mobile &amp; Address</span></button>
+              <button type="button" class="boutique-pill" style="grid-column:span 2;" onclick="toggleVaultCheckPill(this)"><span class="pill-checkbox">✓</span><span>Any Medical Changes</span></button>
             </div>
           </div>
 
@@ -1616,7 +1645,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge" style="border-top:0.5px solid #DCD8CC; padding-top:8px; color:#6E716A;">
-      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.55
+      EYETIQUE SELECT CLIENT APPLICATION • BUILD 1.0 VERS 1.56
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1642,15 +1671,10 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.55";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.56";
 
-  function toggleVaultCheckPill(btn, label) {
+  function toggleVaultCheckPill(btn) {
     btn.classList.toggle("selected");
-    if (btn.classList.contains("selected")) {
-      btn.textContent = "✓ " + label;
-    } else {
-      btn.textContent = label;
-    }
   }
 
   function handleTodayNeedChange(val) {
