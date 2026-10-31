@@ -625,48 +625,76 @@
     text-transform: none;
   }
 
-  /* 2.5-CARD PEEK SCROLL BOX: SHOWS 2 FULL CARDS + TOP HALF OF CARD #3 CUT OFF SO USER KNOWS TO SCROLL */
-  .scrollable-slot-list {
-    height: 194px;
-    max-height: 194px;
-    flex: 0 0 194px;
-    overflow-y: auto;
+  /* ZERO-SCROLL 2x3 LUXURY SQUARE GRID (FITS ALL 6 SALONS ON 1 SCREEN WITH ZERO SCROLLING) */
+  .square-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 6px 0;
+  }
+
+  .chair-square-tile {
+    background: #060709;
+    border: 0.5px solid rgba(212, 175, 55, 0.38);
+    padding: 10px 10px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 6px;
-    margin: 6px 0;
-    background: #040506;
-    border: 0.5px solid rgba(212, 175, 55, 0.42);
-    box-shadow: inset 0 -18px 22px -10px rgba(0, 0, 0, 0.92);
-    scrollbar-width: thin;
-    scrollbar-color: var(--gold-18k) #050505;
-  }
-
-  .scrollable-slot-list::-webkit-scrollbar {
-    width: 4px;
-  }
-  .scrollable-slot-list::-webkit-scrollbar-track {
-    background: #050505;
-  }
-  .scrollable-slot-list::-webkit-scrollbar-thumb {
-    background: var(--gold-18k);
-    border-radius: 2px;
-  }
-
-  /* OPEN CHAIR & NEXT AVAILABLE CARDS (EXACT 74PX HEIGHT SO 2.5 CARDS = 194PX) */
-  .chair-slot-card {
-    height: 74px;
-    min-height: 74px;
-    max-height: 74px;
-    background: rgba(9, 11, 14, 0.95);
-    border: 0.5px solid rgba(212, 175, 55, 0.35);
-    padding: 9px 12px;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
+    text-align: center;
+    height: 118px;
+    transition: all 0.22s ease;
+  }
+
+  .chair-square-tile.locked-slot {
+    background: rgba(6, 35, 23, 0.65);
+    border: 1px solid var(--gold-18k);
+  }
+
+  .sq-status-dot {
+    font-family: 'Cinzel', serif;
+    font-size: 7.5px;
+    letter-spacing: 0.14em;
+    color: #34D399;
+    text-transform: uppercase;
+  }
+
+  .chair-square-tile.locked-slot .sq-status-dot {
+    color: var(--gold-champagne);
+  }
+
+  .sq-salon-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--ivory);
+    margin-top: 2px;
+  }
+
+  .sq-salon-addr {
+    font-size: 9px;
+    color: var(--platinum);
+    font-weight: 300;
+  }
+
+  .sq-book-btn {
+    width: 100%;
+    background: var(--rolex-emerald);
+    border: 0.5px solid var(--gold-18k);
+    color: var(--gold-champagne);
+    padding: 6px 4px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  .sq-book-btn.locked-btn {
+    background: var(--gold-18k);
+    color: #050505;
   }
 
   .chair-slot-card.locked-slot {
@@ -1195,7 +1223,7 @@
       </div>
 
       <div style="font-size:8px; letter-spacing:0.2em; color:var(--gold-18k); text-align:center; border-top:0.5px solid var(--gold-hairline); padding-top:12px;">
-        ROLEX DAY-DATE EDITION • VERS 1.6
+        ROLEX DAY-DATE EDITION • VERS 1.7
       </div>
     </aside>
 
