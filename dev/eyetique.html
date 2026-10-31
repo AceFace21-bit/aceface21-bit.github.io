@@ -1492,67 +1492,75 @@
         </div>
       </section>
 
-      <!-- SCREEN 5: CENTURION OPTICAL VAULT -->
+      <!-- SCREEN 5: PATIENT INTAKE & MEDICAL HISTORY FORM (ZERO-SCROLL DIGITAL REPLACEMENT FOR EYETIQUE PDF CLIPBOARD) -->
       <section id="panel-vault" class="pillar-panel">
-        <div class="centurion-card">
-          <div class="card-top-row">
-            <div>
-              <div class="card-maison">EYETIQUE ATELIER</div>
-              <div class="card-tier">Private Client Optical Credential</div>
-            </div>
-            <div class="card-serial">NO. 0777-PGH</div>
-          </div>
-
-          <div class="rx-spec-grid">
-            <div>
-              <div class="rx-col-label">Right Eye (OD)</div>
-              <div class="rx-col-val">-2.50 D SPH</div>
-              <div class="rx-col-sub">Contact: -2.50 | -0.75 × 10°</div>
-            </div>
-            <div>
-              <div class="rx-col-label">Left Eye (OS)</div>
-              <div class="rx-col-val">-2.25 D | -0.75 × 180°</div>
-              <div class="rx-col-sub">Contact: -2.00 | -0.75 × 20°</div>
-            </div>
-            <div>
-              <div class="rx-col-label">Pupillary Distance</div>
-              <div class="rx-col-val">63.0 mm</div>
-              <div class="rx-col-sub">Dual: 31.5 OD / 31.5 OS</div>
-            </div>
-            <div>
-              <div class="rx-col-label">Near Addition</div>
-              <div class="rx-col-val">+2.00 D ADD</div>
-              <div class="rx-col-sub">Bespoke Progressive Ready</div>
-            </div>
-          </div>
-
-          <div class="card-holder-row">
-            <div>
-              <div class="holder-name">TERRANCE L. WATKINS</div>
-              <div class="holder-frame">Signature Fit: Ray-Ban Aviator 58-14-135</div>
-            </div>
-            <div style="font-size:8px; letter-spacing:0.18em; color:var(--gold-18k);">VERIFIED 2026</div>
-          </div>
-        </div>
-
-        <div class="maison-card" style="padding:14px 15px;">
+        <div class="maison-card" style="margin-top:0; padding:14px 14px; display:flex; flex-direction:column; justify-content:space-between; flex:1;">
           <div>
-            <div class="section-eyebrow">Zero Paper Clipboards • Instant Arrival</div>
-            <h2 class="section-title">One-Tap Suite Pre-Registration</h2>
+            <div class="section-eyebrow">Replaces Eyetique Paper PDF • 60-Second Check-In</div>
+            <h2 class="section-title" style="font-size:19px;">Patient Intake &amp; Medical History Form</h2>
           </div>
 
-          <div class="concierge-actions">
-            <button class="gold-cta" onclick="notifyAction('Private Dossier #0777 Transmitted to Eyetique Downtown Gateway')">
-              <span>Transmit Dossier to Boutique Desk</span>
-              <span>Instant →</span>
+          <div style="display:grid; grid-template-columns:1.25fr 0.95fr; gap:6px;">
+            <div>
+              <div style="font-size:7px; letter-spacing:0.16em; color:var(--gold-18k); text-transform:uppercase; margin-bottom:2px;">Patient Full Name</div>
+              <input type="text" id="intakeName" class="zip-input" style="width:100%; padding:7px 9px; font-size:9.5px;" value="TERRANCE L. WATKINS">
+            </div>
+            <div>
+              <div style="font-size:7px; letter-spacing:0.16em; color:var(--gold-18k); text-transform:uppercase; margin-bottom:2px;">Date of Birth</div>
+              <input type="text" id="intakeDob" class="zip-input" style="width:100%; padding:7px 9px; font-size:9.5px;" placeholder="MM/DD/YYYY" value="08/21/1982">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div>
+              <div style="font-size:7px; letter-spacing:0.16em; color:var(--gold-18k); text-transform:uppercase; margin-bottom:2px;">Eyetique Salon Location</div>
+              <select id="intakeSalon" class="zip-input" style="width:100%; padding:7px 6px; font-size:8.5px; color:var(--gold-champagne);">
+                <option value="Downtown Gateway (603 Stanwix St)">Downtown — 603 Stanwix</option>
+                <option value="Shadyside (5418 Walnut St)">Shadyside — 5418 Walnut</option>
+                <option value="Squirrel Hill (5889 Forbes Ave)">Squirrel Hill — 5889 Forbes</option>
+                <option value="South Hills Village">South Hills Village</option>
+                <option value="Sewickley (411 Beaver St)">Sewickley — 411 Beaver</option>
+                <option value="Wexford (10644 Perry Hwy)">Wexford — 10644 Perry</option>
+              </select>
+            </div>
+            <div>
+              <div style="font-size:7px; letter-spacing:0.16em; color:var(--gold-18k); text-transform:uppercase; margin-bottom:2px;">Vision Insurance / FSA</div>
+              <select id="intakeIns" class="zip-input" style="width:100%; padding:7px 6px; font-size:8.5px; color:var(--gold-champagne);">
+                <option>VSP Vision Care</option>
+                <option>EyeMed / Highmark</option>
+                <option>Davis Vision / UPMC</option>
+                <option>VBA / Spectera</option>
+                <option>FSA / HSA / Private Client</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:7px; letter-spacing:0.16em; color:var(--gold-18k); text-transform:uppercase; margin-bottom:4px;">Ocular &amp; Medical History (Tap All That Apply)</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">
+              <button type="button" class="boutique-pill selected" onclick="this.classList.toggle('selected')">✓ Wear Eyeglasses</button>
+              <button type="button" class="boutique-pill selected" onclick="this.classList.toggle('selected')">✓ Wear Contacts</button>
+              <button type="button" class="boutique-pill selected" onclick="this.classList.toggle('selected')">✓ Digital Screen Glare</button>
+              <button type="button" class="boutique-pill" onclick="this.classList.toggle('selected')">Dry / Tired Eyes</button>
+              <button type="button" class="boutique-pill selected" onclick="this.classList.toggle('selected')">✓ No Diabetes / HTN</button>
+              <button type="button" class="boutique-pill selected" onclick="this.classList.toggle('selected')">✓ No Glaucoma / Surgery</button>
+            </div>
+          </div>
+
+          <div onclick="this.classList.toggle('selected')" class="boutique-pill selected" style="padding:7px 8px; font-size:7.5px; text-align:left; display:flex; align-items:center; justify-content:space-between;">
+            <span>✓ HIPAA Privacy, No Surprises Act &amp; Exam Consent Signed</span>
+            <span style="color:var(--gold-18k); font-weight:700;">VERIFIED</span>
+          </div>
+
+          <div class="concierge-actions" style="gap:6px;">
+            <button id="submitIntakeBtn" class="gold-cta" onclick="submitDigitalIntakeForm()">
+              <span id="submitIntakeTxt">Submit Patient Intake Form</span>
+              <span id="submitIntakeArrow">Instant →</span>
             </button>
-            <a href="https://ecsofpa.myclstore.com/Order/Welcome?RdbZy4gd" target="_blank" class="obsidian-cta">
-              <div>
-                <span>One-Tap PRECISION1™ Toric Allocation</span>
-                <span class="cta-sub">Direct annual contact lens replenishment</span>
-              </div>
-              <span style="color:var(--gold-18k);">→</span>
-            </a>
+            <button class="obsidian-cta" onclick="switchPillar('welcome')">
+              <span>← Return to Atelier Home</span>
+              <span style="color:var(--gold-18k);">HOME</span>
+            </button>
           </div>
         </div>
       </section>
@@ -1560,7 +1568,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge">
-      EYETIQUE PRIVATE CLIENT ATELIER • BUILD 1.0 VERS 1.11
+      EYETIQUE PRIVATE CLIENT ATELIER • BUILD 1.0 VERS 1.12
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1586,7 +1594,20 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.11";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.12";
+
+  function submitDigitalIntakeForm() {
+    const salon = document.getElementById("intakeSalon").value;
+    const btn = document.getElementById("submitIntakeBtn");
+    const txt = document.getElementById("submitIntakeTxt");
+    const arr = document.getElementById("submitIntakeArrow");
+    btn.style.background = "var(--rolex-emerald)";
+    btn.style.color = "var(--gold-champagne)";
+    btn.style.border = "1px solid var(--gold-18k)";
+    txt.textContent = "✓ Intake Form On File (" + salon.split(" ")[0] + ")";
+    arr.textContent = "#EYT-INT-777";
+    notifyAction("Patient Intake & Medical History Transmitted to " + salon);
+  }
 
   (function updateRolexCrown() {
     const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
