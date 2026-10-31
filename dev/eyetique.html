@@ -1,4 +1,4 @@
-<!-- BUILD & VERSION: Build 1.0 Vers 1.69 | EYETIQUE SELECT CLIENT PORTAL (SQUIRREL HILL LABELED AS FLAGSHIP STORE) -->
+<!-- BUILD & VERSION: Build 1.0 Vers 1.70 | EYETIQUE SELECT CLIENT PORTAL (ADDED JEWELER'S BEAUTY LINES ON RETURNING CLIENT CHECK-IN PAGE) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>EYETIQUE — Select Client Portal (Build 1.0 Vers 1.69)</title>
+<title>EYETIQUE — Select Client Portal (Build 1.0 Vers 1.70)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1571,6 +1571,13 @@
             </div>
           </div>
 
+          <!-- JEWELER'S BEAUTY LINE DIVIDER 1 (BETWEEN PRESCRIPTION & TODAY'S NEED / LOCATION) -->
+          <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin:1px 0;">
+            <span style="width:44px; height:1px; background:#D5D1C5; display:block;"></span>
+            <span style="width:4px; height:4px; border-radius:50%; background:#C2BDB0; display:block;"></span>
+            <span style="width:44px; height:1px; background:#D5D1C5; display:block;"></span>
+          </div>
+
           <div style="display:flex; flex-direction:column; gap:6px;">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
               <div>
@@ -1611,6 +1618,13 @@
             </div>
           </div>
 
+          <!-- JEWELER'S BEAUTY LINE DIVIDER 2 (BETWEEN TODAY'S NEED / LOCATION & SAME INSURANCE ON FILE) -->
+          <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin:1px 0;">
+            <span style="width:44px; height:1px; background:#D5D1C5; display:block;"></span>
+            <span style="width:4px; height:4px; border-radius:50%; background:#C2BDB0; display:block;"></span>
+            <span style="width:44px; height:1px; background:#D5D1C5; display:block;"></span>
+          </div>
+
           <div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
               <button type="button" class="boutique-pill" onclick="toggleVaultCheckPill(this)"><span class="pill-checkbox">✓</span><span>Same Insurance On File</span></button>
@@ -1630,7 +1644,7 @@
     </main>
 
     <div class="footer-mark" id="buildVersionBadge" style="border-top:0.5px solid #DCD8CC; padding-top:8px; color:#6E716A;">
-      EYETIQUE SELECT CLIENT PORTAL • BUILD 1.0 VERS 1.69
+      EYETIQUE SELECT CLIENT PORTAL • BUILD 1.0 VERS 1.70
     </div>
 
     <div id="atelierToast">TRANSMITTED</div>
@@ -1656,7 +1670,7 @@
 </div>
 
 <script>
-  const APP_BUILD_VERSION = "Build 1.0 Vers 1.69";
+  const APP_BUILD_VERSION = "Build 1.0 Vers 1.70";
 
   function toggleVaultCheckPill(btn) {
     btn.classList.toggle("selected");
