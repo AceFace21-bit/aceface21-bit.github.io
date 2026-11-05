@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>EyeRxNow™ • Pre-Test Gateway</title>
+  <title>EyeRxNow™ • Read Before Starting</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
       --accent-terra: #C85A32;
       --btn-sage: #2C4A3E;
       --btn-sage-hover: #21382F;
-      --btn-blue: #0284C7;
       --border-stone: #E2DDD3;
       --font-heading: "Fraunces", Georgia, serif;
       --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -37,79 +36,118 @@
       background: var(--bg-card);
       border: 1.5px solid var(--border-stone);
       border-radius: 24px;
-      padding: 32px 24px 28px;
+      padding: 28px 22px 22px;
       box-shadow: 0 15px 40px rgba(30, 30, 28, 0.08);
-      max-width: 380px;
+      max-width: 390px;
       width: 100%;
       text-align: center;
     }
     .brand-title {
       font-family: var(--font-heading);
-      font-size: 26px;
+      font-size: 25px;
       font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 24px;
+      margin-bottom: 4px;
     }
     .brand-accent {
       color: var(--accent-terra);
     }
-    .instruction-label {
+    .brand-sub {
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 9px;
       font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 10px;
+      color: var(--text-muted);
+      letter-spacing: 1.2px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
     }
-    .btn-enter {
+    .directions-box {
+      background: #F3EFE6;
+      border-left: 3.5px solid var(--accent-terra);
+      border-radius: 4px 12px 12px 4px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+    .directions-hdr {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .directions-item {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 7px;
+    }
+    .directions-alert {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      color: var(--accent-terra);
+      font-weight: 800;
+      line-height: 1.5;
+      margin-bottom: 7px;
+    }
+    .directions-note {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--btn-sage);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .btn-read {
       display: block;
       width: 100%;
       padding: 16px 20px;
-      background: var(--btn-blue);
+      background: var(--btn-sage);
       color: #FFFFFF;
       font-family: var(--font-body);
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 800;
       text-decoration: none;
       border: none;
       border-radius: 14px;
       cursor: pointer;
-      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+      box-shadow: 0 4px 16px rgba(44, 74, 62, 0.32);
       transition: transform 0.1s ease;
       box-sizing: border-box;
+      letter-spacing: 0.3px;
     }
-    .btn-enter:active {
+    .btn-read:active {
       transform: scale(0.98);
+      background: var(--btn-sage-hover);
     }
     .divider-dots {
       font-family: var(--font-body);
       font-size: 11px;
       font-weight: 700;
-      color: #94A3B8;
-      margin: 22px 0;
+      color: #CBD5E1;
+      margin: 14px 0;
       letter-spacing: 4px;
     }
     .btn-green-blank {
       display: block;
       width: 100%;
-      height: 52px;
+      height: 44px;
       background: var(--btn-sage);
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(44, 74, 62, 0.25);
-      transition: transform 0.1s ease;
+      opacity: 0.35;
+      box-shadow: 0 2px 8px rgba(44, 74, 62, 0.15);
+      transition: opacity 0.15s ease;
       box-sizing: border-box;
       text-decoration: none;
     }
-    .btn-green-blank:active {
-      transform: scale(0.98);
-      background: var(--btn-sage-hover);
-    }
-    .footer-meta {
-      font-size: 10px;
-      color: #94A3B8;
-      margin-top: 24px;
-      font-weight: 600;
+    .btn-green-blank:hover {
+      opacity: 0.75;
     }
   </style>
 </head>
@@ -118,27 +156,33 @@
     <div class="brand-title">
       Eye<span class="brand-accent">Rx</span>Now.com
     </div>
+    <div class="brand-sub">Optical Telemetry &amp; Frame Sizing</div>
 
-    <!-- Choice 1: Blue button with text above it -->
-    <div style="text-align: center;">
-      <div class="instruction-label">
-        I will read instruction on page
+    <!-- Mandatory Pre-Test Directions Callout -->
+    <div class="directions-box">
+      <div class="directions-hdr">
+        <span style="color: var(--accent-terra);">⚠️</span> DIRECTIONS: READ BEFORE STARTING
       </div>
-      <a href="shayla.html?enter=1&promo=auntgene" class="btn-enter">
-        Enter EyeRxNow &rarr;
-      </a>
+      <div class="directions-item">
+        &bull; <strong>Prop your phone upright on a stand</strong> at eye level, one arm's length away (~20–26 inches).
+      </div>
+      <div class="directions-alert">
+        &bull; <strong>DO NOT hold the phone in your hand.</strong>
+      </div>
+      <div class="directions-note">
+        📸 <strong>Screenshot your results.</strong> I don't store any information.
+      </div>
     </div>
+
+    <!-- The Button: CLICK IF YOU READ -->
+    <a href="shayla.html" class="btn-read">
+      CLICK IF YOU READ &rarr;
+    </a>
 
     <div class="divider-dots">&bull; &bull; &bull;</div>
 
-    <!-- Choice 2: Blank mid-century green button (nothing over it or in it) -->
-    <div style="text-align: center;">
-      <a href="480.html" class="btn-green-blank" title="LensCrafters Out-of-Pocket"></a>
-    </div>
-
-    <div class="footer-meta">
-      Patent-Pending Biometrics &bull; Zero Personal Data &bull; Build 6.0
-    </div>
+    <!-- Choice 2: Blank mid-century green button for LensCrafters $480 out-of-pocket check -->
+    <a href="480.html" class="btn-green-blank" title="LensCrafters Out-of-Pocket"></a>
   </div>
 </body>
 </html>
