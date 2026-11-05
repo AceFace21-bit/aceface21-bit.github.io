@@ -218,10 +218,10 @@
       // Return to shayla.html or referrer with skip gate and auntgene promo
       if (document.referrer && document.referrer.includes(".html")) {
         let target = document.referrer;
-        target += (target.includes("?") ? "&" : "?") + "enter=1&promo=auntgene";
+        target = "shayla.html";
         window.location.href = target;
       } else {
-        window.location.href = "shayla.html?enter=1&promo=auntgene";
+        window.location.href = "shayla.html";
       }
     }
   </script>
