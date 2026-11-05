@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>LensCrafters Out-of-Pocket Cost Reality Check | $480 vs $0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-outer: #EAE5DC;
+      --bg-card: #FBF9F5;
+      --text-main: #1E1E1C;
+      --text-muted: #68655E;
+      --accent-terra: #C85A32;
+      --btn-sage: #2C4A3E;
+      --btn-sage-hover: #21382F;
+      --border-stone: #E2DDD3;
+      --font-heading: "Fraunces", Georgia, serif;
+      --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-outer);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-stone);
+      border-radius: 24px;
+      max-width: 410px;
+      width: 100%;
+      padding: 26px 22px 22px;
+      box-shadow: 0 20px 45px rgba(30, 30, 28, 0.08);
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(200, 90, 50, 0.1);
+      color: var(--accent-terra);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 20px;
+    }
+    .receipt-box {
+      background: #F3EFE6;
+      border: 1.5px solid var(--border-stone);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      text-align: left;
+      margin-bottom: 18px;
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px dashed #CBD5E1;
+      font-size: 13px;
+    }
+    .receipt-row:last-child {
+      border-bottom: none;
+      padding-top: 12px;
+      padding-bottom: 2px;
+      margin-top: 4px;
+      border-top: 2px solid var(--border-stone);
+    }
+    .item-label {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+    .item-price {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .total-label {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .total-price {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-terra);
+    }
+    .comparison-box {
+      background: rgba(44, 74, 62, 0.08);
+      border: 1px solid rgba(44, 74, 62, 0.2);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 22px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--btn-sage);
+      font-weight: 600;
+    }
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--btn-sage);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(44, 74, 62, 0.3);
+      transition: all 0.15s ease;
+      margin-bottom: 10px;
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+      background: var(--btn-sage-hover);
+    }
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      background: transparent;
+      color: #64748B;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid var(--border-stone);
+      border-radius: 14px;
+      box-sizing: border-box;
+      transition: all 0.15s ease;
+    }
+    .btn-secondary:active {
+      background: #E2DDD3;
+      color: var(--text-main);
+    }
+    .footer-note {
+      font-size: 10.5px;
+      color: #94A3B8;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">Retail Reality Check</div>
+    <div style="font-size: 38px; margin-bottom: 8px;">🏬 💸</div>
+    <h1>LensCrafters Out-of-Pocket</h1>
+    <p class="subtitle">Average estimated cost for an in-store eye exam &amp; prescription glasses without vision insurance:</p>
+
+    <div class="receipt-box">
+      <div class="receipt-row">
+        <span class="item-label">Comprehensive Eye Exam</span>
+        <span class="item-price" style="color: var(--accent-terra);">$175.00</span>
+      </div>
+      <div class="receipt-row">
+        <span class="item-label">Basic Designer Frames</span>
+        <span class="item-price">$220.00</span>
+      </div>
+      <div class="receipt-row">
+        <span class="item-label">Anti-Glare / Poly Lenses</span>
+        <span class="item-price">$85.00</span>
+      </div>
+      <div class="receipt-row">
+        <span class="total-label">Estimated Total:</span>
+        <span class="total-price">~$480.00</span>
+      </div>
+    </div>
+
+    <div class="comparison-box">
+      💡 <strong>EyeRxNow Spec Sheet:</strong> $0.00 with Aunt Gene pass.<br>
+      Pair with $13.89 frames online &rarr; <strong>You save over $465!</strong>
+    </div>
+
+    <button class="btn-primary" onclick="returnToEyeRxNow()">
+      My Bad, I&#39;ll Read The Instructions ($0.00) &rarr;
+    </button>
+
+    <a class="btn-secondary" href="https://www.lenscrafters.com/lc-us/eye-exam" target="_blank" rel="noopener">
+      Proceed to LensCrafters.com ($480) &rarr;
+    </a>
+
+    <div class="footer-note">
+      EyeRxNow™ &bull; Patent-Pending Optical Biometrics &bull; Zero Personal Data
+    </div>
+  </div>
+
+  <script>
+    function returnToEyeRxNow() {
+      // Return to shayla.html or referrer with skip gate and auntgene promo
+      if (document.referrer && document.referrer.includes(".html")) {
+        let target = document.referrer;
+        target += (target.includes("?") ? "&" : "?") + "enter=1&promo=auntgene";
+        window.location.href = target;
+      } else {
+        window.location.href = "shayla.html?enter=1&promo=auntgene";
+      }
+    }
+  </script>
+</body>
+</html>
