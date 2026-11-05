@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>EyeRxNow™ • Pre-Test Gateway</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-outer: #EAE5DC;
+      --bg-card: #FBF9F5;
+      --text-main: #1E1E1C;
+      --text-muted: #68655E;
+      --accent-terra: #C85A32;
+      --btn-sage: #2C4A3E;
+      --btn-sage-hover: #21382F;
+      --btn-blue: #0284C7;
+      --border-stone: #E2DDD3;
+      --font-heading: "Fraunces", Georgia, serif;
+      --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-outer);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .gate-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-stone);
+      border-radius: 24px;
+      padding: 32px 24px 28px;
+      box-shadow: 0 15px 40px rgba(30, 30, 28, 0.08);
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+    }
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+    }
+    .brand-accent {
+      color: var(--accent-terra);
+    }
+    .instruction-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+    .btn-enter {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--btn-blue);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+      transition: transform 0.1s ease;
+      box-sizing: border-box;
+    }
+    .btn-enter:active {
+      transform: scale(0.98);
+    }
+    .divider-dots {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      color: #94A3B8;
+      margin: 22px 0;
+      letter-spacing: 4px;
+    }
+    .btn-green-blank {
+      display: block;
+      width: 100%;
+      height: 52px;
+      background: var(--btn-sage);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(44, 74, 62, 0.25);
+      transition: transform 0.1s ease;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+    .btn-green-blank:active {
+      transform: scale(0.98);
+      background: var(--btn-sage-hover);
+    }
+    .footer-meta {
+      font-size: 10px;
+      color: #94A3B8;
+      margin-top: 24px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="gate-card">
+    <div class="brand-title">
+      Eye<span class="brand-accent">Rx</span>Now.com
+    </div>
+
+    <!-- Choice 1: Blue button with text above it -->
+    <div style="text-align: center;">
+      <div class="instruction-label">
+        I will read instruction on page
+      </div>
+      <a href="shayla.html?enter=1&promo=auntgene" class="btn-enter">
+        Enter EyeRxNow &rarr;
+      </a>
+    </div>
+
+    <div class="divider-dots">&bull; &bull; &bull;</div>
+
+    <!-- Choice 2: Blank mid-century green button (nothing over it or in it) -->
+    <div style="text-align: center;">
+      <a href="480.html" class="btn-green-blank" title="LensCrafters Out-of-Pocket"></a>
+    </div>
+
+    <div class="footer-meta">
+      Patent-Pending Biometrics &bull; Zero Personal Data &bull; Build 6.0
+    </div>
+  </div>
+</body>
+</html>
