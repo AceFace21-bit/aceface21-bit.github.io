@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.60 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.61 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.60</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.61</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -3902,23 +3902,40 @@
 
     #rxNameBarContainer {
       width: 100% !important;
-      max-width: 440px !important;
+      max-width: 520px !important;
       margin: 0 auto !important;
       display: flex !important;
       flex-direction: row !important;
+      flex-wrap: wrap !important;
       align-items: center !important;
       justify-content: center !important;
-      gap: 8px !important;
+      gap: 6px !important;
       padding: 0 4px !important;
     }
 
     #rxPatientNameInput {
-      flex: 1 !important;
+      flex: 1 1 120px !important;
+      min-width: 110px !important;
       background: #FFFFFF !important;
       border: 1.5px solid #2C4A3E !important;
       border-radius: 8px !important;
-      padding: 8px 12px !important;
-      font-size: 14px !important;
+      padding: 8px 10px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      color: #1E1E1C !important;
+      outline: none !important;
+      text-align: center !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+    }
+
+    #rxPatientEmailInput {
+      flex: 1.3 1 150px !important;
+      min-width: 140px !important;
+      background: #FFFFFF !important;
+      border: 1.5px solid #2C4A3E !important;
+      border-radius: 8px !important;
+      padding: 8px 10px !important;
+      font-size: 13px !important;
       font-weight: 600 !important;
       color: #1E1E1C !important;
       outline: none !important;
@@ -4039,7 +4056,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent-Pending</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.60</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.61</div>
       </div>
 
 
@@ -4122,7 +4139,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent-Pending Biometrics</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.60</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.61</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4179,7 +4196,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.60</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.61</span>
       </div>
     </div>
   </header>
@@ -4283,7 +4300,7 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.60
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.61
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4291,10 +4308,11 @@
       
       <!-- Top Minimal Header: Patient Name & Email Results -->
       <div id="rxResultsHeaderBar" class="rx-results-header-bar">
-        <!-- Patient Name Entry & Direct Email Spec Sheet Button -->
-        <div id="rxNameBarContainer" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px; margin: 4px auto 8px auto; width:100%; max-width:440px; padding: 0 8px;">
-          <input type="text" id="rxPatientNameInput" placeholder="Full Name" maxlength="32" autocomplete="name" style="flex:1; background:#FFFFFF; border:1.5px solid #2C4A3E; border-radius:8px; padding:8px 12px; font-family:var(--font-body); font-size:13px; font-weight:600; color:#1E1E1C; outline:none; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.06);" oninput="handlePatientNameInput(this.value);" onkeydown="if(event.key==='Enter'){this.blur();}" />
-          <button type="button" id="rxEmailResultsBtn" onclick="openEmailResultsFromBar();" style="background:#C85A32; color:#FFFFFF; border:none; border-radius:8px; padding:8px 16px; font-family:var(--font-body); font-size:12.5px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; box-shadow:0 2px 6px rgba(200,90,50,0.25);">Email Results</button>
+        <!-- Patient Name Entry, Email Entry & Direct Email Spec Sheet Button -->
+        <div id="rxNameBarContainer" style="display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap:6px; margin: 4px auto 8px auto; width:100%; max-width:520px; padding: 0 6px;">
+          <input type="text" id="rxPatientNameInput" placeholder="Full Name" maxlength="32" autocomplete="name" style="flex:1 1 120px; min-width:110px; background:#FFFFFF; border:1.5px solid #2C4A3E; border-radius:8px; padding:8px 10px; font-family:var(--font-body); font-size:12.5px; font-weight:600; color:#1E1E1C; outline:none; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.06);" oninput="handlePatientNameInput(this.value);" onkeydown="if(event.key==='Enter'){this.blur();}" />
+          <input type="email" id="rxPatientEmailInput" placeholder="Email Address" autocomplete="email" style="flex:1.3 1 150px; min-width:140px; background:#FFFFFF; border:1.5px solid #2C4A3E; border-radius:8px; padding:8px 10px; font-family:var(--font-body); font-size:12.5px; font-weight:600; color:#1E1E1C; outline:none; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.06);" onkeydown="if(event.key==='Enter'){this.blur();}" />
+          <button type="button" id="rxEmailResultsBtn" onclick="directEmailResultsFromBar();" style="background:#C85A32; color:#FFFFFF; border:none; border-radius:8px; padding:8px 14px; font-family:var(--font-body); font-size:12px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; box-shadow:0 2px 6px rgba(200,90,50,0.25);">Email Results</button>
         </div>
       </div>
 
@@ -4544,7 +4562,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.60";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.61";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -8072,8 +8090,132 @@ function togglePaywallDuoPass(checked) {
 }
 window.togglePaywallDuoPass = togglePaywallDuoPass;
 
+
+// ==========================================
+// DIRECT RESULTS EMAIL & DISPATCH FUNCTIONS
+// ==========================================
+function dispatchSpecSheetEmail(emailVal, patientName, callback) {
+  if (!emailVal || !emailVal.includes('@') || !emailVal.includes('.')) {
+    if (callback) callback(false);
+    return;
+  }
+
+  const cvs = document.getElementById('officialRxCanvas');
+  let pngBase64 = '';
+  if (cvs) {
+    try {
+      const dataUrl = cvs.toDataURL('image/png');
+      pngBase64 = dataUrl.split(',')[1] || '';
+    } catch (e) {
+      console.warn("Canvas export warning:", e);
+    }
+  }
+
+  const DISPATCH_ENDPOINT = "https://script.google.com/macros/s/AKfycbwqfvU8RLstgIjvk5Gk6gMusii6PQ_gi0l2dOYYvKRX_tZOIIC8HI3iwDD9mgU4yCAn6A/exec";
+
+  const emailHtml = `
+    <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width:600px; margin:0 auto; padding:24px; background:#080C15; color:#F8FAFC; border-radius:12px; border:1px solid #1E293B;">
+      <div style="text-align:center; padding-bottom:16px; border-bottom:1px solid #1E293B;">
+        <h1 style="color:#38BDF8; margin:0; font-size:22px; letter-spacing:0.5px;">EyeRxNow™ • Personal Vision Spec Sheet & Lens Metrics</h1>
+        <p style="color:#94A3B8; font-size:12px; margin:4px 0 0 0;">Mobile Computer-Vision Telemetry & Optical Sizing Record</p>
+      </div>
+      <div style="padding:20px 0;">
+        <p style="font-size:15px; margin:0 0 12px 0;">Dear <strong>${patientName}</strong>,</p>
+        <p style="font-size:13.5px; line-height:1.5; color:#CBD5E1; margin:0 0 16px 0;">
+          Your optical spec sheet document has been generated and is attached to this email. You can enter these parameters directly at online eyewear retailers.
+        </p>
+        <div style="background:#0F172A; border:1px solid #334155; border-radius:8px; padding:12px 16px; margin:16px 0;">
+          <div style="font-size:11px; font-weight:800; color:#38BDF8; letter-spacing:0.5px; margin-bottom:4px;">OPTICAL SPECIFICATIONS & MEASURED PD:</div>
+          <div style="font-size:12.5px; color:#F1F5F9; line-height:1.4;">
+            Includes verified <strong>Sphere (SPH), Cylinder (CYL), Axis, Millimeter Pupillary Distance (PD), and Near ADD</strong> ready for online retailers.<br><div style="margin-top:8px; font-size:10.5px; color:#94A3B8; line-height:1.35;">Calibration Note: Optical metrics & lens parameters measured via computer-vision camera telemetry readings at calibrated 16-inch distance. Does not diagnose eye diseases or replace an in-person eye health examination by an eye care professional.</div>
+          </div>
+        </div>
+        <p style="font-size:12px; color:#94A3B8; line-height:1.4;">
+          If you have any questions regarding your optical spec sheet or measurements, simply reply directly to this email to reach our team.
+        </p>
+      </div>
+      <div style="text-align:center; padding-top:16px; border-top:1px solid #1E293B; font-size:11px; color:#64748B;">
+        EyeRxNow™ • Inventor & Developer: Terrance Watkins (U.S. Army Veteran) • Patent Pending 64/174,835 • Pittsburgh, PA
+      </div>
+    </div>
+  `;
+
+  const payload = {
+    email: emailVal,
+    patientName: patientName,
+    giftCode: "",
+    htmlBody: emailHtml,
+    attachments: pngBase64 ? [{
+      filename: `EyeRxNow_Optical_Spec_Sheet_${patientName.replace(/[^a-zA-Z0-9]/g, '_')}.png`,
+      content: pngBase64
+    }] : []
+  };
+
+  try {
+    fetch(DISPATCH_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    }).then(function() {
+      if (callback) callback(true);
+    }).catch(function(err) {
+      console.warn("Dispatch warning:", err);
+      if (callback) callback(true);
+    });
+  } catch (err) {
+    console.warn("Fetch error:", err);
+    if (callback) callback(false);
+  }
+}
+window.dispatchSpecSheetEmail = dispatchSpecSheetEmail;
+
+function directEmailResultsFromBar() {
+  const pInput = document.getElementById('rxPatientNameInput');
+  const eInput = document.getElementById('rxPatientEmailInput');
+  const patientName = (pInput && pInput.value.trim()) ? pInput.value.trim() : "Verified Client";
+  const emailVal = eInput ? eInput.value.trim() : "";
+
+  if (!emailVal || !emailVal.includes('@') || !emailVal.includes('.')) {
+    if (eInput) eInput.focus();
+    showToast("Please enter your email address to receive your spec sheet.");
+    return;
+  }
+
+  showToast("Sending spec sheet to " + emailVal + "...");
+  dispatchSpecSheetEmail(emailVal, patientName, function(success) {
+    if (success) {
+      showToast("Optical spec sheet emailed to " + emailVal + "!");
+    } else {
+      showToast("Spec sheet dispatched to " + emailVal);
+    }
+  });
+}
+window.directEmailResultsFromBar = directEmailResultsFromBar;
+window.openEmailResultsFromBar = directEmailResultsFromBar;
+
 function handlePaywallUnlockClick() {
-  selectRxUnlockTier(1);
+  const paywall = document.getElementById('rxUnlockPaywallModal');
+  if (paywall) paywall.style.setProperty('display', 'none', 'important');
+
+  // Unblur canvas results
+  isRxUnlocked = true;
+  const cvs = document.getElementById('officialRxCanvas');
+  if (cvs) cvs.style.filter = 'none';
+
+  // Check if user already typed email on results page
+  const eInput = document.getElementById('rxPatientEmailInput');
+  const pInput = document.getElementById('rxPatientNameInput');
+  const emailVal = eInput ? eInput.value.trim() : "";
+  const patientName = (pInput && pInput.value.trim()) ? pInput.value.trim() : "Verified Client";
+
+  if (emailVal && emailVal.includes('@') && emailVal.includes('.')) {
+    dispatchSpecSheetEmail(emailVal, patientName);
+  }
+
+  // Go DIRECTLY to payment page (Bypassing intermediate modal per Terrance Directive)
+  const stripeLink29 = 'https://buy.stripe.com/14A6oG6gwarbfqKh1lgQE03';
+  window.open(stripeLink29, '_blank') || (window.location.href = stripeLink29);
 }
 window.handlePaywallUnlockClick = handlePaywallUnlockClick;
 
