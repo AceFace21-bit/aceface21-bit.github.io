@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.61 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.62 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.61</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.62</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4056,7 +4056,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent-Pending</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.61</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.62</div>
       </div>
 
 
@@ -4082,7 +4082,7 @@
             Setup &amp; Posture
           </div>
           <div style="font-family: var(--font-body); font-size: 13px; font-weight: 600; color: #1E1E1C; line-height: 1.45; margin-bottom: 4px;">
-            Prop your phone upright on a stand at eye level, one arm's length away. Square your shoulders to the phone.
+            Prop your phone upright in a holder at eye level, one arm's length away. Square your shoulders to the phone.
           </div>
           <div style="font-family: var(--font-body); font-size: 11.5px; font-weight: 700; color: #C85A32;">
             No glasses or contacts during test.
@@ -4139,7 +4139,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent-Pending Biometrics</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.61</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.62</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4196,7 +4196,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.61</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.62</span>
       </div>
     </div>
   </header>
@@ -4300,7 +4300,7 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.61
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.62
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4455,7 +4455,7 @@
             <div style="font-size: 28px; margin-bottom: 6px;">Mobile ➔ Optical Specs</div>
             <div style="font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: #38BDF8; margin-bottom: 4px;">45-Second Quick Walkthrough</div>
             <div style="font-family: var(--font-body); font-size: 11.5px; color: #94A3B8; line-height: 1.4;">
-              1. Prop phone upright on stand at eye level (arm's length)<br>
+              1. Prop phone upright in a holder at eye level (arm's length)<br>
               2. Cover one eye &amp; tap matching arrow direction<br>
               3. Get your SPH, CYL, AXIS &amp; PD spec sheet!
             </div>
@@ -4562,7 +4562,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.61";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.62";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -5547,7 +5547,7 @@ function handleDpadInput(deg) {
     startExamFromStep1();
   }
   if (currentStep >= 2 && currentStep <= 4 && liveDistanceCm && liveDistanceCm < 36) {
-    showToast("Please slide your phone stand back until the frame turns GREEN before answering.");
+    showToast("Please slide your phone back until the frame turns GREEN before answering.");
     playChime('blip');
     return;
   }
@@ -5981,7 +5981,7 @@ function onFaceResults(results) {
           optimalBadge.style.background = '#FEE2E2';
           optimalBadge.style.borderColor = '#F87171';
           optimalBadge.style.color = '#991B1B';
-          optimalBadge.innerHTML = '<span></span><span>Too Close — Slide Stand Back (~20–26 in / ~2 ft)</span>';
+          optimalBadge.innerHTML = '<span></span><span>Too Close — Slide Phone Back (~20–26 in / ~2 ft)</span>';
         } else if (liveDistanceCm >= 42 && liveDistanceCm <= 85) {
           optimalBadge.style.background = '#D1FAE5';
           optimalBadge.style.borderColor = '#34D399';
@@ -5991,7 +5991,7 @@ function onFaceResults(results) {
           optimalBadge.style.background = '#FEF3C7';
           optimalBadge.style.borderColor = '#FBBF24';
           optimalBadge.style.color = '#92400E';
-          optimalBadge.innerHTML = '<span></span><span>Too Far — Slide Stand Closer (~20–26 in / ~2 ft)</span>';
+          optimalBadge.innerHTML = '<span></span><span>Too Far — Slide Phone Closer (~20–26 in / ~2 ft)</span>';
         }
       }
     }
