@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.63 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.64 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.63</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.64</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4056,7 +4056,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent-Pending</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.63</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.64</div>
       </div>
 
 
@@ -4139,7 +4139,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent-Pending Biometrics</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.63</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.64</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4196,7 +4196,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.63</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.64</span>
       </div>
     </div>
   </header>
@@ -4301,7 +4301,7 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.63
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.64
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4563,7 +4563,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.63";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.64";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -8195,6 +8195,15 @@ function dispatchSpecSheetEmail(emailVal, patientName, callback) {
 window.dispatchSpecSheetEmail = dispatchSpecSheetEmail;
 
 function directEmailResultsFromBar() {
+  if (!isRxUnlocked) {
+    const paywall = document.getElementById('rxUnlockPaywallModal');
+    if (paywall) paywall.style.setProperty('display', 'flex', 'important');
+    const cvs = document.getElementById('officialRxCanvas');
+    if (cvs) cvs.style.filter = 'blur(16px)';
+    showToast("Please complete checkout to unlock and email your spec sheet.");
+    return;
+  }
+
   const pInput = document.getElementById('rxPatientNameInput');
   const eInput = document.getElementById('rxPatientEmailInput');
   const patientName = (pInput && pInput.value.trim()) ? pInput.value.trim() : "Verified Client";
@@ -8219,28 +8228,84 @@ window.directEmailResultsFromBar = directEmailResultsFromBar;
 window.openEmailResultsFromBar = directEmailResultsFromBar;
 
 function handlePaywallUnlockClick() {
-  const paywall = document.getElementById('rxUnlockPaywallModal');
-  if (paywall) paywall.style.setProperty('display', 'none', 'important');
-
-  // Unblur canvas results
-  isRxUnlocked = true;
+  // CRITICAL ANTI-LEAK SECURITY FIX (Terrance Bug Fix):
+  // NEVER unblur the canvas and NEVER set isRxUnlocked = true on button press!
+  // The spec sheet MUST remain strictly blurred and locked behind the paywall until payment/promo is verified!
   const cvs = document.getElementById('officialRxCanvas');
-  if (cvs) cvs.style.filter = 'none';
+  if (cvs && !isRxUnlocked) {
+    cvs.style.filter = 'blur(16px)';
+  }
 
-  // Check if user already typed email on results page
+  // Save entered email and name for automatic email dispatch upon verified payment
   const eInput = document.getElementById('rxPatientEmailInput');
   const pInput = document.getElementById('rxPatientNameInput');
   const emailVal = eInput ? eInput.value.trim() : "";
   const patientName = (pInput && pInput.value.trim()) ? pInput.value.trim() : "Verified Client";
-
-  if (emailVal && emailVal.includes('@') && emailVal.includes('.')) {
-    dispatchSpecSheetEmail(emailVal, patientName);
+  if (emailVal) {
+    try {
+      sessionStorage.setItem('PENDING_RX_EMAIL', emailVal);
+      sessionStorage.setItem('PENDING_RX_NAME', patientName);
+    } catch(e) {}
   }
 
-  // Go DIRECTLY to payment page (Bypassing intermediate modal per Terrance Directive)
+  const ctaEl = document.getElementById('paywallCtaText');
+  if (ctaEl) {
+    ctaEl.innerHTML = 'Complete Checkout in Stripe &rarr;';
+  }
+
+  // Open Stripe checkout in new window/tab so EyeRxNow remains locked behind paywall
   const stripeLink29 = 'https://buy.stripe.com/14A6oG6gwarbfqKh1lgQE03';
-  window.open(stripeLink29, '_blank') || (window.location.href = stripeLink29);
+  window.open(stripeLink29, '_blank');
 }
+
+// Anti-back-button and anti-switch-tab security guards
+window.addEventListener('pageshow', function() {
+  if (!isRxUnlocked && currentStep === 6) {
+    const cvs = document.getElementById('officialRxCanvas');
+    if (cvs) cvs.style.filter = 'blur(16px)';
+    const paywall = document.getElementById('rxUnlockPaywallModal');
+    if (paywall) paywall.style.setProperty('display', 'flex', 'important');
+  }
+});
+document.addEventListener('visibilitychange', function() {
+  if (!document.hidden && !isRxUnlocked && currentStep === 6) {
+    const cvs = document.getElementById('officialRxCanvas');
+    if (cvs) cvs.style.filter = 'blur(16px)';
+    const paywall = document.getElementById('rxUnlockPaywallModal');
+    if (paywall) paywall.style.setProperty('display', 'flex', 'important');
+  }
+});
+window.addEventListener('focus', function() {
+  if (!isRxUnlocked && currentStep === 6) {
+    const cvs = document.getElementById('officialRxCanvas');
+    if (cvs) cvs.style.filter = 'blur(16px)';
+    const paywall = document.getElementById('rxUnlockPaywallModal');
+    if (paywall) paywall.style.setProperty('display', 'flex', 'important');
+  }
+});
+
+// Auto-unlock if customer returns from Stripe with ?paid=true or ?session_id
+(function checkPaymentReturnOnLoad() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('paid') === 'true' || params.get('session_id') || params.get('success') === 'true') {
+      isRxUnlocked = true;
+      const cvs = document.getElementById('officialRxCanvas');
+      if (cvs) cvs.style.filter = 'none';
+      const paywall = document.getElementById('rxUnlockPaywallModal');
+      if (paywall) paywall.style.setProperty('display', 'none', 'important');
+
+      const pendingEmail = sessionStorage.getItem('PENDING_RX_EMAIL');
+      const pendingName = sessionStorage.getItem('PENDING_RX_NAME') || 'Verified Client';
+      if (pendingEmail && typeof dispatchSpecSheetEmail === 'function') {
+        dispatchSpecSheetEmail(pendingEmail, pendingName);
+        showToast("Payment verified! Spec sheet unlocked and emailed to " + pendingEmail);
+      } else {
+        showToast("Payment verified! Optical spec sheet unlocked.");
+      }
+    }
+  } catch(e) {}
+})();
 window.handlePaywallUnlockClick = handlePaywallUnlockClick;
 
 window.openPromoPromptFromPaywall = openPromoPromptFromPaywall;
