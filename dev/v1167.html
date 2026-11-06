@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.73 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.74 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -40,7 +40,7 @@
   })();
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.73</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.74</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -493,12 +493,21 @@
     /* ======================================================== */
     /* STEP 6: RESULTS ONLY WITH FULL ZOOM & ORIENTATION SUPPORT */
     /* ======================================================== */
-    html.rx-zoom-unlocked,
-    body.rx-zoom-unlocked {
-      overflow: auto !important;
+    html.rx-zoom-unlocked {
+      position: static !important;
+      overflow-x: auto !important;
+      overflow-y: auto !important;
       -webkit-overflow-scrolling: touch !important;
       touch-action: auto !important;
-      touch-action: pinch-zoom pan-x pan-y !important;
+      background: #F3EFE6 !important;
+    }
+    body.rx-zoom-unlocked {
+      position: static !important;
+      overflow: visible !important;
+      overflow-x: visible !important;
+      overflow-y: visible !important;
+      display: block !important;
+      touch-action: auto !important;
       background: #F3EFE6 !important;
     }
 
@@ -665,12 +674,24 @@
 
     /* Bulletproof Mobile Landscape & Full Viewport Scaling for Results */
     @media (orientation: landscape) {
-      html, body {
+      html {
+        position: static !important;
         overflow-y: auto !important;
-        overflow-x: hidden !important;
+        overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
         height: auto !important;
         min-height: 100% !important;
+        max-height: none !important;
+      }
+      body {
+        position: static !important;
+        overflow: visible !important;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+        display: block !important;
+        height: auto !important;
+        min-height: 100% !important;
+        max-height: none !important;
       }
       .app-container.rx-zoom-unlocked {
         max-width: 100% !important;
@@ -3852,10 +3873,28 @@
 
     /* ======================================================== */
     /* MASTER STEP 6 / RESULTS VIEWPORT & LANDSCAPE UNLOCK      */
-    /* Overrides all previous fixed container locks so user can */
-    /* freely zoom in and pan/scroll in all directions (X & Y)  */
+    /* Single Root Window Scroller (Zero Nested Scrollbars)     */
+    /* Allows 100% free iOS pinch-zoom & 2D pan in all axes     */
     /* ======================================================== */
-    html.rx-zoom-unlocked,
+    html.rx-zoom-unlocked {
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: auto !important;
+      min-height: 100% !important;
+      max-height: none !important;
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      background: #EAE5DC !important;
+      -webkit-overflow-scrolling: touch !important;
+      touch-action: auto !important;
+      -ms-touch-action: auto !important;
+    }
+
     body.rx-zoom-unlocked {
       position: static !important;
       top: auto !important;
@@ -3867,11 +3906,11 @@
       height: auto !important;
       min-height: 100% !important;
       max-height: none !important;
-      overflow: auto !important;
-      overflow-x: auto !important;
-      overflow-y: auto !important;
+      overflow: visible !important;
+      overflow-x: visible !important;
+      overflow-y: visible !important;
+      display: block !important;
       background: #EAE5DC !important;
-      -webkit-overflow-scrolling: touch !important;
       touch-action: auto !important;
       -ms-touch-action: auto !important;
     }
@@ -3884,7 +3923,8 @@
 
     html.rx-zoom-unlocked #mainExamView,
     #mainExamView.rx-zoom-unlocked {
-      position: relative !important;
+      position: static !important;
+      display: block !important;
       top: auto !important;
       left: auto !important;
       right: auto !important;
@@ -3892,11 +3932,12 @@
       width: 100% !important;
       max-width: none !important;
       height: auto !important;
-      min-height: 100vh !important;
+      min-height: 0 !important;
       max-height: none !important;
       overflow: visible !important;
       background: #EAE5DC !important;
       padding: 0 !important;
+      margin: 0 auto !important;
       touch-action: auto !important;
     }
 
@@ -3904,37 +3945,36 @@
     #mainExamView.rx-zoom-unlocked .app-container,
     #mainExamView .app-container.rx-zoom-unlocked,
     .app-container.rx-zoom-unlocked {
-      position: relative !important;
+      position: static !important;
+      display: block !important;
       max-width: 100% !important;
       width: 100% !important;
       height: auto !important;
-      min-height: 100vh !important;
+      min-height: 0 !important;
       max-height: none !important;
       overflow: visible !important;
       background: transparent !important;
       border: none !important;
       box-shadow: none !important;
-      padding: 8px 12px 60px 12px !important;
+      padding: 8px 12px 80px 12px !important;
       margin: 0 auto !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
+      text-align: center !important;
       touch-action: auto !important;
     }
 
     #rxCardContainer.active-step-6,
     .rx-fullscreen-presenter.active-step-6 {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
+      position: static !important;
+      display: block !important;
       width: 100% !important;
       max-width: 100% !important;
       height: auto !important;
-      min-height: auto !important;
+      min-height: 0 !important;
       max-height: none !important;
       overflow: visible !important;
       padding: 0 !important;
       margin: 0 auto !important;
+      text-align: center !important;
     }
 
     #rxResultsHeaderBar {
@@ -4007,13 +4047,16 @@
     }
 
     .rx-results-display-wrapper {
+      position: static !important;
+      display: block !important;
       width: 100% !important;
       max-width: 100% !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
+      height: auto !important;
+      max-height: none !important;
       overflow: visible !important;
-      touch-action: pan-x pan-y pinch-zoom !important;
+      text-align: center !important;
+      margin: 0 auto !important;
+      touch-action: auto !important;
     }
 
     .official-rx-doc-canvas {
@@ -4025,23 +4068,36 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
       border: 1px solid #CBD5E1 !important;
       background: #FFFFFF !important;
-      touch-action: pan-x pan-y pinch-zoom !important;
+      touch-action: auto !important;
       margin: 0 auto !important;
     }
 
     /* LANDSCAPE SPECIFIC ADJUSTMENTS (FULL ZOOM & 2D PAN MOBILITY) */
     @media (orientation: landscape) {
-      html, body {
+      html {
         position: static !important;
         width: 100% !important;
         max-width: none !important;
         height: auto !important;
         min-height: 100% !important;
         max-height: none !important;
-        overflow: auto !important;
         overflow-x: auto !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
+        touch-action: auto !important;
+      }
+
+      body {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 100% !important;
+        max-height: none !important;
+        overflow: visible !important;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
         touch-action: auto !important;
       }
 
@@ -4053,10 +4109,11 @@
       .welcome-screen,
       .pretest-gateway,
       #mainExamView {
-        position: relative !important;
+        position: static !important;
+        display: block !important;
         width: 100% !important;
         height: auto !important;
-        min-height: 100vh !important;
+        min-height: 0 !important;
         max-height: none !important;
         overflow: visible !important;
       }
@@ -4142,7 +4199,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.73</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.74</div>
       </div>
 
 
@@ -4228,7 +4285,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.73</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.74</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4285,7 +4342,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.73</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.74</span>
       </div>
     </div>
   </header>
@@ -4643,7 +4700,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.73";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.74";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -6526,7 +6583,7 @@ function setWorkflowStep(step) {
     const rxC = document.getElementById('rxCardContainer');
     if (rxC) {
       rxC.classList.add('active-step-6');
-      rxC.style.setProperty('display', 'flex', 'important');
+      rxC.style.setProperty('display', 'block', 'important');
     }
   } else {
     forceResetScreenZoom();
@@ -6744,7 +6801,7 @@ function setWorkflowStep(step) {
     if (hudWrapper) hudWrapper.style.setProperty('display', 'none', 'important');
     if (rxCardContainer) {
       rxCardContainer.classList.add('active-step-6');
-      rxCardContainer.style.setProperty('display', 'flex', 'important');
+      rxCardContainer.style.setProperty('display', 'block', 'important');
     }
 
     requestVaultCalculationAsync();
@@ -7662,41 +7719,61 @@ function unlockScreenZoomForRx() {
   try {
     document.documentElement.classList.add('rx-zoom-unlocked');
     document.documentElement.style.setProperty('position', 'static', 'important');
-    document.documentElement.style.setProperty('overflow', 'auto', 'important');
+    document.documentElement.style.setProperty('overflow-x', 'auto', 'important');
+    document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
     document.documentElement.style.setProperty('height', 'auto', 'important');
     document.documentElement.style.setProperty('max-height', 'none', 'important');
+    document.documentElement.style.setProperty('width', '100%', 'important');
 
     if (document.body) {
       document.body.classList.add('rx-zoom-unlocked');
       document.body.style.setProperty('position', 'static', 'important');
-      document.body.style.setProperty('overflow', 'auto', 'important');
+      document.body.style.setProperty('display', 'block', 'important');
+      document.body.style.setProperty('overflow', 'visible', 'important');
+      document.body.style.setProperty('overflow-x', 'visible', 'important');
+      document.body.style.setProperty('overflow-y', 'visible', 'important');
       document.body.style.setProperty('height', 'auto', 'important');
       document.body.style.setProperty('max-height', 'none', 'important');
+      document.body.style.setProperty('width', '100%', 'important');
     }
     const mainExam = document.getElementById('mainExamView');
     if (mainExam) {
       mainExam.classList.add('rx-zoom-unlocked');
-      mainExam.style.setProperty('position', 'relative', 'important');
+      mainExam.style.setProperty('position', 'static', 'important');
+      mainExam.style.setProperty('display', 'block', 'important');
       mainExam.style.setProperty('overflow', 'visible', 'important');
       mainExam.style.setProperty('height', 'auto', 'important');
+      mainExam.style.setProperty('min-height', '0', 'important');
       mainExam.style.setProperty('max-height', 'none', 'important');
+      mainExam.style.setProperty('width', '100%', 'important');
     }
     const appCont = document.querySelector('.app-container');
     if (appCont) {
       appCont.classList.add('rx-zoom-unlocked');
+      appCont.style.setProperty('position', 'static', 'important');
+      appCont.style.setProperty('display', 'block', 'important');
       appCont.style.setProperty('overflow', 'visible', 'important');
       appCont.style.setProperty('height', 'auto', 'important');
+      appCont.style.setProperty('min-height', '0', 'important');
       appCont.style.setProperty('max-height', 'none', 'important');
+      appCont.style.setProperty('width', '100%', 'important');
     }
     const rxCont = document.getElementById('rxCardContainer');
-    if (rxCont) rxCont.classList.add('rx-zoom-unlocked');
+    if (rxCont) {
+      rxCont.classList.add('rx-zoom-unlocked');
+      rxCont.style.setProperty('position', 'static', 'important');
+      rxCont.style.setProperty('overflow', 'visible', 'important');
+      rxCont.style.setProperty('height', 'auto', 'important');
+      rxCont.style.setProperty('max-height', 'none', 'important');
+    }
 
     const snapBtn = document.getElementById('snapBackZoomBtn');
     if (snapBtn) snapBtn.style.display = 'none';
 
     let vp = document.getElementById('viewportMeta') || document.querySelector('meta[name="viewport"]');
-    if (vp) {
-      vp.setAttribute('content', 'width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover');
+    const targetVp = 'width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover';
+    if (vp && vp.getAttribute('content') !== targetVp) {
+      vp.setAttribute('content', targetVp);
     }
     updateRxOrientationNotice();
   } catch (e) {}
@@ -7712,9 +7789,29 @@ function forceResetScreenZoom() {
       history.scrollRestoration = 'manual';
     }
     document.documentElement.classList.remove('rx-zoom-unlocked');
-    if (document.body) document.body.classList.remove('rx-zoom-unlocked');
+    ['position', 'overflow', 'overflow-x', 'overflow-y', 'height', 'max-height', 'width'].forEach(function(p) {
+      document.documentElement.style.removeProperty(p);
+    });
+    if (document.body) {
+      document.body.classList.remove('rx-zoom-unlocked');
+      ['position', 'display', 'overflow', 'overflow-x', 'overflow-y', 'height', 'max-height', 'width'].forEach(function(p) {
+        document.body.style.removeProperty(p);
+      });
+    }
+    const mainExam = document.getElementById('mainExamView');
+    if (mainExam) {
+      mainExam.classList.remove('rx-zoom-unlocked');
+      ['position', 'display', 'overflow', 'height', 'min-height', 'max-height', 'width'].forEach(function(p) {
+        mainExam.style.removeProperty(p);
+      });
+    }
     const appCont = document.querySelector('.app-container');
-    if (appCont) appCont.classList.remove('rx-zoom-unlocked');
+    if (appCont) {
+      appCont.classList.remove('rx-zoom-unlocked');
+      ['position', 'display', 'overflow', 'height', 'min-height', 'max-height', 'width'].forEach(function(p) {
+        appCont.style.removeProperty(p);
+      });
+    }
     const rxCont = document.getElementById('rxCardContainer');
     if (rxCont) rxCont.classList.remove('rx-zoom-unlocked');
 
@@ -8867,7 +8964,7 @@ function applyPromoCode() {
       const rxContainer = document.getElementById('rxCardContainer');
       if (rxContainer) {
         rxContainer.classList.add('active-step-6');
-        rxContainer.style.setProperty('display', 'flex', 'important');
+        rxContainer.style.setProperty('display', 'block', 'important');
       }
     }, 400);
     return;
