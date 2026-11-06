@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.53 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.54 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.53</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.54</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -3831,6 +3831,164 @@
       border-radius: 14px;
       background: rgba(251, 249, 245, 0.65);
     }
+
+    /* ======================================================== */
+    /* MASTER STEP 6 / RESULTS VIEWPORT & LANDSCAPE UNLOCK      */
+    /* Overrides all previous container locks, widths, heights  */
+    /* ======================================================== */
+    html.rx-zoom-unlocked,
+    body.rx-zoom-unlocked {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      height: auto !important;
+      min-height: 100% !important;
+      background: #EAE5DC !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    html.rx-zoom-unlocked #mainExamView,
+    #mainExamView.rx-zoom-unlocked {
+      height: auto !important;
+      min-height: 100vh !important;
+      max-height: none !important;
+      overflow: visible !important;
+      background: #EAE5DC !important;
+      padding: 0 !important;
+    }
+
+    html.rx-zoom-unlocked #mainExamView .app-container,
+    #mainExamView.rx-zoom-unlocked .app-container,
+    #mainExamView .app-container.rx-zoom-unlocked,
+    .app-container.rx-zoom-unlocked {
+      max-width: 100% !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 100vh !important;
+      max-height: none !important;
+      overflow: visible !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 8px 12px 60px 12px !important;
+      margin: 0 auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    #rxCardContainer.active-step-6,
+    .rx-fullscreen-presenter.active-step-6 {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      margin: 0 auto !important;
+    }
+
+    #rxResultsHeaderBar {
+      width: 100% !important;
+      max-width: 500px !important;
+      margin: 2px auto 8px auto !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    #rxNameBarContainer {
+      width: 100% !important;
+      max-width: 440px !important;
+      margin: 0 auto !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      padding: 0 4px !important;
+    }
+
+    #rxPatientNameInput {
+      flex: 1 !important;
+      background: #FFFFFF !important;
+      border: 1.5px solid #2C4A3E !important;
+      border-radius: 8px !important;
+      padding: 8px 12px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #1E1E1C !important;
+      outline: none !important;
+      text-align: center !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+    }
+
+    #rxEmailResultsBtn {
+      background: #C85A32 !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      border-radius: 8px !important;
+      padding: 8px 14px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      white-space: nowrap !important;
+      box-shadow: 0 2px 6px rgba(200,90,50,0.25) !important;
+      flex-shrink: 0 !important;
+    }
+
+    .rx-results-display-wrapper {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      overflow: visible !important;
+      touch-action: pan-x pan-y pinch-zoom !important;
+    }
+
+    .official-rx-doc-canvas {
+      display: block !important;
+      width: 100% !important;
+      max-width: 440px !important;
+      height: auto !important;
+      border-radius: 12px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+      border: 1px solid #CBD5E1 !important;
+      background: #FFFFFF !important;
+      touch-action: pan-x pan-y pinch-zoom !important;
+      margin: 0 auto !important;
+    }
+
+    /* LANDSCAPE SPECIFIC ADJUSTMENTS */
+    @media (orientation: landscape) {
+      html.rx-zoom-unlocked #mainExamView .app-container,
+      #mainExamView.rx-zoom-unlocked .app-container,
+      #mainExamView .app-container.rx-zoom-unlocked,
+      .app-container.rx-zoom-unlocked {
+        padding: 4px max(24px, env(safe-area-inset-right)) 60px max(24px, env(safe-area-inset-left)) !important;
+      }
+
+      #rxResultsHeaderBar {
+        max-width: 520px !important;
+        margin: 2px auto 6px auto !important;
+      }
+
+      #rxNameBarContainer {
+        max-width: 480px !important;
+      }
+
+      .official-rx-doc-canvas {
+        max-width: min(88vw, 600px) !important;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -3880,7 +4038,7 @@
 
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); font-size: 11px; font-weight: 700; color: #8C887B; letter-spacing: 0.4px;">
-        Zero Personal Data &bull; Patent-Pending &bull; <span id="gateBuildBadge" style="color: #2C4A3E; font-weight: 800;">Build 6.0 Vers 11.53</span>
+        Zero Personal Data &bull; Patent-Pending &bull; <span id="gateBuildBadge" style="color: #2C4A3E; font-weight: 800;">Build 6.0 Vers 11.54</span>
       </div>
 
 
@@ -3964,7 +4122,7 @@
 
       <!-- Bottom Meta Row -->
       <div class="wm-footer-tagline" style="width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
-        <span>Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.53</span>
+        <span>Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.54</span>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4021,7 +4179,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.53</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.54</span>
       </div>
     </div>
   </header>
@@ -4125,29 +4283,19 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.53
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.54
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
     <div id="rxCardContainer" class="rx-fullscreen-presenter" style="display: none;">
       
-      <!-- Top Minimal Header: Blinking "Take Screenshot" -->
+      <!-- Top Minimal Header: Patient Name & Email Results -->
       <div id="rxResultsHeaderBar" class="rx-results-header-bar">
-        
-        <!-- Screenshot badge removed per Terrance request -->
-
         <!-- Patient Name Entry & Direct Email Spec Sheet Button -->
-        <div id="rxNameBarContainer" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; margin: 4px auto 8px auto; width:100%; max-width:440px; padding: 0 8px;">
-          <div id="rxNameBarInputWrap" style="display:flex; align-items:center; gap:6px; width:100%;">
-            <input type="text" id="rxPatientNameInput" placeholder="Full Name" maxlength="32" autocomplete="name" style="flex:1; background:#FFFFFF; border:1.5px solid #2C4A3E; border-radius:8px; padding:8px 12px; font-family:var(--font-body); font-size:13px; font-weight:600; color:#1E1E1C; outline:none; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.06);" oninput="handlePatientNameInput(this.value);" onkeydown="if(event.key==='Enter'){collapseNameInput();this.blur();}" />
-            <button type="button" id="rxNameDoneBtn" onclick="collapseNameInput();" style="background:#2C4A3E; color:#FBF9F5; border:none; border-radius:8px; padding:8px 14px; font-family:var(--font-body); font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap;">Done</button>
-            <button type="button" id="rxEmailResultsBtn" onclick="openEmailResultsFromBar();" style="background:#C85A32; color:#FFFFFF; border:none; border-radius:8px; padding:8px 14px; font-family:var(--font-body); font-size:12px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; box-shadow:0 2px 6px rgba(200,90,50,0.25);">✉️ Email Results</button>
-          </div>
-          <div id="rxNameBarCollapsed" style="display:none; font-family:var(--font-body); font-size:11.5px; color:#68655E; font-weight:600; cursor:pointer; padding:2px 8px; align-items:center; justify-content:center;" onclick="expandNameInput();">
-            <span>👤 Patient: <span id="rxCurrentNameLabel" style="color:#2C4A3E; font-weight:700;">VERIFIED PATIENT</span> <span style="font-size:10px; color:#C85A32; text-decoration:underline; margin-left:4px;">(tap to edit)</span></span>
-          </div>
+        <div id="rxNameBarContainer" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px; margin: 4px auto 8px auto; width:100%; max-width:440px; padding: 0 8px;">
+          <input type="text" id="rxPatientNameInput" placeholder="Full Name" maxlength="32" autocomplete="name" style="flex:1; background:#FFFFFF; border:1.5px solid #2C4A3E; border-radius:8px; padding:8px 12px; font-family:var(--font-body); font-size:13px; font-weight:600; color:#1E1E1C; outline:none; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.06);" oninput="handlePatientNameInput(this.value);" onkeydown="if(event.key==='Enter'){this.blur();}" />
+          <button type="button" id="rxEmailResultsBtn" onclick="openEmailResultsFromBar();" style="background:#C85A32; color:#FFFFFF; border:none; border-radius:8px; padding:8px 14px; font-family:var(--font-body); font-size:12px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; box-shadow:0 2px 6px rgba(200,90,50,0.25);">✉️ Email Results</button>
         </div>
-
       </div>
 
       <!-- Results Canvas Wrapper (Portrait Native - Large Readable Format) -->
@@ -4396,7 +4544,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.53";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.54";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -6707,34 +6855,16 @@ window.userPatientName = "";
 
 function handlePatientNameInput(val) {
   window.userPatientName = (val || "");
-  const label = document.getElementById('rxCurrentNameLabel');
-  if (label) {
-    label.textContent = (window.userPatientName && window.userPatientName.trim().length > 0)
-      ? window.userPatientName.trim().toUpperCase()
-      : "VERIFIED PATIENT";
-  }
   renderOfficialRxCanvas();
 }
 
 function collapseNameInput() {
-  const wrap = document.getElementById('rxNameBarInputWrap');
-  const collapsed = document.getElementById('rxNameBarCollapsed');
-  const label = document.getElementById('rxCurrentNameLabel');
-  if (label) {
-    label.textContent = (window.userPatientName && window.userPatientName.trim().length > 0)
-      ? window.userPatientName.trim().toUpperCase()
-      : "VERIFIED PATIENT";
-  }
-  if (wrap) wrap.style.display = 'none';
-  if (collapsed) collapsed.style.display = 'block';
+  const input = document.getElementById('rxPatientNameInput');
+  if (input) input.blur();
 }
 
 function expandNameInput() {
-  const wrap = document.getElementById('rxNameBarInputWrap');
-  const collapsed = document.getElementById('rxNameBarCollapsed');
   const input = document.getElementById('rxPatientNameInput');
-  if (wrap) wrap.style.display = 'flex';
-  if (collapsed) collapsed.style.display = 'none';
   if (input) {
     input.focus();
     input.select();
@@ -7218,6 +7348,8 @@ function unlockScreenZoomForRx() {
   try {
     document.documentElement.classList.add('rx-zoom-unlocked');
     if (document.body) document.body.classList.add('rx-zoom-unlocked');
+    const mainExam = document.getElementById('mainExamView');
+    if (mainExam) mainExam.classList.add('rx-zoom-unlocked');
     const appCont = document.querySelector('.app-container');
     if (appCont) appCont.classList.add('rx-zoom-unlocked');
     const rxCont = document.getElementById('rxCardContainer');
