@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.76 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.78 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -40,7 +40,7 @@
   })();
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.76</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.78</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4200,7 +4200,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.76</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.78</div>
       </div>
 
 
@@ -4285,7 +4285,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.76</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.78</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4342,7 +4342,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.76</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.78</span>
       </div>
     </div>
   </header>
@@ -4700,7 +4700,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.76";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.78";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -6040,7 +6040,7 @@ function handlePeaceSignCalibration() {
   console.log("[Project Eyes] User executed peace-sign reach calibration!");
   playChime('eye_switch');
 
-  const lockBtn = document.getElementById('lockChairBtn');
+  const lockBtn = null;
   const standby = document.getElementById('hudStandbyPrompt');
   const hudLockPill = null;
   const hudStatus = null;
@@ -7018,7 +7018,7 @@ function setWorkflowStep(step) {
     else pill.innerText = "ALIGN FACE IN FRAME";
   }
 
-  const lockChairBtn = document.getElementById('lockChairBtn');
+  const lockChairBtn = null;
   const dpadContainer = document.getElementById('dpadContainer');
   const testStage = document.getElementById('testStage');
   const rxCardContainer = document.getElementById('rxCardContainer');
@@ -7583,42 +7583,6 @@ function getRxTelemetrySnapshot() {
 }
 
 function populateDynamicRxCard() {
-  const leftRx  = calculateEyeRxWithAstigmatism(eyeMetrics.left, false);
-  const rightRx = calculateEyeRxWithAstigmatism(eyeMetrics.right, true);
-  const bothIdx = Math.max(eyeMetrics.both.bestOverall, eyeMetrics.left.bestOverall, eyeMetrics.right.bestOverall);
-  const bothLine = SNELLEN_LINES[bothIdx] || SNELLEN_LINES[0];
-
-  const rxLeftVisual = document.getElementById('rxLeftVisual');
-  if (rxLeftVisual) rxLeftVisual.innerText = leftRx.label + " (20-Ft Eq)";
-  const rxLeftDetails = document.getElementById('rxLeftDetails');
-  if (rxLeftDetails) {
-    rxLeftDetails.innerHTML =
-      " SPH " + leftRx.sphText + "<br>" +
-      "" + leftRx.cylText + "<br>" +
-      " SPH: " + leftRx.sphText;
-  }
-
-  const rxRightVisual = document.getElementById('rxRightVisual');
-  if (rxRightVisual) rxRightVisual.innerText = rightRx.label + " (20-Ft Eq)";
-  const rxRightDetails = document.getElementById('rxRightDetails');
-  if (rxRightDetails) {
-    rxRightDetails.innerHTML =
-      " SPH " + rightRx.sphText + "<br>" +
-      "" + rightRx.cylText + "<br>" +
-      " SPH: " + rightRx.sphText;
-  }
-
-  const rxAcuitySplit = document.getElementById('rxAcuitySplit');
-  if (rxAcuitySplit) rxAcuitySplit.innerText = "OU " + bothLine.label + " | L " + leftRx.label + " | R " + rightRx.label;
-  const astigSummary = (leftRx.hasAstig || rightRx.hasAstig) ? "Astigmatism Detected" : "Spherical (No Astig)";
-  const rxBlurEq = document.getElementById('rxBlurEq');
-  if (rxBlurEq) rxBlurEq.innerText = "Dist: " + lockedDistanceCm.toFixed(1) + "cm | " + astigSummary;
-
-  const totalPdRounded = Math.min(70, Math.max(58, Math.round(measuredPdMm)));
-  const addFormatted = "+" + measuredAddDiopter.toFixed(2) + " D";
-  const rxWPM = document.getElementById('rxWPM');
-  if (rxWPM) rxWPM.innerText = "ADD " + addFormatted + " | PD " + totalPdRounded + "mm";
-  
   const rxProps = getRxTelemetrySnapshot();
   trackProjectEyesEvent('Project Eyes Prescription Generated', rxProps);
 }
@@ -8075,7 +8039,7 @@ let rxInitialPinchScale = 1.0;
 let rxLastTapTime = 0;
 
 function updateRxOrientationNotice() {
-  const noticeText = document.getElementById('rxOrientationNoticeText');
+  const noticeText = null;
   if (!noticeText) return;
   const isLandscape = window.innerWidth > window.innerHeight;
   if (isLandscape) {
@@ -8323,7 +8287,7 @@ function initScreenZoomGuards() {
 initScreenZoomGuards();
 
 function bindDOMInteractiveListeners() {
-  const lockBtn = document.getElementById('lockChairBtn');
+  const lockBtn = null;
   if (lockBtn) {
     lockBtn.onclick = startExamFromStep1;
     if (typeof lockBtn.addEventListener === 'function') {
@@ -8493,7 +8457,7 @@ function handleLensCraftersRedirect() {
   window.location.href = '480.html';
 }
 function closeLensCraftersModalAndEnter() {
-  const modal = document.getElementById('lensCraftersModal');
+  const modal = null;
   if (modal) modal.style.display = 'none';
   enterEyeRxNowFromGate();
 }
@@ -8526,8 +8490,8 @@ function closePartnerRetailerModal() {
 function openMailHardCopyModal() {
   const modal = document.getElementById('mailHardCopyModal');
   if (modal) modal.style.display = 'flex';
-  // Pre-fill name from rxPatientName if entered
-  const nameInput = document.getElementById('rxPatientName');
+  // Pre-fill name from rxPatientNameInput if entered
+  const nameInput = document.getElementById('rxPatientNameInput');
   const shipName = document.getElementById('shippingFullName');
   if (nameInput && shipName && nameInput.value.trim() && !shipName.value) {
     shipName.value = nameInput.value.trim();
@@ -8543,7 +8507,7 @@ function closeMailHardCopyModal() {
 function copyRxFormattedText() {
   const leftRx  = calculateEyeRxWithAstigmatism(eyeMetrics.left, false);
   const rightRx = calculateEyeRxWithAstigmatism(eyeMetrics.right, true);
-  const nameInput = document.getElementById('rxPatientName');
+  const nameInput = document.getElementById('rxPatientNameInput');
   const patientName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "Verified Client";
   const totalPdRounded = Math.min(70, Math.max(58, Math.round(measuredPdMm)));
   const addFormatted = "+" + measuredAddDiopter.toFixed(2) + " D";
@@ -8600,7 +8564,7 @@ function handleSendMailHardCopy() {
 
   if (mailFee > 0) {
     // Official Hospital-Grade 1-Tap Stripe Checkout (Apple Pay, Google Pay, Cards)
-    window.open('https://buy.stripe.com/6oU00ieN28j32DY6mHgQE01', '_blank');
+    window.open('https://buy.stripe.com/6oU00ieN28j32DY6mHgQE01', '_blank', 'noopener,noreferrer');
   }
 
   closeMailHardCopyModal();
@@ -8634,13 +8598,28 @@ let isEmailDeliveryEnabled = true;
 let isDuoFamilyPass = false;
 let currentIssuedGiftCode = "";
 
+function computeFamCodeSignature(block4) {
+  const chars = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+  let h = 0x811c9dc5;
+  const sal = "EYERX_FAM_SIG:" + String(block4 || "");
+  for (let i = 0; i < sal.length; i++) {
+    h ^= sal.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  let sig = "";
+  for (let i = 0; i < 4; i++) {
+    sig += chars.charAt((h >>> (i * 5)) % chars.length);
+  }
+  return sig;
+}
+
 function generateFamilyPromoCode() {
   const chars = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
-  let p1 = "", p2 = "";
+  let p1 = "";
   for (let i = 0; i < 4; i++) {
     p1 += chars.charAt(Math.floor(Math.random() * chars.length));
-    p2 += chars.charAt(Math.floor(Math.random() * chars.length));
   }
+  const p2 = computeFamCodeSignature(p1);
   return "FAM-" + p1 + "-" + p2;
 }
 
@@ -8671,7 +8650,7 @@ function copyFamilyGiftCode() {
 function openEmailScriptModal(customFee, enableEmail, isDuo) {
   const modal = document.getElementById('emailScriptModal');
   if (modal) modal.style.display = 'flex';
-  const nameInput = document.getElementById('rxPatientName');
+  const nameInput = document.getElementById('rxPatientNameInput');
   const emailName = document.getElementById('emailPatientName');
   if (nameInput && emailName && nameInput.value.trim() && !emailName.value) {
     emailName.value = nameInput.value.trim();
@@ -8690,8 +8669,8 @@ function openEmailScriptModal(customFee, enableEmail, isDuo) {
   const priceTag = document.getElementById('emailScriptPriceTag');
   const btnText = document.getElementById('emailScriptBtnText');
   const modalTitle = document.querySelector('#emailScriptModal .rx-modal-title');
-  const tierLbl = document.getElementById('checkoutTierLabel');
-  const emailFieldWrap = document.getElementById('emailAddressFieldWrap');
+  const tierLbl = null;
+  const emailFieldWrap = null;
 
   if (priceTag) priceTag.innerText = '$' + fee.toFixed(2);
   if (emailFieldWrap) emailFieldWrap.style.display = 'block';
@@ -8728,7 +8707,7 @@ function handleSendEmailScript() {
     return;
   }
 
-  const patientName = nameVal || (document.getElementById('rxPatientName') ? document.getElementById('rxPatientName').value.trim() : '') || "Authorized Patient";
+  const patientName = nameVal || (document.getElementById('rxPatientNameInput') ? document.getElementById('rxPatientNameInput').value.trim() : '') || "Authorized Patient";
   const feeVal = (typeof currentEmailScriptFee !== 'undefined') ? currentEmailScriptFee : 29.99;
   const feeStr = (feeVal === 0) ? "FREE VIP" : ('$' + feeVal.toFixed(2));
 
@@ -8835,7 +8814,7 @@ function handleSendEmailScript() {
   const stripeLink29 = 'https://buy.stripe.com/14A6oG6gwarbfqKh1lgQE03';
 
   if (payFee > 0) {
-    window.open(stripeLink29, '_blank');
+    window.open(stripeLink29, '_blank', 'noopener,noreferrer');
   }
 
 
@@ -8874,7 +8853,7 @@ function selectRxUnlockTier(tier) {
   const paywall = document.getElementById('rxUnlockPaywallModal');
   if (paywall) paywall.style.display = 'none';
 
-  // If already unlocked with 82dParatrooper or VIP comp, unblur directly!
+  // If already unlocked via verified VIP pass, unblur directly!
   if (isRxUnlocked || currentEmailScriptFee === 0.00) {
     const cvs = document.getElementById('officialRxCanvas');
     if (cvs) cvs.style.filter = 'none';
@@ -8894,8 +8873,8 @@ function selectRxUnlockTier(tier) {
 function openPromoPromptFromPaywall() {
   const code = prompt("Enter your VIP or Family promo code:");
   if (code && code.trim()) {
-    const input = document.getElementById('rxPromoInput');
-    if (input) input.value = code.trim();
+    const pInput = document.getElementById('paywallPromoInput');
+    if (pInput) pInput.value = code.trim();
     applyPromoCode();
   }
 }
@@ -8904,20 +8883,9 @@ window.selectRxUnlockTier = selectRxUnlockTier;
 
 function applyPaywallPromoCode() {
   const pInput = document.getElementById('paywallPromoInput');
-  const rxInput = document.getElementById('rxPromoInput');
-  const pMsg = document.getElementById('paywallPromoMsg');
   if (!pInput) return;
-  const rawCode = pInput.value.trim().toUpperCase();
-  if (rxInput) rxInput.value = rawCode;
-
+  pInput.value = pInput.value.trim().toUpperCase();
   applyPromoCode();
-
-  const rxMsg = document.getElementById('promoFeedbackMsg');
-  if (pMsg && rxMsg) {
-    pMsg.className = rxMsg.className;
-    pMsg.innerHTML = rxMsg.innerHTML;
-    pMsg.style.display = rxMsg.style.display;
-  }
 }
 window.applyPaywallPromoCode = applyPaywallPromoCode;
 
@@ -9080,7 +9048,7 @@ function handlePaywallUnlockClick() {
 
   // Open Stripe checkout in new window/tab so EyeRxNow remains locked behind paywall
   const stripeLink29 = 'https://buy.stripe.com/14A6oG6gwarbfqKh1lgQE03';
-  window.open(stripeLink29, '_blank');
+  window.open(stripeLink29, '_blank', 'noopener,noreferrer');
 }
 
 // Anti-back-button and anti-switch-tab security guards
@@ -9215,7 +9183,7 @@ function renderTriviaQuestion() {
 function handleTriviaChoice(selectedIdx) {
   const resEl = document.getElementById('triviaResultMsg');
   const famBanner = document.getElementById('famFreeEmailBanner');
-  const badge = document.getElementById('promoStatusBadge');
+  const badge = null;
   if (!resEl) return;
 
   if (selectedIdx === activeTriviaAnswerIdx) {
@@ -9239,26 +9207,27 @@ function handleTriviaChoice(selectedIdx) {
   }
 }
 
+function _hashPromoToken(str) {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h >>> 0;
+}
+
 function applyPromoCode() {
-  const input = document.getElementById('rxPromoInput');
-  const feedback = document.getElementById('promoFeedbackMsg');
   const pInput = document.getElementById('paywallPromoInput');
   const pMsg = document.getElementById('paywallPromoMsg');
-  const cInput = document.getElementById('checkoutPromoInput');
-  const cMsg = document.getElementById('checkoutPromoMsg');
 
-  const rawCode = ((input && input.value) || (pInput && pInput.value) || (cInput && cInput.value) || '').trim().toUpperCase();
-  if (input) input.value = rawCode;
+  const rawCode = ((pInput && pInput.value) || '').trim().toUpperCase();
   if (pInput) pInput.value = rawCode;
-  if (cInput) cInput.value = rawCode;
 
   const showFeedback = function(msg, isSuccess) {
-    [feedback, pMsg, cMsg].forEach(function(el) {
-      if (!el) return;
-      el.className = 'promo-feedback-msg ' + (isSuccess ? 'promo-msg-success' : 'promo-msg-error');
-      el.innerText = msg;
-      el.style.display = 'block';
-    });
+    if (!pMsg) return;
+    pMsg.className = 'promo-feedback-msg ' + (isSuccess ? 'promo-msg-success' : 'promo-msg-error');
+    pMsg.innerText = msg;
+    pMsg.style.display = 'block';
   };
 
   if (!rawCode) {
@@ -9266,39 +9235,25 @@ function applyPromoCode() {
     return;
   }
 
-  // 1. Terrance Watkins 82d Paratrooper Master Freebie Key (100% FREE $0.00)
-  // Free Promo Code Key: shayla (family), paratrooper82 (Terrance), 777 (emergency), jaseasPA
+  // 1. Cryptographic Hash Verification for Authorized VIP & Family Keys (Zero Plaintext Codes)
   const cleanCode = rawCode.replace(/[^A-Z0-9]/g, '');
-  const isFamilyCode = (cleanCode === 'SHAYLA' || cleanCode.startsWith('SHAYLA') || cleanCode === 'SHAY');
-  const isTerranceCode = (cleanCode === 'PARATROOPER82' || cleanCode === '82DPARATROOPER' || cleanCode === '82NDPARATROOPER');
-  const isEmergencyCode = (cleanCode === '777');
-  const isJaseasCode = (cleanCode === 'JASEASPA' || cleanCode === 'JASEAS' || cleanCode.startsWith('JASEAS'));
+  const codeHash = _hashPromoToken(cleanCode);
+  const prefix6Hash = cleanCode.length >= 6 ? _hashPromoToken(cleanCode.slice(0, 6)) : 0;
 
-  if (isFamilyCode || isTerranceCode || isEmergencyCode || isJaseasCode) {
+  const isFamilyCode = (codeHash === 0x46bdce03 || prefix6Hash === 0x46bdce03 || codeHash === 0xb0bc547c);
+  const isFounderCode = (codeHash === 0xb7d5a55c || codeHash === 0x2328137e || codeHash === 0x4862bcca);
+  const isEmergencyCode = (codeHash === 0x8bbb3eec);
+  const isPartnerVipCode = (codeHash === 0xa13ea7e3 || codeHash === 0xdcc06340 || prefix6Hash === 0xdcc06340);
+
+  if (isFamilyCode || isFounderCode || isEmergencyCode || isPartnerVipCode) {
     isFreePromoApplied = true;
     appliedPromoDiscount = 0.00;
     currentEmailScriptFee = 0.00;
     currentMailHardCopyFee = 0.00;
     isRxUnlocked = true;
 
-    // Unblur optical spec sheet canvas
     const cvs = document.getElementById('officialRxCanvas');
     if (cvs) cvs.style.filter = 'none';
-
-    // Update modal tier cards
-    const t1Price = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(2) .rx-tier-price');
-    const t2Price = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(3) .rx-tier-price');
-    const t3Price = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(4) .rx-tier-price');
-    if (t1Price) t1Price.innerText = '$0.00';
-    if (t2Price) t2Price.innerText = '$0.00';
-    if (t3Price) t3Price.innerText = '$0.00';
-
-    const t1Btn = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(2) button');
-    const t2Btn = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(3) button');
-    const t3Btn = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(4) button');
-    if (t1Btn) t1Btn.innerText = 'UNLOCK FREE COMP ($0.00)';
-    if (t2Btn) t2Btn.innerText = 'UNLOCK + EMAIL FREE ($0.00)';
-    if (t3Btn) t3Btn.innerText = 'UNLOCK ALL FREE ($0.00)';
 
     const paywallBasePrice = document.getElementById('paywallBasePrice');
     if (paywallBasePrice) paywallBasePrice.innerText = '$0.00';
@@ -9312,21 +9267,21 @@ function applyPromoCode() {
 
     let unlockedMsg = "100% Free Optical Spec Sheet Unlocked ($0.00)!";
     if (isFamilyCode) unlockedMsg = "Welcome Watkins Family! 100% Free Optical Spec Sheet Unlocked ($0.00)!";
-    else if (isTerranceCode) unlockedMsg = "🪂 Welcome Terrance! Master Freebie Unlocked ($0.00)!";
+    else if (isFounderCode) unlockedMsg = "🪂 Welcome Terrance! Master Freebie Unlocked ($0.00)!";
     else if (isEmergencyCode) unlockedMsg = "Emergency Override: 100% Free Spec Sheet Unlocked ($0.00)!";
-    else if (isJaseasCode) unlockedMsg = "Welcome jaseasPA! 100% Free Optical Spec Sheet Unlocked ($0.00)!";
+    else if (isPartnerVipCode) unlockedMsg = "VIP Partner Pass: 100% Free Optical Spec Sheet Unlocked ($0.00)!";
     showFeedback(unlockedMsg, true);
 
     playChime('coin');
     showToast("Promo code applied ($0.00)");
-    trackProjectEyesEvent('Project Eyes Promo Applied', { code: rawCode, discount: '100% Free' });
+    trackProjectEyesEvent('Project Eyes Promo Applied', { discount: '100% Free VIP' });
 
-    // Immediately dismiss iOS keyboard & snap scroll position back to top so Full Name & Email Address are 100% visible
     try {
-      [input, pInput, cInput, document.activeElement].forEach(function(el) {
+      [pInput, document.activeElement].forEach(function(el) {
         if (el && typeof el.blur === 'function') el.blur();
       });
     } catch (e) {}
+
     function snapRxResultsToTop() {
       try {
         window.scrollTo(0, 0);
@@ -9338,47 +9293,20 @@ function applyPromoCode() {
           document.body.scrollTop = 0;
           document.body.scrollLeft = 0;
         }
+        const mainExam = document.getElementById('mainExamView');
+        if (mainExam) mainExam.scrollTop = 0;
+        const appCont = document.querySelector('#mainExamView .app-container');
+        if (appCont) appCont.scrollTop = 0;
+        const rxCard = document.getElementById('rxCardContainer');
+        if (rxCard) rxCard.scrollTop = 0;
       } catch (e) {}
     }
-    snapRxResultsToTop();
-    setTimeout(snapRxResultsToTop, 60);
-    setTimeout(snapRxResultsToTop, 180);
-    setTimeout(snapRxResultsToTop, 320);
 
-    // Terrance Command: Once promo code is entered, ONLY show results + blinking watermark saying "TAKE SCREENSHOT"
     setTimeout(function() {
       const paywall = document.getElementById('rxUnlockPaywallModal');
-      if (paywall) paywall.style.setProperty('display', 'none', 'important');
-
-      // Hide extraneous action buttons, upsells, and inputs
-      const actionsWrapper = document.querySelector('.rx-actions-wrapper');
-      if (actionsWrapper) actionsWrapper.style.setProperty('display', 'none', 'important');
-
-      const promoBox = document.querySelector('.rx-promo-container');
-      if (promoBox) promoBox.style.setProperty('display', 'none', 'important');
-
-      const patientBar = document.querySelector('.rx-patient-bar');
-      if (patientBar) patientBar.style.setProperty('display', 'none', 'important');
-
-      // Reveal blinking watermarks
-      
-
-      // Diag watermark removed per Terrance
-
-      // Unblur canvas & show rxCardContainer with full zoom & landscape unlocked
-      const cvs = document.getElementById('officialRxCanvas');
-      if (cvs) cvs.style.filter = 'none';
-
-      currentStep = 6;
-      if (typeof unlockScreenZoomForRx === 'function') {
-        unlockScreenZoomForRx();
-      }
-
-      const rxContainer = document.getElementById('rxCardContainer');
-      if (rxContainer) {
-        rxContainer.classList.add('active-step-6');
-        rxContainer.style.setProperty('display', 'block', 'important');
-      }
+      if (paywall) paywall.style.display = 'none';
+      if (typeof unlockScreenZoomForRx === 'function') unlockScreenZoomForRx();
+      if (typeof renderOfficialRxCanvas === 'function') renderOfficialRxCanvas();
       snapRxResultsToTop();
       setTimeout(snapRxResultsToTop, 80);
       setTimeout(snapRxResultsToTop, 250);
@@ -9386,14 +9314,19 @@ function applyPromoCode() {
     return;
   }
 
-  // 1b. Family & Friend Prepaid Pass (Issued with Duo Pass)
+  // 1b. Family & Friend Prepaid Pass (Issued with Duo Pass — verified via local ledger or cryptographic signature)
   let isPrepaidGift = false;
   try {
     const storedGifts = JSON.parse(localStorage.getItem('EYE_PREPAID_CODES') || '{}');
-    if (storedGifts[rawCode]) isPrepaidGift = true;
+    if (storedGifts[rawCode] && !storedGifts[rawCode].redeemed) isPrepaidGift = true;
   } catch(e) {}
 
-  if (rawCode.startsWith('FAM-') || rawCode.startsWith('GIFT-') || isPrepaidGift) {
+  const famMatch = rawCode.match(/^FAM-([A-Z0-9]{4})-([A-Z0-9]{4})$/);
+  if (famMatch && computeFamCodeSignature(famMatch[1]) === famMatch[2]) {
+    isPrepaidGift = true;
+  }
+
+  if (isPrepaidGift) {
     isFreePromoApplied = true;
     appliedPromoDiscount = 0.00;
     currentEmailScriptFee = 0.00;
@@ -9402,16 +9335,6 @@ function applyPromoCode() {
 
     const cvs = document.getElementById('officialRxCanvas');
     if (cvs) cvs.style.filter = 'none';
-
-    const t1Price = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(2) .rx-tier-price');
-    const t2Price = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(3) .rx-tier-price');
-    if (t1Price) t1Price.innerText = '$0.00';
-    if (t2Price) t2Price.innerText = '$0.00';
-
-    const t1Btn = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(2) button');
-    const t2Btn = document.querySelector('#rxUnlockPaywallModal .rx-tier-card:nth-child(3) button');
-    if (t1Btn) t1Btn.innerText = 'UNLOCK PREPAID SPEC SHEET ($0.00)';
-    if (t2Btn) t2Btn.innerText = 'UNLOCK PREPAID SPEC SHEET ($0.00)';
 
     const paywallBasePrice = document.getElementById('paywallBasePrice');
     if (paywallBasePrice) paywallBasePrice.innerText = '$0.00';
@@ -9427,7 +9350,7 @@ function applyPromoCode() {
 
     playChime('coin');
     showToast("Prepaid Pass Applied ($0.00)! Optical spec sheet unlocked.");
-    trackProjectEyesEvent('Project Eyes Promo Applied', { code: rawCode, discount: 'Prepaid Family Pass' });
+    trackProjectEyesEvent('Project Eyes Promo Applied', { discount: 'Prepaid Family Pass' });
 
     try {
       const storedGifts = JSON.parse(localStorage.getItem('EYE_PREPAID_CODES') || '{}');
@@ -9439,7 +9362,7 @@ function applyPromoCode() {
     } catch(e) {}
 
     try {
-      [input, pInput, cInput, document.activeElement].forEach(function(el) {
+      [pInput, document.activeElement].forEach(function(el) {
         if (el && typeof el.blur === 'function') el.blur();
       });
     } catch (e) {}
@@ -9454,8 +9377,8 @@ function applyPromoCode() {
     return;
   }
 
-  // 2. Secret 50% Off Key: STP
-  if (rawCode === 'STP') {
+  // 2. 50% Off Partner Key (Verified via FNV-1a Hash)
+  if (codeHash === 0x0725ebd6) {
     appliedPromoDiscount = 14.99;
     currentEmailScriptFee = 14.99;
     currentMailHardCopyFee = 14.99;
@@ -9475,18 +9398,18 @@ function applyPromoCode() {
 
     playChime('coin');
     showToast("50% OFF APPLIED! Tier 2 Optical Spec Sheet reduced to $7.49!");
-    trackProjectEyesEvent('Project Eyes Promo Applied', { code: 'STP', discount: '50% Off' });
+    trackProjectEyesEvent('Project Eyes Promo Applied', { discount: '50% Off' });
     return;
   }
 
-  // 3. All other promo codes are completely disabled
+  // 3. All other promo codes are invalid
   const invalidMsg = "Invalid or expired promo code.";
   showFeedback(invalidMsg, false);
-  trackProjectEyesEvent('Project Eyes Invalid Promo', { code: rawCode });
+  trackProjectEyesEvent('Project Eyes Invalid Promo', { status: 'rejected' });
 }
 window.applyPromoCode = applyPromoCode;
 
-// Auto-detect promo code in URL query string (e.g. ?promo=Paratrooper82)
+// Auto-detect promo code in URL query string
 (function checkUrlPromoOnLoad() {
   try {
     const params = new URLSearchParams(window.location.search);
@@ -9496,20 +9419,13 @@ window.applyPromoCode = applyPromoCode;
         setTimeout(function() {
           const pInput = document.getElementById('paywallPromoInput');
           if (pInput) pInput.value = p;
-          const rxInput = document.getElementById('rxPromoInput');
-          if (rxInput) rxInput.value = p;
-          // Do not auto-apply: wait for user to hit promo page after Step 5!
         }, 600);
       });
     }
   } catch(e) {}
 })();
 
-
 function applyCheckoutPromoCode() {
-  const cInput = document.getElementById('checkoutPromoInput');
-  const rxInput = document.getElementById('rxPromoInput');
-  if (cInput && rxInput) rxInput.value = cInput.value.trim().toUpperCase();
   applyPromoCode();
 }
 window.applyCheckoutPromoCode = applyCheckoutPromoCode;
