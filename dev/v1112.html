@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.55 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.56 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.55</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.56</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4038,7 +4038,7 @@
 
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); font-size: 11px; font-weight: 700; color: #8C887B; letter-spacing: 0.4px;">
-        Zero Personal Data &bull; Patent-Pending &bull; <span id="gateBuildBadge" style="color: #2C4A3E; font-weight: 800;">Build 6.0 Vers 11.55</span>
+        Zero Personal Data &bull; Patent-Pending &bull; <span id="gateBuildBadge" style="color: #2C4A3E; font-weight: 800;">Build 6.0 Vers 11.56</span>
       </div>
 
 
@@ -4122,7 +4122,7 @@
 
       <!-- Bottom Meta Row -->
       <div class="wm-footer-tagline" style="width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
-        <span>Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.55</span>
+        <span>Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.56</span>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4179,7 +4179,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.55</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.56</span>
       </div>
     </div>
   </header>
@@ -4283,7 +4283,7 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.55
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.56
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4544,7 +4544,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.55";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.56";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -4639,130 +4639,110 @@ function playChime(type) {
     const now = ctx.currentTime;
 
     if (type === 'coin' || type === 'correct') {
-      // Nintendo Super Mario Bros Coin Sound:
-      // Rapid jump from B5 (987.77 Hz) to E6 (1318.51 Hz) with bright decay
+      // Soft, discreet acoustic confirmation droplet (rethought per Terrance order)
+      // Replaced piercing 1318Hz Mario arcade double-beep with a warm wooden marimba tone
+      // C5 (523.25 Hz) gliding softly to E5 (659.25 Hz) with gentle 0.065 gain, smooth 15ms attack & 140ms decay
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(987.77, now);
-      osc.frequency.setValueAtTime(1318.51, now + 0.065);
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.06);
 
-      gain.gain.setValueAtTime(0.18, now);
-      gain.gain.setValueAtTime(0.24, now + 0.065);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.40);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(0.065, now + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.42);
+      osc.stop(now + 0.15);
 
-      // Harmonious upper overtone for that 8-bit Nintendo shine
-      const osc2 = ctx.createOscillator();
-      const gain2 = ctx.createGain();
-      osc2.type = 'triangle';
-      osc2.frequency.setValueAtTime(987.77 * 2, now);
-      osc2.frequency.setValueAtTime(1318.51 * 2, now + 0.065);
+      // Warm organic acoustic undertone (C4 261.63 Hz to E4 329.63 Hz)
+      const oscSub = ctx.createOscillator();
+      const gainSub = ctx.createGain();
+      oscSub.type = 'sine';
+      oscSub.frequency.setValueAtTime(261.63, now);
+      oscSub.frequency.exponentialRampToValueAtTime(329.63, now + 0.06);
 
-      gain2.gain.setValueAtTime(0.05, now);
-      gain2.gain.setValueAtTime(0.08, now + 0.065);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+      gainSub.gain.setValueAtTime(0.0001, now);
+      gainSub.gain.linearRampToValueAtTime(0.035, now + 0.015);
+      gainSub.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
 
-      osc2.connect(gain2);
-      gain2.connect(ctx.destination);
-      osc2.start(now);
-      osc2.stop(now + 0.34);
+      oscSub.connect(gainSub);
+      gainSub.connect(ctx.destination);
+      oscSub.start(now);
+      oscSub.stop(now + 0.13);
     } else if (type === 'blurry') {
-      // Distinct mellow 'Too Blurry' focus-droplet chime:
-      // Completely different from Mario coin sound!
-      // A soft, pleasing dual marimba-bubble glide: 440 Hz -> 329.6 Hz
+      // Gentle, subtle focus droplet
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(440.0, now);
-      osc.frequency.exponentialRampToValueAtTime(329.63, now + 0.14);
+      osc.frequency.exponentialRampToValueAtTime(329.63, now + 0.12);
 
-      gain.gain.setValueAtTime(0.20, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(0.055, now + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.24);
-
-      // Warm undertone body
-      const osc2 = ctx.createOscillator();
-      const gain2 = ctx.createGain();
-      osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(220.0, now);
-      osc2.frequency.exponentialRampToValueAtTime(164.81, now + 0.14);
-
-      gain2.gain.setValueAtTime(0.12, now);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.20);
-
-      osc2.connect(gain2);
-      gain2.connect(ctx.destination);
-      osc2.start(now);
-      osc2.stop(now + 0.22);
+      osc.stop(now + 0.17);
     } else if (type === 'eye_switch' || type === 'calibrate') {
-      // Distinct two-tone melodic chime: C5 (523.25 Hz) -> G5 (783.99 Hz)
+      // Gentle two-tone transition chime
       const osc1 = ctx.createOscillator();
       const gain1 = ctx.createGain();
       osc1.type = 'sine';
-      osc1.frequency.setValueAtTime(523.25, now);
-      gain1.gain.setValueAtTime(0.22, now);
-      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.30);
+      osc1.frequency.setValueAtTime(440.0, now);
+      gain1.gain.setValueAtTime(0.0001, now);
+      gain1.gain.linearRampToValueAtTime(0.055, now + 0.01);
+      gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.20);
       osc1.connect(gain1);
       gain1.connect(ctx.destination);
       osc1.start(now);
-      osc1.stop(now + 0.32);
+      osc1.stop(now + 0.21);
 
       const osc2 = ctx.createOscillator();
       const gain2 = ctx.createGain();
       osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(783.99, now + 0.14);
-      gain2.gain.setValueAtTime(0.24, now + 0.14);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.50);
+      osc2.frequency.setValueAtTime(554.37, now + 0.10);
+      gain2.gain.setValueAtTime(0.0001, now + 0.10);
+      gain2.gain.linearRampToValueAtTime(0.055, now + 0.11);
+      gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
       osc2.connect(gain2);
       gain2.connect(ctx.destination);
-      osc2.start(now + 0.14);
-      osc2.stop(now + 0.52);
+      osc2.start(now + 0.10);
+      osc2.stop(now + 0.33);
     } else if (type === 'tap') {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(880, now);
-      gain.gain.setValueAtTime(0.12, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.frequency.setValueAtTime(660, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(0.045, now + 0.008);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.09);
+      osc.stop(now + 0.08);
     } else if (type === 'rx_complete') {
-      [523.25, 659.25, 783.99].forEach((freq, idx) => {
+      [440.0, 554.37, 659.25].forEach((freq, idx) => {
         const o = ctx.createOscillator();
         const g = ctx.createGain();
         o.type = 'sine';
-        o.frequency.setValueAtTime(freq, now + (idx * 0.12));
-        g.gain.setValueAtTime(0.15, now + (idx * 0.12));
-        g.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.12) + 0.35);
+        o.frequency.setValueAtTime(freq, now + (idx * 0.10));
+        g.gain.setValueAtTime(0.0001, now + (idx * 0.10));
+        g.gain.linearRampToValueAtTime(0.06, now + (idx * 0.10) + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + (idx * 0.10) + 0.28);
         o.connect(g);
         g.connect(ctx.destination);
-        o.start(now + (idx * 0.12));
-        o.stop(now + (idx * 0.12) + 0.36);
+        o.start(now + (idx * 0.10));
+        o.stop(now + (idx * 0.10) + 0.30);
       });
     }
   } catch (e) {
     console.warn("[Project Eyes] Audio chime warning:", e);
   }
-}
-
-function toggleAudioEffects() {
-  soundEnabled = !soundEnabled;
-  const btn = document.getElementById('soundToggleBtn');
-  if (btn) {
-    btn.innerText = soundEnabled ? '🔊 Sound: ON' : '🔇 Sound: MUTED';
-  }
-  if (soundEnabled) playChime('tap');
 }
 
 let _lastSpokenTime = 0;
