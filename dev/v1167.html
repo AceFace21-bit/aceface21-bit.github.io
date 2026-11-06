@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.67 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.68 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -40,7 +40,7 @@
   })();
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.67</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.68</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4072,7 +4072,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent-Pending</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.67</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.68</div>
       </div>
 
 
@@ -4155,7 +4155,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent-Pending Biometrics</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.67</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.68</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4212,7 +4212,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.67</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.68</span>
       </div>
     </div>
   </header>
@@ -4286,10 +4286,6 @@
         </div>
       </div>
 
-      <div class="stage-card-footer">
-        ISO 8596 STANDARD ACUITY
-      </div>
-
       <!-- Legacy holder for sync text -->
       <div id="stageSyncFooter" style="display:none;">
         <span id="syncStatusText">MATCH 'E' OPENING</span>
@@ -4313,11 +4309,6 @@
         </div>
         <button class="btn-cant-see" onclick="handleTooBlurry()">Blurry</button>
       </div>
-    </div>
-
-    <!-- Footer Tagline -->
-    <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.67
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4579,7 +4570,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.67";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.68";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -5945,8 +5936,20 @@ function onFaceResults(results) {
     if (hudWrap && colorStatus) {
       const distWarnEl = document.getElementById('distanceWarningBanner');
       const stageDistBadge = document.getElementById('stageDistanceBadge');
-      if (liveDistanceCm < 42) {
-        // TOO CLOSE: Bold Red alert perimeter + TOO CLOSE on selfie screen & stage badge
+      if (currentStep === 5) {
+        // Step 5 Reading Check: Allow natural near-vision reading without intrusive distance warnings
+        hudWrap.className = 'hud-wrapper status-go' + (currentStep >= 2 ? ' compact-hud' : '');
+        hudWrap.style.borderColor = '#10B981';
+        hudWrap.style.outline = 'none';
+        hudWrap.style.boxShadow = 'none';
+        colorStatus.style.background = 'rgba(16, 185, 129, 0.95)';
+        colorStatus.innerText = 'READING CHECK';
+        const centerOval = document.getElementById('hudCenterWarningOval');
+        if (centerOval) centerOval.style.display = 'none';
+        if (stageDistBadge) stageDistBadge.style.display = 'none';
+        if (distWarnEl) distWarnEl.style.display = 'none';
+      } else if (liveDistanceCm < 42) {
+        // TOO CLOSE: Red alert perimeter on camera; blinking badge under selfie screen completely removed per Terrance
         hudWrap.className = 'hud-wrapper status-wrong' + (currentStep >= 2 ? ' compact-hud' : '');
         hudWrap.style.borderColor = '#EF4444';
         hudWrap.style.outline = '4px solid #EF4444';
@@ -5964,11 +5967,7 @@ function onFaceResults(results) {
           centerOval.style.display = 'block';
         }
         if (stageDistBadge) {
-          stageDistBadge.innerText = 'TOO CLOSE';
-          stageDistBadge.style.background = '#FEE2E2';
-          stageDistBadge.style.color = '#DC2626';
-          stageDistBadge.style.border = '1px solid #EF4444';
-          stageDistBadge.style.display = 'inline-block';
+          stageDistBadge.style.display = 'none';
         }
         if (distWarnEl) distWarnEl.style.display = 'none';
       } else if (liveDistanceCm >= 42 && liveDistanceCm <= 72) {
