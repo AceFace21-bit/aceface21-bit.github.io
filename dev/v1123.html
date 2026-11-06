@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.62 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.63 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.62</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.63</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4056,7 +4056,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent-Pending</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.62</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.63</div>
       </div>
 
 
@@ -4139,7 +4139,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent-Pending Biometrics</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.62</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.63</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4196,7 +4196,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.62</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.63</span>
       </div>
     </div>
   </header>
@@ -4245,8 +4245,9 @@
 
     <!-- Snellen E Test Stage Card (Exact Mockup Match) -->
     <div id="testStage" class="test-stage">
-      <div class="stage-card-header">
+      <div class="stage-card-header" style="display:flex; justify-content:space-between; align-items:center;">
         <span id="stageMetaLabel">Left Eye</span>
+        <span id="stageDistanceBadge" style="display:none; font-size:10.5px; font-weight:800; padding:2px 8px; border-radius:9999px; text-transform:uppercase; letter-spacing:0.5px; animation:badgeBlinkPulse 0.8s infinite ease-in-out;"></span>
         <span id="stageMetaOptotype" style="display:none;"></span>
       </div>
 
@@ -4300,7 +4301,7 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.62
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.63
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4562,7 +4563,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.62";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.63";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -5927,8 +5928,9 @@ function onFaceResults(results) {
 
     if (hudWrap && colorStatus) {
       const distWarnEl = document.getElementById('distanceWarningBanner');
+      const stageDistBadge = document.getElementById('stageDistanceBadge');
       if (liveDistanceCm < 42) {
-        // TOO CLOSE: Bold Red alert perimeter + TOO CLOSE on selfie screen
+        // TOO CLOSE: Bold Red alert perimeter + TOO CLOSE on selfie screen & stage badge
         hudWrap.className = 'hud-wrapper status-wrong' + (currentStep >= 2 ? ' compact-hud' : '');
         hudWrap.style.borderColor = '#EF4444';
         hudWrap.style.outline = '4px solid #EF4444';
@@ -5942,36 +5944,58 @@ function onFaceResults(results) {
         const centerOval = document.getElementById('hudCenterWarningOval');
         if (centerOval) {
           centerOval.innerText = 'TOO CLOSE';
+          centerOval.style.background = 'rgba(239, 68, 68, 0.96)';
           centerOval.style.display = 'block';
         }
+        if (stageDistBadge) {
+          stageDistBadge.innerText = 'TOO CLOSE';
+          stageDistBadge.style.background = '#FEE2E2';
+          stageDistBadge.style.color = '#DC2626';
+          stageDistBadge.style.border = '1px solid #EF4444';
+          stageDistBadge.style.display = 'inline-block';
+        }
         if (distWarnEl) distWarnEl.style.display = 'none';
-      } else if (liveDistanceCm >= 42 && liveDistanceCm <= 85) {
-        // GREEN: Distance in good clinical envelope (42-85cm).
+      } else if (liveDistanceCm >= 42 && liveDistanceCm <= 72) {
+        // GREEN: Distance in good clinical envelope (42-72cm / ~16.5–28.5 in, arm's length).
         hudWrap.className = 'hud-wrapper status-go' + (currentStep >= 2 ? ' compact-hud' : '');
         hudWrap.style.borderColor = '#10B981';
         hudWrap.style.outline = 'none';
         hudWrap.style.boxShadow = 'none';
         colorStatus.style.background = 'rgba(16, 185, 129, 0.95)';
         colorStatus.innerText = 'LOCKED • READY';
-          if (hudDist) {
-            hudDist.style.color = '#10B981';
-            hudDist.innerText = 'TARGET: LOCKED IN';
-          }
-          const centerOval = document.getElementById('hudCenterWarningOval');
-          if (centerOval) centerOval.style.display = 'none';
-          if (distWarnEl) distWarnEl.style.display = 'none';
+        if (hudDist) {
+          hudDist.style.color = '#10B981';
+          hudDist.innerText = 'TARGET: LOCKED IN';
+        }
+        const centerOval = document.getElementById('hudCenterWarningOval');
+        if (centerOval) centerOval.style.display = 'none';
+        if (stageDistBadge) stageDistBadge.style.display = 'none';
+        if (distWarnEl) distWarnEl.style.display = 'none';
       } else {
-        // TOO FAR: Bold Red alert perimeter + Center Oval + Badge
+        // TOO FAR AWAY: Prominent Red alert perimeter + Center Oval + Stage Badge (Terrance Directive)
         hudWrap.className = 'hud-wrapper status-wrong' + (currentStep >= 2 ? ' compact-hud' : '');
         hudWrap.style.borderColor = '#EF4444';
+        hudWrap.style.outline = '4px solid #EF4444';
+        hudWrap.style.boxShadow = '0 0 25px rgba(239, 68, 68, 0.9), inset 0 0 18px rgba(239, 68, 68, 0.5)';
         colorStatus.style.background = 'rgba(239, 68, 68, 0.98)';
-        colorStatus.innerText = 'TOO FAR';
+        colorStatus.innerText = 'TOO FAR AWAY';
         if (hudDist) {
           hudDist.style.color = '#EF4444';
           hudDist.innerText = 'TARGET: MOVE CLOSER';
         }
         const centerOval = document.getElementById('hudCenterWarningOval');
-        if (centerOval) centerOval.style.display = "none";
+        if (centerOval) {
+          centerOval.innerText = 'TOO FAR AWAY';
+          centerOval.style.background = 'rgba(239, 68, 68, 0.96)';
+          centerOval.style.display = 'block';
+        }
+        if (stageDistBadge) {
+          stageDistBadge.innerText = 'TOO FAR AWAY';
+          stageDistBadge.style.background = '#FEE2E2';
+          stageDistBadge.style.color = '#DC2626';
+          stageDistBadge.style.border = '1px solid #EF4444';
+          stageDistBadge.style.display = 'inline-block';
+        }
       }
 
       // Universal optimal badge updater
