@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.64 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.65 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.64</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.65</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -100,18 +100,18 @@
     .btn-snap-back-zoom {
       display: none;
       position: fixed;
-      top: 10px;
+      top: 12px;
       right: 12px;
-      z-index: 999999;
-      background: linear-gradient(135deg, #0284C7, #0369A1);
-      color: #FFFFFF;
-      border: 1.5px solid #FFFFFF;
+      z-index: 9999999 !important;
+      background: #2C4A3E !important;
+      color: #FBF9F5 !important;
+      border: 1.5px solid #C85A32 !important;
       border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 11.5px;
+      padding: 7px 16px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.5px;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45);
+      box-shadow: 0 4px 16px rgba(44, 74, 62, 0.55);
       cursor: pointer;
       text-transform: uppercase;
       -webkit-tap-highlight-color: transparent;
@@ -4016,7 +4016,7 @@
   <!-- ======================================================== -->
   
   <!-- Emergency Anti-Accidental Zoom Snap-Back Safeguard -->
-  <button id="snapBackZoomBtn" class="btn-snap-back-zoom" onclick="forceResetScreenZoom()">&#10530; Snap Back</button>
+  <button id="snapBackZoomBtn" class="btn-snap-back-zoom" onclick="forceResetScreenZoom()">&#10530; Reset Zoom</button>
 
   <!-- ======================================================== -->
   <!-- 1. WELCOME LANDING SCREEN (STRICT ZERO-SCROLL GUARANTEE)   -->
@@ -4056,7 +4056,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent-Pending</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.64</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.65</div>
       </div>
 
 
@@ -4139,7 +4139,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent-Pending Biometrics</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.64</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.65</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4196,7 +4196,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.64</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.65</span>
       </div>
     </div>
   </header>
@@ -4301,7 +4301,7 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.64
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.65
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4563,7 +4563,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.64";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.65";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -7433,18 +7433,22 @@ function forceResetScreenZoom() {
     const rxCont = document.getElementById('rxCardContainer');
     if (rxCont) rxCont.classList.remove('rx-zoom-unlocked');
 
-    const snapBtn = document.getElementById('snapBackZoomBtn');
-    if (snapBtn) snapBtn.style.display = 'none';
+    // WebKit Persistent Zoom Cache Reset (Terrance Anti-Stuck-Zoom Fix):
+    // 1. Remove all existing viewport meta elements to force WebKit to drop cached visualViewport scale
+    const existing = document.querySelectorAll('meta[name="viewport"]');
+    existing.forEach(function(el) { el.remove(); });
 
-    let vp = document.querySelector('meta[name="viewport"]');
-    if (!vp) {
-      vp = document.createElement('meta');
-      vp.id = 'viewportMeta';
-      vp.name = 'viewport';
-      document.head.appendChild(vp);
-    }
-    vp.setAttribute('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+    // 2. Force layout reflow
+    const dummy = document.documentElement.offsetHeight;
 
+    // 3. Inject fresh viewport meta allowing temporary scaling so WebKit snaps back to 1.0
+    const tempVp = document.createElement('meta');
+    tempVp.id = 'viewportMeta';
+    tempVp.name = 'viewport';
+    tempVp.content = 'width=device-width, initial-scale=1.0001, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover';
+    document.head.appendChild(tempVp);
+
+    // 4. Reset document scroll
     window.scrollTo(0, 0);
     if (document.documentElement) {
       document.documentElement.scrollLeft = 0;
@@ -7453,6 +7457,18 @@ function forceResetScreenZoom() {
     if (document.body) {
       document.body.scrollLeft = 0;
       document.body.scrollTop = 0;
+    }
+
+    // 5. On next frame, lock viewport to 1.0 for exam stability while still allowing unzooming if needed
+    setTimeout(function() {
+      if (!isRxZoomUnlockedNow() && tempVp.parentNode) {
+        tempVp.content = 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+      }
+    }, 150);
+
+    const snapBtn = document.getElementById('snapBackZoomBtn');
+    if (snapBtn && (!window.visualViewport || window.visualViewport.scale <= 1.05)) {
+      snapBtn.style.display = 'none';
     }
   } catch (e) {}
 }
@@ -7470,38 +7486,59 @@ function initScreenZoomGuards() {
     window.addEventListener('load', function() {
       if (!isRxZoomUnlockedNow()) forceResetScreenZoom();
     });
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!isRxZoomUnlockedNow()) forceResetScreenZoom();
+    });
 
+    // Pointers & Gestures: NEVER block pinch-to-unzoom if scale > 1.02!
     document.addEventListener('gesturestart', function(e) {
+      if (window.visualViewport && window.visualViewport.scale > 1.02) {
+        return; // Allow user to pinch back down to normal size!
+      }
       if (!isRxZoomUnlockedNow()) e.preventDefault();
     }, { passive: false });
+
     document.addEventListener('gesturechange', function(e) {
-      if (!isRxZoomUnlockedNow()) e.preventDefault();
-    }, { passive: false });
-    document.addEventListener('gestureend', function(e) {
+      if (window.visualViewport && window.visualViewport.scale > 1.02) {
+        return; // Allow user to pinch back down to normal size!
+      }
       if (!isRxZoomUnlockedNow()) e.preventDefault();
     }, { passive: false });
 
     document.addEventListener('touchstart', function(e) {
-      if (!isRxZoomUnlockedNow() && e.touches && e.touches.length > 1) {
-        e.preventDefault();
+      if (window.visualViewport && window.visualViewport.scale > 1.02) {
+        return; // Allow multi-touch unzooming!
       }
-    }, { passive: false });
-    document.addEventListener('touchmove', function(e) {
       if (!isRxZoomUnlockedNow() && e.touches && e.touches.length > 1) {
         e.preventDefault();
       }
     }, { passive: false });
 
+    document.addEventListener('touchmove', function(e) {
+      if (window.visualViewport && window.visualViewport.scale > 1.02) {
+        return; // Allow multi-touch unzooming!
+      }
+      if (!isRxZoomUnlockedNow() && e.touches && e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    function checkAndShowSnapBtn() {
+      const snapBtn = document.getElementById('snapBackZoomBtn');
+      if (!snapBtn) return;
+      if (!isRxZoomUnlockedNow() && window.visualViewport && window.visualViewport.scale > 1.05) {
+        snapBtn.style.display = 'block';
+      } else {
+        snapBtn.style.display = 'none';
+      }
+    }
+
     if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', function() {
-        const snapBtn = document.getElementById('snapBackZoomBtn');
-        if (!snapBtn) return;
-        if (!isRxZoomUnlockedNow() && window.visualViewport.scale > 1.05) {
-          snapBtn.style.display = 'block';
-        } else {
-          snapBtn.style.display = 'none';
-        }
-      });
+      window.visualViewport.addEventListener('resize', checkAndShowSnapBtn);
+      window.visualViewport.addEventListener('scroll', checkAndShowSnapBtn);
+      // Immediate check on startup
+      setTimeout(checkAndShowSnapBtn, 200);
+      setTimeout(checkAndShowSnapBtn, 800);
     }
 
     forceResetScreenZoom();
