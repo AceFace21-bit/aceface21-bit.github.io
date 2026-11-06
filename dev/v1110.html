@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.52 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.53 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -24,7 +24,7 @@
   // Auto-reload disabled to prevent button cycling on load
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.52</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.53</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -3880,7 +3880,7 @@
 
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); font-size: 11px; font-weight: 700; color: #8C887B; letter-spacing: 0.4px;">
-        Zero Personal Data &bull; Patent-Pending &bull; <span id="gateBuildBadge" style="color: #2C4A3E; font-weight: 800;">Build 6.0 Vers 11.52</span>
+        Zero Personal Data &bull; Patent-Pending &bull; <span id="gateBuildBadge" style="color: #2C4A3E; font-weight: 800;">Build 6.0 Vers 11.53</span>
       </div>
 
 
@@ -3964,7 +3964,7 @@
 
       <!-- Bottom Meta Row -->
       <div class="wm-footer-tagline" style="width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
-        <span>Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.52</span>
+        <span>Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.53</span>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4021,7 +4021,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.52</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.53</span>
       </div>
     </div>
   </header>
@@ -4089,7 +4089,7 @@
         <div id="readingTextTarget" style="font-size:16px; font-weight:600; line-height:1.6; color:#0F172A; padding:4px 6px 6px 6px;">I'm so glad I got my lens numbers from EyeRxNow.com. I saved serious cash on new glasses without paying the retail markup.</div>
         <div style="margin-top:16px; display:flex; justify-content:center; width:100%;">
           <button id="readingClickDoneBtn" class="btn-reading-done" onclick="finishReadingWithBoost()" type="button" style="display:inline-flex !important; visibility:visible !important;">
-            CLICK IF YOU READ
+            CLICK ONCE READ
           </button>
         </div>
       </div>
@@ -4125,7 +4125,7 @@
 
     <!-- Footer Tagline -->
     <div class="exam-footer-tagline">
-      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.52
+      Zero Personal Data &bull; Patent-Pending Biometrics &bull; Build 6.0 Vers 11.53
     </div>
 
     <!-- Step 6: Official Full-Screen Optical Spec Sheet Document -->
@@ -4143,9 +4143,8 @@
             <button type="button" id="rxNameDoneBtn" onclick="collapseNameInput();" style="background:#2C4A3E; color:#FBF9F5; border:none; border-radius:8px; padding:8px 14px; font-family:var(--font-body); font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap;">Done</button>
             <button type="button" id="rxEmailResultsBtn" onclick="openEmailResultsFromBar();" style="background:#C85A32; color:#FFFFFF; border:none; border-radius:8px; padding:8px 14px; font-family:var(--font-body); font-size:12px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; box-shadow:0 2px 6px rgba(200,90,50,0.25);">✉️ Email Results</button>
           </div>
-          <div id="rxNameBarCollapsed" style="display:none; font-family:var(--font-body); font-size:11.5px; color:#68655E; font-weight:600; cursor:pointer; padding:2px 8px; display:flex; align-items:center; justify-content:space-between; width:100%; max-width:420px;" onclick="expandNameInput();">
+          <div id="rxNameBarCollapsed" style="display:none; font-family:var(--font-body); font-size:11.5px; color:#68655E; font-weight:600; cursor:pointer; padding:2px 8px; align-items:center; justify-content:center;" onclick="expandNameInput();">
             <span>👤 Patient: <span id="rxCurrentNameLabel" style="color:#2C4A3E; font-weight:700;">VERIFIED PATIENT</span> <span style="font-size:10px; color:#C85A32; text-decoration:underline; margin-left:4px;">(tap to edit)</span></span>
-            <button type="button" onclick="event.stopPropagation();openEmailResultsFromBar();" style="background:#C85A32; color:#FFFFFF; border:none; border-radius:6px; padding:4px 10px; font-family:var(--font-body); font-size:11px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:4px;">✉️ Email Results</button>
           </div>
         </div>
 
@@ -4397,7 +4396,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.52";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.53";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -5832,7 +5831,7 @@ function onFaceResults(results) {
         clickDoneBtn.style.borderColor = "#2C4A3E";
         clickDoneBtn.style.background = "#2C4A3E";
         clickDoneBtn.style.color = "#FBF9F5";
-        clickDoneBtn.innerText = "CLICK IF YOU READ";
+        clickDoneBtn.innerText = "CLICK ONCE READ";
       }
     }
 
@@ -7101,7 +7100,7 @@ function renderOfficialRxCanvas() {
 
   ctx.fillStyle = "#1E1E1C";
   ctx.font = "italic bold 19px Georgia, serif";
-  ctx.fillText("Terrance Watkins Optical AI", 42, footY + 36);
+  ctx.fillText("eyerxnow.com", 42, footY + 36);
 
   ctx.fillStyle = "#2C4A3E";
   ctx.font = "bold 11px -apple-system, BlinkMacSystemFont, sans-serif";
