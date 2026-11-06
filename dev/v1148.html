@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.71 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.72 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -40,7 +40,7 @@
   })();
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.71</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.72</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4070,7 +4070,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.71</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.72</div>
       </div>
 
 
@@ -4153,7 +4153,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.71</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.72</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4210,7 +4210,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.71</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.72</span>
       </div>
     </div>
   </header>
@@ -4568,7 +4568,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.71";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.72";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -5602,16 +5602,171 @@ function updateOptotypeLiveScale() {
   }
 }
 
-function drawHandCoverSymbol(ctx, x, y, isRightEye) {
+// =========================================================================
+// iPHONE-SMOOTH 60FPS HUD ANIMATION & 1-SECOND RANGE SLIDE ENGINE
+// =========================================================================
+window._peHudAnimState = {
+  running: false,
+  lastFrameTs: 0,
+  isRangeValid: false,
+  inRangeSince: 0,      // Timestamp when user entered valid range (waits 1000ms before sliding in)
+  targetState: 0,       // 0 = smoothly exited off-screen, 1 = smoothly locked on eyes
+  visualProgress: 0.0,  // Current 0.0 .. 1.0 interpolation
+  animFrom: 0.0,
+  animTo: 0.0,
+  animStartTs: 0,
+  animDuration: 420,
+  smoothPose: null,     // 60fps exponentially smoothed eye/nose coordinates
+  targetPose: null      // Latest MediaPipe target coordinates
+};
+
+function setHudTargetState(newTarget, now) {
+  const st = window._peHudAnimState;
+  if (st.targetState === newTarget) return;
+  st.targetState = newTarget;
+  st.animFrom = st.visualProgress;
+  st.animTo = newTarget;
+  st.animStartTs = now;
+  // 420ms silky exit when too close/far; 580ms iPhone-smooth glide in after 1s hold
+  st.animDuration = (newTarget === 1) ? 580 : 420;
+}
+
+function setHudRangeValid(isValid) {
+  const st = window._peHudAnimState;
+  const now = performance.now();
+  if (!isValid) {
+    st.isRangeValid = false;
+    st.inRangeSince = 0;
+    setHudTargetState(0, now);
+  } else {
+    if (!st.isRangeValid) {
+      st.isRangeValid = true;
+      st.inRangeSince = now; // Start 1.0-second range confirmation timer
+    }
+  }
+}
+
+function renderSmoothHudFrame(now) {
+  const st = window._peHudAnimState;
+  if (!st.lastFrameTs) st.lastFrameTs = now;
+  const dt = Math.min(0.06, Math.max(0.001, (now - st.lastFrameTs) / 1000));
+  st.lastFrameTs = now;
+
+  // 1. Wait 1 full second (1000ms) in valid range before sliding boxes & cover hand in
+  if (st.isRangeValid && st.inRangeSince > 0) {
+    if (now - st.inRangeSince >= 1000) {
+      setHudTargetState(1, now);
+    }
+  }
+
+  // 2. Update iOS cubic-bezier slide progress (C1 continuous even on mid-flight reversal)
+  if (st.visualProgress !== st.animTo) {
+    const elapsed = Math.max(0, now - st.animStartTs);
+    const t = Math.min(1.0, elapsed / st.animDuration);
+    const ease = 1 - Math.pow(1 - t, 3.2);
+    st.visualProgress = st.animFrom + (st.animTo - st.animFrom) * ease;
+    if (t >= 1.0) {
+      st.visualProgress = st.animTo;
+    }
+  }
+
+  // 3. 60fps Exponential Landmark Smoothing (eliminates webcam frame choppiness)
+  if (st.targetPose) {
+    if (!st.smoothPose) {
+      st.smoothPose = {
+        nx: st.targetPose.nx,
+        ny: st.targetPose.ny,
+        fx: st.targetPose.fx,
+        fy: st.targetPose.fy,
+        lx: st.targetPose.lx,
+        ly: st.targetPose.ly,
+        rx: st.targetPose.rx,
+        ry: st.targetPose.ry,
+        pd: st.targetPose.pd
+      };
+    } else {
+      const lerp = 1 - Math.exp(-18 * dt);
+      st.smoothPose.nx += (st.targetPose.nx - st.smoothPose.nx) * lerp;
+      st.smoothPose.ny += (st.targetPose.ny - st.smoothPose.ny) * lerp;
+      st.smoothPose.fx += (st.targetPose.fx - st.smoothPose.fx) * lerp;
+      st.smoothPose.fy += (st.targetPose.fy - st.smoothPose.fy) * lerp;
+      st.smoothPose.lx += (st.targetPose.lx - st.smoothPose.lx) * lerp;
+      st.smoothPose.ly += (st.targetPose.ly - st.smoothPose.ly) * lerp;
+      st.smoothPose.rx += (st.targetPose.rx - st.smoothPose.rx) * lerp;
+      st.smoothPose.ry += (st.targetPose.ry - st.smoothPose.ry) * lerp;
+      st.smoothPose.pd = st.targetPose.pd;
+    }
+  }
+
+  // 4. Clear & Render HUD Canvas at native 60fps / 120fps ProMotion
+  const hudCanvas = document.getElementById('hudCanvas');
+  const hudWrapper = document.getElementById('hudWrapper');
+  if (hudCanvas && hudWrapper && hudWrapper.clientWidth > 0 && hudWrapper.clientHeight > 0) {
+    const ctx = hudCanvas.getContext('2d');
+    if (ctx) {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2.0);
+      const cw = hudWrapper.clientWidth;
+      const ch = hudWrapper.clientHeight;
+      const targetW = Math.round(cw * dpr);
+      const targetH = Math.round(ch * dpr);
+      if (hudCanvas.width !== targetW || hudCanvas.height !== targetH) {
+        hudCanvas.width = targetW;
+        hudCanvas.height = targetH;
+      }
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, hudCanvas.width, hudCanvas.height);
+      ctx.scale(dpr, dpr);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.clearRect(0, 0, cw, ch);
+
+      if (st.smoothPose && st.visualProgress > 0.005) {
+        drawHudOverlays(
+          st.smoothPose.nx,
+          st.smoothPose.ny,
+          st.smoothPose.fx,
+          st.smoothPose.fy,
+          st.smoothPose.lx,
+          st.smoothPose.ly,
+          st.smoothPose.rx,
+          st.smoothPose.ry,
+          st.smoothPose.pd,
+          false,
+          st.visualProgress
+        );
+      }
+    }
+  }
+
+  if (st.running) {
+    requestAnimationFrame(renderSmoothHudFrame);
+  }
+}
+
+function ensureSmoothHudLoop() {
+  const st = window._peHudAnimState;
+  if (!st.running) {
+    st.running = true;
+    st.lastFrameTs = performance.now();
+    requestAnimationFrame(renderSmoothHudFrame);
+  }
+}
+
+function drawHandCoverSymbol(ctx, x, y, isRightEye, slideOffsetX, slideAlpha, slideScale) {
+  const offsetX = (typeof slideOffsetX === 'number') ? slideOffsetX : 0;
+  const alphaMul = (typeof slideAlpha === 'number') ? slideAlpha : 1.0;
+  const scaleMul = (typeof slideScale === 'number') ? slideScale : 1.0;
+  if (alphaMul <= 0.005) return;
+
   ctx.save();
 
-  // Smooth sinusoidal soft-blink / breathing pulse (period ~1.6s)
-  const now = Date.now();
+  // Smooth 60fps sinusoidal soft-blink / breathing pulse (period ~1.6s)
+  const now = performance.now();
   const breath = Math.sin(now / 260); // -1.0 to +1.0
-  const pulseAlpha = 0.40 + 0.55 * (0.5 + 0.5 * breath); // Smoothly glides 0.40 to 0.95
-  const scale = 1.0 + 0.05 * breath; // Subtle 5% breathing scale
+  const pulseAlpha = (0.40 + 0.55 * (0.5 + 0.5 * breath)) * alphaMul;
+  const scale = (1.0 + 0.05 * breath) * scaleMul;
 
-  ctx.translate(x, y);
+  ctx.translate(x + offsetX, y);
   ctx.scale(scale, scale);
   ctx.globalAlpha = pulseAlpha;
 
@@ -5655,16 +5810,22 @@ function drawHandCoverSymbol(ctx, x, y, isRightEye) {
   ctx.restore();
 }
 
-function drawEyeTargetBox(ctx, x, y, isActive, isCovered) {
+function drawEyeTargetBox(ctx, x, y, isActive, isCovered, slideOffsetX, slideAlpha, slideScale) {
+  const offsetX = (typeof slideOffsetX === 'number') ? slideOffsetX : 0;
+  const alphaMul = (typeof slideAlpha === 'number') ? slideAlpha : 1.0;
+  const scaleMul = (typeof slideScale === 'number') ? slideScale : 1.0;
+  if (alphaMul <= 0.005) return;
+
   ctx.save();
-  ctx.globalAlpha = 0.95; // Solid, crisp, darker (not washed out)
+  ctx.translate(x + offsetX, y);
+  ctx.scale(scaleMul, scaleMul);
+  ctx.globalAlpha = 0.95 * alphaMul; // Solid, crisp, darker (not washed out)
 
   const size = 26;
   const half = size / 2;
   const bracketLen = 7;
   // Rich darker forest green for active target box (#047857 / #065F46)
   const primaryColor = isCovered ? '#DC2626' : (isActive ? '#065F46' : '#475569');
-  const accentColor = isCovered ? '#EF4444' : (isActive ? '#059669' : '#64748B');
 
   // 1. Crisp bold corner brackets
   ctx.strokeStyle = primaryColor;
@@ -5672,71 +5833,57 @@ function drawEyeTargetBox(ctx, x, y, isActive, isCovered) {
 
   // Top-Left Bracket
   ctx.beginPath();
-  ctx.moveTo(x - half, y - half + bracketLen);
-  ctx.lineTo(x - half, y - half);
-  ctx.lineTo(x - half + bracketLen, y - half);
+  ctx.moveTo(-half, -half + bracketLen);
+  ctx.lineTo(-half, -half);
+  ctx.lineTo(-half + bracketLen, -half);
   ctx.stroke();
 
   // Top-Right Bracket
   ctx.beginPath();
-  ctx.moveTo(x + half - bracketLen, y - half);
-  ctx.lineTo(x + half, y - half);
-  ctx.lineTo(x + half, y - half + bracketLen);
+  ctx.moveTo(half - bracketLen, -half);
+  ctx.lineTo(half, -half);
+  ctx.lineTo(half, -half + bracketLen);
   ctx.stroke();
 
   // Bottom-Left Bracket
   ctx.beginPath();
-  ctx.moveTo(x - half, y + half - bracketLen);
-  ctx.lineTo(x - half, y + half);
-  ctx.lineTo(x - half + bracketLen, y + half);
+  ctx.moveTo(-half, half - bracketLen);
+  ctx.lineTo(-half, half);
+  ctx.lineTo(-half + bracketLen, half);
   ctx.stroke();
 
   // Bottom-Right Bracket
   ctx.beginPath();
-  ctx.moveTo(x + half - bracketLen, y + half);
-  ctx.lineTo(x + half, y + half);
-  ctx.lineTo(x + half, y + half - bracketLen);
+  ctx.moveTo(half - bracketLen, half);
+  ctx.lineTo(half, half);
+  ctx.lineTo(half, half - bracketLen);
   ctx.stroke();
 
   // Outer box boundary - darker green tint
   ctx.fillStyle = isCovered ? 'rgba(220, 38, 38, 0.20)' : (isActive ? 'rgba(6, 95, 70, 0.24)' : 'transparent');
-  ctx.fillRect(x - half, y - half, size, size);
+  ctx.fillRect(-half, -half, size, size);
   ctx.strokeStyle = primaryColor;
   ctx.lineWidth = 1.2;
-  ctx.strokeRect(x - half, y - half, size, size);
+  ctx.strokeRect(-half, -half, size, size);
 
   // 2. Center pupil target pip & mini crosshairs
   ctx.fillStyle = primaryColor;
   ctx.beginPath();
-  ctx.arc(x, y, 2.5, 0, 2 * Math.PI);
+  ctx.arc(0, 0, 2.5, 0, 2 * Math.PI);
   ctx.fill();
 
   ctx.restore();
 }
 
-function drawHudOverlays(nx, ny, fx, fy, lx, ly, rx, ry, pdMm, isOneEyeShielded) {
+function drawHudOverlays(nx, ny, fx, fy, lx, ly, rx, ry, pdMm, isOneEyeShielded, transitionProgress) {
+  const prog = (typeof transitionProgress === 'number') ? transitionProgress : 1.0;
+  if (prog <= 0.005) return;
+
   const hudCanvas = document.getElementById("hudCanvas");
   if (!hudCanvas) return;
   const ctx = hudCanvas.getContext("2d");
   if (!ctx) return;
 
-  // 1. Direct optical bridge line connecting the two eyes
-  ctx.strokeStyle = "rgba(56, 189, 248, 0.45)";
-  ctx.lineWidth = 1.4;
-  ctx.beginPath();
-  ctx.moveTo(lx, ly);
-  ctx.lineTo(rx, ry);
-  ctx.stroke();
-
-  // 2. Center interpupillary bridge point
-  const midX = (lx + rx) / 2;
-  const midY = (ly + ry) / 2;
-  ctx.fillStyle = "#38BDF8";
-  ctx.beginPath();
-  ctx.arc(midX, midY, 2.5, 0, 2 * Math.PI);
-  ctx.fill();
-
-  // 3. PRECISION EYE RETICLES & SAILOR'S EYEPATCH (PER TERRANCE EYE-MIRROR RULE)
   // Eye on the RIGHT side as user looks at screen:
   const screenRightEyeX = Math.max(lx, rx);
   const screenRightEyeY = (lx > rx) ? ly : ry;
@@ -5744,18 +5891,46 @@ function drawHudOverlays(nx, ny, fx, fy, lx, ly, rx, ry, pdMm, isOneEyeShielded)
   const screenLeftEyeX = Math.min(lx, rx);
   const screenLeftEyeY = (lx < rx) ? ly : ry;
 
+  // iPhone-smooth outward/inward horizontal glide offset + subtle scale & opacity
+  const maxSlidePx = 68;
+  const slideDist = (1.0 - prog) * maxSlidePx;
+  const leftOffsetX = -slideDist;  // Left eye slides smoothly from/to left edge
+  const rightOffsetX = slideDist;  // Right eye slides smoothly from/to right edge
+  const elemAlpha = prog;
+  const elemScale = 0.85 + 0.15 * prog;
+
+  // 1. Direct optical bridge line connecting the two eyes (glides & fades with the boxes)
+  const midX = (screenLeftEyeX + screenRightEyeX) / 2;
+  const midY = (screenLeftEyeY + screenRightEyeY) / 2;
+  ctx.save();
+  ctx.globalAlpha = prog;
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.45)";
+  ctx.lineWidth = 1.4;
+  ctx.beginPath();
+  ctx.moveTo(screenLeftEyeX + leftOffsetX, screenLeftEyeY);
+  ctx.lineTo(screenRightEyeX + rightOffsetX, screenRightEyeY);
+  ctx.stroke();
+
+  // 2. Center interpupillary bridge point
+  ctx.fillStyle = "#38BDF8";
+  ctx.beginPath();
+  ctx.arc(midX, midY, 2.5 * elemScale, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.restore();
+
+  // 3. PRECISION EYE RETICLES & COVER HAND (SLIDING SMOOTHLY IN/OUT)
   if (currentStep === 2) {
-    // COVER RIGHT EYE: Hand is placed over the eye on the RIGHT as user looks at screen in selfie mirror
-    drawEyeTargetBox(ctx, screenLeftEyeX, screenLeftEyeY, true, false);
-    drawHandCoverSymbol(ctx, screenRightEyeX, screenRightEyeY, true);
+    // COVER RIGHT EYE: Left eye gets green target box (from left), Right eye gets blinking hand (from right)
+    drawEyeTargetBox(ctx, screenLeftEyeX, screenLeftEyeY, true, false, leftOffsetX, elemAlpha, elemScale);
+    drawHandCoverSymbol(ctx, screenRightEyeX, screenRightEyeY, true, rightOffsetX, elemAlpha, elemScale);
   } else if (currentStep === 3) {
-    // COVER LEFT EYE: Hand is placed over the eye on the LEFT as user looks at screen in selfie mirror
-    drawEyeTargetBox(ctx, screenRightEyeX, screenRightEyeY, true, false);
-    drawHandCoverSymbol(ctx, screenLeftEyeX, screenLeftEyeY, false);
+    // COVER LEFT EYE: Right eye gets green target box (from right), Left eye gets blinking hand (from left)
+    drawEyeTargetBox(ctx, screenRightEyeX, screenRightEyeY, true, false, rightOffsetX, elemAlpha, elemScale);
+    drawHandCoverSymbol(ctx, screenLeftEyeX, screenLeftEyeY, false, leftOffsetX, elemAlpha, elemScale);
   } else {
     // Both Eyes Active -> Matching Dark Emerald Green target boxes on BOTH eyes!
-    drawEyeTargetBox(ctx, lx, ly, true, false);
-    drawEyeTargetBox(ctx, rx, ry, true, false);
+    drawEyeTargetBox(ctx, screenLeftEyeX, screenLeftEyeY, true, false, leftOffsetX, elemAlpha, elemScale);
+    drawEyeTargetBox(ctx, screenRightEyeX, screenRightEyeY, true, false, rightOffsetX, elemAlpha, elemScale);
   }
 }
 
@@ -5771,33 +5946,18 @@ function onFaceResults(results) {
     const ctx = hudCanvas.getContext('2d');
     if (!ctx) return;
 
-    // Universal High-DPI Retina Display Adapter (Safe on ALL phones, capped at 2.0x DPR)
-    const dpr = Math.min(window.devicePixelRatio || 1, 2.0);
     const cw = hudWrapper.clientWidth;
     const ch = hudWrapper.clientHeight;
-    const targetW = Math.round(cw * dpr);
-    const targetH = Math.round(ch * dpr);
-
-    if (hudCanvas.width !== targetW || hudCanvas.height !== targetH) {
-      hudCanvas.width = targetW;
-      hudCanvas.height = targetH;
-    }
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, hudCanvas.width, hudCanvas.height);
-    ctx.scale(dpr, dpr);
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-
-    // Pure transparent HUD layer over native HD camera
-    ctx.clearRect(0, 0, cw, ch);
+    ensureSmoothHudLoop();
 
     if (!results.multiFaceLandmarks || results.multiFaceLandmarks.length === 0) {
       window._peMissedFaceFrames = (window._peMissedFaceFrames || 0) + 1;
       if (window._peMissedFaceFrames <= 6 && lastGoodPose) {
-        drawHudOverlays(lastGoodPose.nx, lastGoodPose.ny, lastGoodPose.fx, lastGoodPose.fy, lastGoodPose.lx, lastGoodPose.ly, lastGoodPose.rx, lastGoodPose.ry, lastGoodPose.pd, false);
+        window._peHudAnimState.targetPose = lastGoodPose;
         if (hudDist && liveDistanceCm) hudDist.innerText = "DIST: " + liveDistanceCm + " CM";
         return;
       }
+      setHudRangeValid(false);
       if (hudStatus) {
         hudStatus.innerText = "Status: Center Face";
         hudStatus.style.color = "#f59e0b";
@@ -5924,7 +6084,9 @@ function onFaceResults(results) {
       pd: measuredPdMm
     };
 
-    drawHudOverlays(nosePt.x, nosePt.y, foreheadPt.x, foreheadPt.y, activeLx, activeLy, activeRx, activeRy, measuredPdMm, false);
+    window._peHudAnimState.targetPose = lastGoodPose;
+    const isHudRangeGood = (currentStep === 5) || (liveDistanceCm >= 42 && liveDistanceCm <= 72);
+    setHudRangeValid(isHudRangeGood);
 
     if (hudDist) {
       hudDist.innerText = "DIST: " + liveDistanceCm + " CM";
