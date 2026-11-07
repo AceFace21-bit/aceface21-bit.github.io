@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.79 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.80 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -40,7 +40,7 @@
   })();
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.79</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.80</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4657,7 +4657,7 @@
         <div id="gateFeedback" style="display: none; background: #F8F4EC; border: 1px solid #C05A3E; padding: 6px 10px; font-family: var(--font-body); font-size: 11px; font-weight: 600; color: #C05A3E; line-height: 1.3; margin-top: 6px; text-align: center;">
         </div>
       </div>
-      <div class="abode-featured-caption">FEATURED OPTICAL SPACE &bull; <span id="gateBuildBadge">Build 6.0 Vers 11.79</span></div>
+      <div class="abode-featured-caption">FEATURED OPTICAL SPACE &bull; <span id="gateBuildBadge">Build 6.0 Vers 11.80</span></div>
 
       <!-- Lower 2-Column Architectural Study Grid (Matches "Architectural Study" | "Interior Elements" in mockup) -->
       <div class="abode-two-col-grid">
@@ -4707,7 +4707,7 @@
       <span class="abode-nav-label">Take Exam</span>
       <span class="abode-nav-dot"></span>
     </button>
-    <button type="button" id="abodeNavExam" class="abode-nav-item" onclick="abodeSwitchBottomTab('exam')">
+    <a id="abodeNavExam" class="abode-nav-item" href="https://www.payneglasses.com/" style="text-decoration:none;" onclick="window.location.href='https://www.payneglasses.com/'; return false;">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="6" cy="14" r="3.5"></circle>
         <circle cx="18" cy="14" r="3.5"></circle>
@@ -4717,7 +4717,7 @@
       </svg>
       <span class="abode-nav-label">$13.98 Glasses</span>
       <span class="abode-nav-dot"></span>
-    </button>
+    </a>
     <button type="button" id="abodeNavSaved" class="abode-nav-item" onclick="abodeSwitchBottomTab('saved')">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
@@ -4797,7 +4797,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.79</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.80</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4854,7 +4854,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.79</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.80</span>
       </div>
     </div>
   </header>
@@ -5212,7 +5212,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.79";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.80";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -9000,11 +9000,8 @@ function abodeSwitchBottomTab(tabName) {
     if (pretest) { pretest.classList.remove('active'); pretest.style.setProperty('display', 'none', 'important'); }
     finishPretestAndEnterExam();
   } else if (tabName === 'exam') {
-    if (typeof openPartnerRetailerModal === 'function') {
-      openPartnerRetailerModal();
-    } else {
-      window.open('https://www.payneglasses.com', '_blank', 'noopener,noreferrer');
-    }
+    window.location.href = 'https://www.payneglasses.com/';
+    return;
   } else if (tabName === 'saved') {
     if (gate) gate.style.display = 'none';
     if (pretest) { pretest.classList.remove('active'); pretest.style.display = 'none'; }
