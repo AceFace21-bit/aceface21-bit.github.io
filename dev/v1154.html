@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.78 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.79 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -40,7 +40,7 @@
   })();
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.78</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.79</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4200,7 +4200,7 @@
       <!-- Visible Bottom Meta on First Page -->
       <div style="margin-top: 16px; padding-top: 10px; border-top: 1px dashed #E2DDD3; font-family: var(--font-body); text-align: center;">
         <div style="font-size: 11px; color: #68655E; margin-bottom: 3px;">Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.78</div>
+        <div id="gateBuildBadge" style="font-size: 11px; font-weight: 700; color: #2C4A3E;">Build 6.0 Vers 11.79</div>
       </div>
 
 
@@ -4285,7 +4285,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.78</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.79</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4342,7 +4342,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.78</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.79</span>
       </div>
     </div>
   </header>
@@ -4700,8 +4700,9 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.78";
-var isRxUnlocked = false;
+(function() {
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.79";
+let isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
 const EYERX_LOGO_URI = [
@@ -6898,7 +6899,6 @@ window.startExamFromStep1 = startExamFromStep1;
 window.setWorkflowStep = setWorkflowStep;
 window.toggleAudioEffects = toggleAudioEffects;
 window.toggleDpadErgonomicSide = toggleDpadErgonomicSide;
-window.renderOfficialRxCanvas = renderOfficialRxCanvas;
 
 function openEmailResultsFromBar() {
   const pInput = document.getElementById('rxPatientNameInput');
@@ -7542,7 +7542,6 @@ async function requestVaultCalculationAsync() {
   // Compute live clinical prescription immediately from actual exam performance:
   try {
     cachedVaultPrescription = calculatePrescriptionFromVault(payload);
-    console.log("Proprietary Local Refractive Vault calculated live prescription:", cachedVaultPrescription);
   } catch (calcErr) {
     console.warn("Local vault calculation warning:", calcErr);
   }
@@ -7646,6 +7645,23 @@ function renderOfficialRxCanvas() {
   const examDateStr = (now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear();
   const totalPdRounded = Math.min(70, Math.max(58, Math.round(measuredPdMm)));
   const addFormatted = "+" + measuredAddDiopter.toFixed(2) + " D";
+  const isLocked = !isRxUnlocked;
+  const dispRightSph = isLocked ? "•.•• D" : rightRx.sphText;
+  const dispLeftSph  = isLocked ? "•.•• D" : leftRx.sphText;
+  const dispOdCyl    = isLocked ? "•.••" : (rightRx.hasAstig ? rightRx.cylVal.toFixed(2) + " D" : "0.00");
+  const dispOdAxis   = isLocked ? "••°" : (rightRx.hasAstig ? (rightRx.axisVal + "°") : "--");
+  const dispOsCyl    = isLocked ? "•.••" : (leftRx.hasAstig ? leftRx.cylVal.toFixed(2) + " D" : "0.00");
+  const dispOsAxis   = isLocked ? "••°" : (leftRx.hasAstig ? (leftRx.axisVal + "°") : "--");
+  const dispTotalPd  = isLocked ? "•• mm" : (totalPdRounded + " mm");
+  const dispDualPd   = isLocked ? "Dual: R ••.• mm / L ••.• mm" : ("Dual: R " + measuredOdPdMm.toFixed(1) + " mm / L " + measuredOsPdMm.toFixed(1) + " mm");
+  const dispAdd      = isLocked ? "+•.•• D" : addFormatted;
+  const dispOdPdCell = isLocked ? "••.•" : measuredOdPdMm.toFixed(1);
+  const dispOsPdCell = isLocked ? "••.•" : measuredOsPdMm.toFixed(1);
+  const dispSingleDualFooter = isLocked
+    ? "SINGLE PD: •• mm  •  DUAL PD: R ••.• / L ••.•"
+    : ("SINGLE PD: " + totalPdRounded + " mm  •  DUAL PD: R " + measuredOdPdMm.toFixed(1) + " / L " + measuredOsPdMm.toFixed(1));
+  const dispOdAstigNote = isLocked ? "Unlock to View Optical Spec" : (rightRx.hasAstig ? "Astigmatism Detected" : "Spherical Lens (No Astig)");
+  const dispOsAstigNote = isLocked ? "Unlock to View Optical Spec" : (leftRx.hasAstig ? "Astigmatism Detected" : "Spherical Lens (No Astig)");
 
   // 1. Warm Alabaster Card Base (#FBF9F5) with crisp clean contrast
   ctx.fillStyle = "#FBF9F5";
@@ -7763,7 +7779,7 @@ function renderOfficialRxCanvas() {
   ctx.fillText("SPHERE (SPH)", 42, odY + 66);
   ctx.fillStyle = "#1E1E1C";
   ctx.font = "bold 52px Consolas, monospace";
-  ctx.fillText(rightRx.sphText, 40, odY + 120);
+  ctx.fillText(dispRightSph, 40, odY + 120);
 
   // Divider line inside card
   ctx.strokeStyle = "#E2DDD3";
@@ -7781,14 +7797,14 @@ function renderOfficialRxCanvas() {
 
   ctx.fillStyle = "#0F172A";
   ctx.font = "bold 32px Consolas, monospace";
-  const odCylStr = rightRx.hasAstig ? rightRx.cylVal.toFixed(2) + " D" : "0.00";
-  const odAxisStr = rightRx.hasAstig ? (rightRx.axisVal + "°") : "--";
+  const odCylStr = dispOdCyl;
+  const odAxisStr = dispOdAxis;
   ctx.fillText(odCylStr, 350, odY + 115);
   ctx.fillText(odAxisStr, 540, odY + 115);
 
   ctx.fillStyle = "#68655E";
   ctx.font = "11px -apple-system, BlinkMacSystemFont, sans-serif";
-  ctx.fillText(rightRx.hasAstig ? "Astigmatism Detected" : "Spherical Lens (No Astig)", 350, odY + 148);
+  ctx.fillText(dispOdAstigNote, 350, odY + 148);
 
   // 7. CARD 2: LEFT EYE (O.S.) - MASSIVE HIGH-CONTRAST NUMBERS
   const osY = 358;
@@ -7812,7 +7828,7 @@ function renderOfficialRxCanvas() {
   ctx.fillText("SPHERE (SPH)", 42, osY + 66);
   ctx.fillStyle = "#1E1E1C";
   ctx.font = "bold 52px Consolas, monospace";
-  ctx.fillText(leftRx.sphText, 40, osY + 120);
+  ctx.fillText(dispLeftSph, 40, osY + 120);
 
   // Divider line inside card
   ctx.strokeStyle = "#E2DDD3";
@@ -7830,14 +7846,14 @@ function renderOfficialRxCanvas() {
 
   ctx.fillStyle = "#0F172A";
   ctx.font = "bold 32px Consolas, monospace";
-  const osCylStr = leftRx.hasAstig ? leftRx.cylVal.toFixed(2) + " D" : "0.00";
-  const osAxisStr = leftRx.hasAstig ? (leftRx.axisVal + "°") : "--";
+  const osCylStr = dispOsCyl;
+  const osAxisStr = dispOsAxis;
   ctx.fillText(osCylStr, 350, osY + 115);
   ctx.fillText(osAxisStr, 540, osY + 115);
 
   ctx.fillStyle = "#68655E";
   ctx.font = "11px -apple-system, BlinkMacSystemFont, sans-serif";
-  ctx.fillText(leftRx.hasAstig ? "Astigmatism Detected" : "Spherical Lens (No Astig)", 350, osY + 148);
+  ctx.fillText(dispOsAstigNote, 350, osY + 148);
 
   // 8. CARD 3 & 4: PUPILLARY DISTANCE (PD) & NEAR ADD (READING) SIDE BY SIDE
   const pdY = 548;
@@ -7853,11 +7869,11 @@ function renderOfficialRxCanvas() {
 
   ctx.fillStyle = "#1E1E1C";
   ctx.font = "bold 48px Consolas, monospace";
-  ctx.fillText(totalPdRounded + " mm", 38, pdY + 95);
+  ctx.fillText(dispTotalPd, 38, pdY + 95);
 
   ctx.fillStyle = "#68655E";
   ctx.font = "bold 11.5px -apple-system, BlinkMacSystemFont, sans-serif";
-  ctx.fillText("Dual: R " + measuredOdPdMm.toFixed(1) + " mm / L " + measuredOsPdMm.toFixed(1) + " mm", 38, pdY + 130);
+  ctx.fillText(dispDualPd, 38, pdY + 130);
 
   // Right Tile: NEAR ADD (READING)
   drawCard(24 + colW + 14, pdY, colW, 160, 12, "#FFFFFF", "#E2DDD3", 2);
@@ -7869,7 +7885,7 @@ function renderOfficialRxCanvas() {
 
   ctx.fillStyle = "#1E1E1C";
   ctx.font = "bold 48px Consolas, monospace";
-  ctx.fillText(addFormatted, 24 + colW + 26, pdY + 95);
+  ctx.fillText(dispAdd, 24 + colW + 26, pdY + 95);
 
   ctx.fillStyle = "#68655E";
   ctx.font = "bold 11.5px -apple-system, BlinkMacSystemFont, sans-serif";
@@ -7916,11 +7932,11 @@ function renderOfficialRxCanvas() {
 
   ctx.font = "bold 22px Consolas, monospace";
   ctx.fillStyle = "#2C4A3E";
-  ctx.fillText(rightRx.sphText, tCols[1], row1Y);
+  ctx.fillText(dispRightSph, tCols[1], row1Y);
   ctx.fillText(odCylStr, tCols[2], row1Y);
   ctx.fillText(odAxisStr, tCols[3], row1Y);
-  ctx.fillText(addFormatted, tCols[4], row1Y);
-  ctx.fillText(measuredOdPdMm.toFixed(1), tCols[5], row1Y);
+  ctx.fillText(dispAdd, tCols[4], row1Y);
+  ctx.fillText(dispOdPdCell, tCols[5], row1Y);
 
   // OS Row
   const row2Y = row1Y + 50;
@@ -7933,16 +7949,16 @@ function renderOfficialRxCanvas() {
 
   ctx.font = "bold 22px Consolas, monospace";
   ctx.fillStyle = "#2C4A3E";
-  ctx.fillText(leftRx.sphText, tCols[1], row2Y);
+  ctx.fillText(dispLeftSph, tCols[1], row2Y);
   ctx.fillText(osCylStr, tCols[2], row2Y);
   ctx.fillText(osAxisStr, tCols[3], row2Y);
-  ctx.fillText(addFormatted, tCols[4], row2Y);
-  ctx.fillText(measuredOsPdMm.toFixed(1), tCols[5], row2Y);
+  ctx.fillText(dispAdd, tCols[4], row2Y);
+  ctx.fillText(dispOsPdCell, tCols[5], row2Y);
 
   // Total PD notice
   ctx.fillStyle = "#C85A32";
   ctx.font = "bold 12px -apple-system, BlinkMacSystemFont, sans-serif";
-  ctx.fillText("SINGLE PD: " + totalPdRounded + " mm  •  DUAL PD: R " + measuredOdPdMm.toFixed(1) + " / L " + measuredOsPdMm.toFixed(1), 38, gridY + 205);
+  ctx.fillText(dispSingleDualFooter, 38, gridY + 205);
 
   // 10. Attestation & Footer Bar
   const footY = 956;
@@ -7963,6 +7979,7 @@ function renderOfficialRxCanvas() {
 }
 
 function downloadOfficialRxPNG() {
+  if (!isRxUnlocked) { showToast("Please complete checkout to unlock your optical spec sheet."); return; }
   renderOfficialRxCanvas();
   trackProjectEyesEvent('Project Eyes Official Rx Click', Object.assign({
     action: 'Download Official Optical Spec Sheet (.PNG)'
@@ -7994,6 +8011,7 @@ function downloadOfficialRxPNG() {
 }
 
 function printOfficialRx(sourceLabel) {
+  if (!isRxUnlocked) { showToast("Please complete checkout to unlock your optical spec sheet."); return; }
   renderOfficialRxCanvas();
   trackProjectEyesEvent('Project Eyes Official Rx Click', Object.assign({
     action: sourceLabel || 'Print / Save Official Rx PDF'
@@ -8505,6 +8523,7 @@ function closeMailHardCopyModal() {
 }
 
 function copyRxFormattedText() {
+  if (!isRxUnlocked) { showToast("Please complete checkout to unlock your optical spec sheet."); return; }
   const leftRx  = calculateEyeRxWithAstigmatism(eyeMetrics.left, false);
   const rightRx = calculateEyeRxWithAstigmatism(eyeMetrics.right, true);
   const nameInput = document.getElementById('rxPatientNameInput');
@@ -8533,6 +8552,7 @@ function copyRxFormattedText() {
 }
 
 function sendToRetailer(retailerName, url) {
+  if (!isRxUnlocked) { showToast("Please complete checkout to unlock your optical spec sheet."); return; }
   copyRxFormattedText();
   trackProjectEyesEvent('Project Eyes Official Rx Click', { action: 'Send to Retailer: ' + retailerName });
   setTimeout(function() {
@@ -8598,13 +8618,25 @@ let isEmailDeliveryEnabled = true;
 let isDuoFamilyPass = false;
 let currentIssuedGiftCode = "";
 
+function _escapeHtmlSafe(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function computeFamCodeSignature(block4) {
   const chars = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
-  let h = 0x811c9dc5;
-  const sal = "EYERX_FAM_SIG:" + String(block4 || "");
-  for (let i = 0; i < sal.length; i++) {
-    h ^= sal.charCodeAt(i);
-    h = Math.imul(h, 0x01000193) >>> 0;
+  let h = 0x811c9dc5 >>> 0;
+  const sal = "EYERX_FAM_SIG_V6_64_174_835::" + String(block4 || "");
+  for (let r = 0; r < 10000; r++) {
+    for (let i = 0; i < sal.length; i++) {
+      h ^= sal.charCodeAt(i) ^ (r & 0xff);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    h = ((h << 11) | (h >>> 21)) >>> 0;
   }
   let sig = "";
   for (let i = 0; i < 4; i++) {
@@ -8708,8 +8740,20 @@ function handleSendEmailScript() {
   }
 
   const patientName = nameVal || (document.getElementById('rxPatientNameInput') ? document.getElementById('rxPatientNameInput').value.trim() : '') || "Authorized Patient";
+  const safePatientName = _escapeHtmlSafe(patientName);
   const feeVal = (typeof currentEmailScriptFee !== 'undefined') ? currentEmailScriptFee : 29.99;
   const feeStr = (feeVal === 0) ? "FREE VIP" : ('$' + feeVal.toFixed(2));
+
+  if (!isRxUnlocked && feeVal > 0) {
+    try {
+      sessionStorage.setItem('PENDING_RX_EMAIL', emailVal);
+      sessionStorage.setItem('PENDING_RX_NAME', patientName);
+      sessionStorage.setItem('EYERX_STRIPE_CHECKOUT_TS', String(Date.now()));
+    } catch(e) {}
+    closeEmailScriptModal();
+    window.open('https://buy.stripe.com/14A6oG6gwarbfqKh1lgQE03', '_blank', 'noopener,noreferrer');
+    return;
+  }
 
   let issuedGiftCode = "";
   if (isDuoFamilyPass || selectedUnlockTier === 2 || feeVal > 30.00) {
@@ -8749,7 +8793,7 @@ function handleSendEmailScript() {
         <p style="color:#94A3B8; font-size:12px; margin:4px 0 0 0;">Mobile Computer-Vision Telemetry & Optical Sizing Record</p>
       </div>
       <div style="padding:20px 0;">
-        <p style="font-size:15px; margin:0 0 12px 0;">Dear <strong>${patientName}</strong>,</p>
+        <p style="font-size:15px; margin:0 0 12px 0;">Dear <strong>${safePatientName}</strong>,</p>
         <p style="font-size:13.5px; line-height:1.5; color:#CBD5E1; margin:0 0 16px 0;">
           Your optical spec sheet document has been generated and is attached to this email. You can enter these parameters directly at online eyewear retailers.
         </p>
@@ -8762,7 +8806,7 @@ function handleSendEmailScript() {
         ${issuedGiftCode ? `
         <div style="background:#1E293B; border:2px dashed #10B981; border-radius:8px; padding:16px; margin:20px 0; text-align:center;">
           <div style="color:#34D399; font-weight:800; font-size:12px; letter-spacing:1px; margin-bottom:6px;">PREPAID FAMILY &amp; FRIEND PASS (WORTH $29.99)</div>
-          <div style="font-family:monospace; font-size:22px; font-weight:900; color:#FFFFFF; letter-spacing:2px; background:#0F172A; padding:10px; border-radius:6px; margin:8px 0;">${issuedGiftCode}</div>
+          <div style="font-family:monospace; font-size:22px; font-weight:900; color:#FFFFFF; letter-spacing:2px; background:#0F172A; padding:10px; border-radius:6px; margin:8px 0;">${_escapeHtmlSafe(issuedGiftCode)}</div>
           <p style="color:#CBD5E1; font-size:12px; margin:6px 0 0 0;">Forward or text this promo code to a family member or friend. When they take their exam at eyerxnow.com, they simply enter this code at checkout for 100% free access!</p>
         </div>` : ''}
         <p style="font-size:12px; color:#94A3B8; line-height:1.4;">
@@ -8857,6 +8901,7 @@ function selectRxUnlockTier(tier) {
   if (isRxUnlocked || currentEmailScriptFee === 0.00) {
     const cvs = document.getElementById('officialRxCanvas');
     if (cvs) cvs.style.filter = 'none';
+    renderOfficialRxCanvas();
     showToast("🪂 100% Free VIP Optical Spec Sheet Unlocked! Direct Access.");
     return;
   }
@@ -8912,10 +8957,15 @@ window.togglePaywallDuoPass = togglePaywallDuoPass;
 // DIRECT RESULTS EMAIL & DISPATCH FUNCTIONS
 // ==========================================
 function dispatchSpecSheetEmail(emailVal, patientName, callback) {
+  if (!isRxUnlocked) {
+    if (callback) callback(false);
+    return;
+  }
   if (!emailVal || !emailVal.includes('@') || !emailVal.includes('.')) {
     if (callback) callback(false);
     return;
   }
+  const safePatientName = _escapeHtmlSafe(patientName);
 
   const cvs = document.getElementById('officialRxCanvas');
   let pngBase64 = '';
@@ -8937,7 +8987,7 @@ function dispatchSpecSheetEmail(emailVal, patientName, callback) {
         <p style="color:#94A3B8; font-size:12px; margin:4px 0 0 0;">Mobile Computer-Vision Telemetry & Optical Sizing Record</p>
       </div>
       <div style="padding:20px 0;">
-        <p style="font-size:15px; margin:0 0 12px 0;">Dear <strong>${patientName}</strong>,</p>
+        <p style="font-size:15px; margin:0 0 12px 0;">Dear <strong>${safePatientName}</strong>,</p>
         <p style="font-size:13.5px; line-height:1.5; color:#CBD5E1; margin:0 0 16px 0;">
           Your optical spec sheet document has been generated and is attached to this email. You can enter these parameters directly at online eyewear retailers.
         </p>
@@ -8985,7 +9035,6 @@ function dispatchSpecSheetEmail(emailVal, patientName, callback) {
     if (callback) callback(false);
   }
 }
-window.dispatchSpecSheetEmail = dispatchSpecSheetEmail;
 
 function directEmailResultsFromBar() {
   if (!isRxUnlocked) {
@@ -9021,6 +9070,14 @@ window.directEmailResultsFromBar = directEmailResultsFromBar;
 window.openEmailResultsFromBar = directEmailResultsFromBar;
 
 function handlePaywallUnlockClick() {
+  if (isRxUnlocked || currentEmailScriptFee === 0.00) {
+    const cvs = document.getElementById('officialRxCanvas');
+    if (cvs) cvs.style.filter = 'none';
+    renderOfficialRxCanvas();
+    const paywall = document.getElementById('rxUnlockPaywallModal');
+    if (paywall) paywall.style.setProperty('display', 'none', 'important');
+    return;
+  }
   // CRITICAL ANTI-LEAK SECURITY FIX (Terrance Bug Fix):
   // NEVER unblur the canvas and NEVER set isRxUnlocked = true on button press!
   // The spec sheet MUST remain strictly blurred and locked behind the paywall until payment/promo is verified!
@@ -9029,17 +9086,18 @@ function handlePaywallUnlockClick() {
     cvs.style.filter = 'blur(16px)';
   }
 
-  // Save entered email and name for automatic email dispatch upon verified payment
+  // Save entered email, name, and checkout initiation token for verified Stripe return
   const eInput = document.getElementById('rxPatientEmailInput');
   const pInput = document.getElementById('rxPatientNameInput');
   const emailVal = eInput ? eInput.value.trim() : "";
   const patientName = (pInput && pInput.value.trim()) ? pInput.value.trim() : "Verified Client";
-  if (emailVal) {
-    try {
+  try {
+    sessionStorage.setItem('EYERX_STRIPE_CHECKOUT_TS', String(Date.now()));
+    if (emailVal) {
       sessionStorage.setItem('PENDING_RX_EMAIL', emailVal);
       sessionStorage.setItem('PENDING_RX_NAME', patientName);
-    } catch(e) {}
-  }
+    }
+  } catch(e) {}
 
   const ctaEl = document.getElementById('paywallCtaText');
   if (ctaEl) {
@@ -9077,14 +9135,21 @@ window.addEventListener('focus', function() {
   }
 });
 
-// Auto-unlock if customer returns from Stripe with ?paid=true or ?session_id
+// Auto-unlock only on verified Stripe session_id or active session checkout return
 (function checkPaymentReturnOnLoad() {
   try {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('paid') === 'true' || params.get('session_id') || params.get('success') === 'true') {
+    const sessionId = params.get('session_id') || '';
+    const hasValidStripeSession = /^cs_(live|test)_[A-Za-z0-9]{20,}$/.test(sessionId);
+    const checkoutTs = parseInt(sessionStorage.getItem('EYERX_STRIPE_CHECKOUT_TS') || '0', 10);
+    const hasRecentCheckout = checkoutTs > 0 && (Date.now() - checkoutTs) < (2 * 60 * 60 * 1000);
+    const hasReturnFlag = (params.get('paid') === 'true' || params.get('success') === 'true');
+    if (hasValidStripeSession || (hasReturnFlag && hasRecentCheckout)) {
+      sessionStorage.removeItem('EYERX_STRIPE_CHECKOUT_TS');
       isRxUnlocked = true;
       const cvs = document.getElementById('officialRxCanvas');
       if (cvs) cvs.style.filter = 'none';
+      if (typeof renderOfficialRxCanvas === 'function') renderOfficialRxCanvas();
       const paywall = document.getElementById('rxUnlockPaywallModal');
       if (paywall) paywall.style.setProperty('display', 'none', 'important');
 
@@ -9208,12 +9273,21 @@ function handleTriviaChoice(selectedIdx) {
 }
 
 function _hashPromoToken(str) {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < str.length; i++) {
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 0x01000193) >>> 0;
+  let h1 = 0x811c9dc5 >>> 0;
+  let h2 = 0x9e3779b9 >>> 0;
+  const payload = "EYERX_V6_VAULT_SALT_64_174_835::" + String(str || "");
+  for (let r = 0; r < 10000; r++) {
+    for (let i = 0; i < payload.length; i++) {
+      const c = payload.charCodeAt(i);
+      h1 = Math.imul(h1 ^ c ^ (r & 0xff), 0x01000193) >>> 0;
+      h2 = Math.imul(h2 ^ ((c << 5) | (c >>> 3)) ^ ((r >>> 8) & 0xff), 0x85ebca6b) >>> 0;
+    }
+    h1 = ((h1 << 13) | (h1 >>> 19)) ^ h2;
+    h2 = ((h2 << 17) | (h2 >>> 15)) ^ h1;
+    h1 >>>= 0;
+    h2 >>>= 0;
   }
-  return h >>> 0;
+  return h1.toString(16).padStart(8, "0") + h2.toString(16).padStart(8, "0");
 }
 
 function applyPromoCode() {
@@ -9235,15 +9309,14 @@ function applyPromoCode() {
     return;
   }
 
-  // 1. Cryptographic Hash Verification for Authorized VIP & Family Keys (Zero Plaintext Codes)
+  // 1. 10,000-Round Salted 64-Bit Key-Stretched Verification for Authorized VIP & Family Keys (Zero Plaintext Codes)
   const cleanCode = rawCode.replace(/[^A-Z0-9]/g, '');
   const codeHash = _hashPromoToken(cleanCode);
-  const prefix6Hash = cleanCode.length >= 6 ? _hashPromoToken(cleanCode.slice(0, 6)) : 0;
 
-  const isFamilyCode = (codeHash === 0x46bdce03 || prefix6Hash === 0x46bdce03 || codeHash === 0xb0bc547c);
-  const isFounderCode = (codeHash === 0xb7d5a55c || codeHash === 0x2328137e || codeHash === 0x4862bcca);
-  const isEmergencyCode = (codeHash === 0x8bbb3eec);
-  const isPartnerVipCode = (codeHash === 0xa13ea7e3 || codeHash === 0xdcc06340 || prefix6Hash === 0xdcc06340);
+  const isFamilyCode = (codeHash === "9af3536177cf0d1f" || codeHash === "709fdff51dffa1b2" || codeHash === "3b112aa44786fe33");
+  const isFounderCode = (codeHash === "c3b330537cddbce1" || codeHash === "14d0b80632030873" || codeHash === "d774766f984421a0");
+  const isEmergencyCode = (codeHash === "c2641133a4916ceb");
+  const isPartnerVipCode = (codeHash === "54fc59b433b18771" || codeHash === "433d08d7ff274d26");
 
   if (isFamilyCode || isFounderCode || isEmergencyCode || isPartnerVipCode) {
     isFreePromoApplied = true;
@@ -9254,6 +9327,8 @@ function applyPromoCode() {
 
     const cvs = document.getElementById('officialRxCanvas');
     if (cvs) cvs.style.filter = 'none';
+    renderOfficialRxCanvas();
+    renderOfficialRxCanvas();
 
     const paywallBasePrice = document.getElementById('paywallBasePrice');
     if (paywallBasePrice) paywallBasePrice.innerText = '$0.00';
@@ -9377,8 +9452,8 @@ function applyPromoCode() {
     return;
   }
 
-  // 2. 50% Off Partner Key (Verified via FNV-1a Hash)
-  if (codeHash === 0x0725ebd6) {
+  // 2. 50% Off Partner Key (Verified via 10,000-Round Salted 64-Bit Hash)
+  if (codeHash === "3a3333d540c7e240") {
     appliedPromoDiscount = 14.99;
     currentEmailScriptFee = 14.99;
     currentMailHardCopyFee = 14.99;
@@ -9443,6 +9518,7 @@ window.applyCheckoutPromoCode = applyCheckoutPromoCode;
   }
 })();
 
+})();
 </script>
 </body>
 </html>
