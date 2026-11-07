@@ -1,6 +1,6 @@
 <!-- ========================================================================== -->
 <!-- PROJECT EYES(TM) | ZERO-SCROLL CLINICAL ACUITY SUITE                       -->
-<!-- BUILD & VERSION: Build 6.0 Vers 11.77 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
+<!-- BUILD & VERSION: Build 6.0 Vers 11.78 (Personal Vision Spec Sheet & Lens Metrics Platform) -->
 <!-- AI DEVELOPER: TERRANCE WATKINS (PATENT PENDING 64/174,835)                 -->
 <!-- NOTICE: SOURCE CODE & ALGORITHMS ARE PROPRIETARY.                          -->
 <!-- ========================================================================== -->
@@ -40,7 +40,7 @@
   })();
 </script>
 <meta id="viewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.77</title>
+<title>EyeRxNow™ • Optical Spec Sheet &amp; PD Check | Build 6.0 Vers 11.78</title>
 <link rel="icon" type="image/svg+xml" href="eyerxnow_logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
@@ -4295,11 +4295,24 @@
       fill: none;
     }
 
+    @keyframes directionsSoftGreyBlink {
+      0%, 100% { color: #8E8A82; opacity: 0.92; }
+      50% { color: #B8B2A8; opacity: 0.32; }
+    }
+
     .abode-nav-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2px;
-      line-height: 1;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.1px;
+      line-height: 1.05;
+      white-space: nowrap;
+    }
+
+    #abodeNavHome .abode-nav-label,
+    #abodeNavHome svg {
+      animation: directionsSoftGreyBlink 2.8s ease-in-out infinite !important;
+      color: #8E8A82 !important;
+      stroke: currentColor !important;
     }
 
     .abode-nav-dot {
@@ -4321,11 +4334,25 @@
       background: #C05A3E !important;
     }
 
-    /* Main Middle Architectural Grid Area (Between Top Abode Header and Bottom 4-Tab Nav) */
+    /* Main Middle Architectural Grid Area (Between Top Abode Header and Bottom 4-Tab Nav — STRICT ZERO SCROLL / ZERO ZOOM) */
+    html, body,
+    html.rx-zoom-unlocked, body.rx-zoom-unlocked {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      overflow: hidden !important;
+      touch-action: none !important;
+      overscroll-behavior: none !important;
+    }
+
     #preFlightGateScreen,
     .welcome-screen,
     .pretest-gateway,
-    #mainExamView {
+    #mainExamView,
+    html.rx-zoom-unlocked #mainExamView {
       position: fixed !important;
       top: calc(88px + env(safe-area-inset-top, 0px)) !important;
       bottom: calc(58px + env(safe-area-inset-bottom, 0px)) !important;
@@ -4333,13 +4360,13 @@
       transform: translateX(-50%) !important;
       width: 100% !important;
       max-width: 430px !important;
-      height: auto !important;
-      max-height: none !important;
+      height: calc(100dvh - 146px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
+      max-height: calc(100dvh - 146px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
       background: #F4EFE6 !important;
       padding: 6px 14px !important;
       box-sizing: border-box !important;
-      overflow-y: auto !important;
-      overflow-x: hidden !important;
+      overflow: hidden !important;
+      touch-action: none !important;
     }
 
     /* Architectural 1px Hairline Outer Grid Frame on Every Screen */
@@ -4528,13 +4555,39 @@
       box-shadow: none !important;
     }
 
-    /* Step 6 Unlocked Full Scroll Override */
-    html.rx-zoom-unlocked #mainExamView {
-      position: static !important;
-      transform: none !important;
-      padding-top: calc(94px + env(safe-area-inset-top, 0px)) !important;
-      padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+    /* Step 6 Single-Page Fitted View (Zero Scroll, Zero Zoom) */
+    #rxCardContainer,
+    #rxCardContainer.active-step-6 {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      padding: 2px 4px !important;
+      overflow: hidden !important;
+      display: none;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      touch-action: none !important;
+    }
+    #rxCardContainer.active-step-6 {
+      display: flex !important;
+    }
+    #rxResultsDisplayWrapper {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+    }
+    #officialRxCanvas {
+      width: auto !important;
+      height: 100% !important;
       max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      touch-action: none !important;
     }
 
 </style>
@@ -4604,7 +4657,7 @@
         <div id="gateFeedback" style="display: none; background: #F8F4EC; border: 1px solid #C05A3E; padding: 6px 10px; font-family: var(--font-body); font-size: 11px; font-weight: 600; color: #C05A3E; line-height: 1.3; margin-top: 6px; text-align: center;">
         </div>
       </div>
-      <div class="abode-featured-caption">FEATURED OPTICAL SPACE &bull; <span id="gateBuildBadge">Build 6.0 Vers 11.77</span></div>
+      <div class="abode-featured-caption">FEATURED OPTICAL SPACE &bull; <span id="gateBuildBadge">Build 6.0 Vers 11.78</span></div>
 
       <!-- Lower 2-Column Architectural Study Grid (Matches "Architectural Study" | "Interior Elements" in mockup) -->
       <div class="abode-two-col-grid">
@@ -4642,7 +4695,7 @@
         <path d="M3 10.5L12 3l9 7.5"></path>
         <path d="M5 9.5V20h14V9.5"></path>
       </svg>
-      <span class="abode-nav-label">Home</span>
+      <span class="abode-nav-label">Directions</span>
       <span class="abode-nav-dot"></span>
     </button>
     <button type="button" id="abodeNavPractice" class="abode-nav-item" onclick="abodeSwitchBottomTab('practice')">
@@ -4651,22 +4704,25 @@
         <path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"></path>
         <line x1="10" y1="12" x2="14" y2="12"></line>
       </svg>
-      <span class="abode-nav-label">Practice</span>
+      <span class="abode-nav-label">Take Exam</span>
       <span class="abode-nav-dot"></span>
     </button>
     <button type="button" id="abodeNavExam" class="abode-nav-item" onclick="abodeSwitchBottomTab('exam')">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        <circle cx="6" cy="14" r="3.5"></circle>
+        <circle cx="18" cy="14" r="3.5"></circle>
+        <path d="M9.5 14h5"></path>
+        <path d="M2.5 14L4 8h3"></path>
+        <path d="M21.5 14L20 8h-3"></path>
       </svg>
-      <span class="abode-nav-label">Journal Exam</span>
+      <span class="abode-nav-label">$13.98 Glasses</span>
       <span class="abode-nav-dot"></span>
     </button>
     <button type="button" id="abodeNavSaved" class="abode-nav-item" onclick="abodeSwitchBottomTab('saved')">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
       </svg>
-      <span class="abode-nav-label">Saved Rx</span>
+      <span class="abode-nav-label">Results</span>
       <span class="abode-nav-dot"></span>
     </button>
   </nav>
@@ -4741,7 +4797,7 @@
       <!-- Bottom Meta Row (Build & Vers on own line) -->
       <div class="wm-footer-tagline" style="width: 100%; text-align: center; font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #68655E; margin-top: 10px; padding: 6px 2px 0 2px; border-top: 1px solid #E2DDD3;">
         <div>Zero Personal Data &bull; Patent Pending 64/174,835</div>
-        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.77</div>
+        <div style="font-weight: 700; color: #2C4A3E; margin-top: 2px;">Build 6.0 Vers 11.78</div>
       </div>
     </div>
   </div><div id="pretestGateway" class="pretest-gateway" style="display: none;">
@@ -4798,7 +4854,7 @@
       </div>
       <div class="lc-nav-actions">
         <button id="soundToggleBtn" class="btn-sound-toggle" onclick="toggleAudioEffects()">&#128266; Sound: ON</button>
-        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.77</span>
+        <span class="lc-badge-build" id="buildVersionBadge" style="display:inline-block;">Build 6.0 Vers 11.78</span>
       </div>
     </div>
   </header>
@@ -5083,7 +5139,7 @@
         1-TAP COPY ALL SPECS &amp; PD TO CLIPBOARD
       </button>
       <button class="btn-start-camera" style="width:100%; margin-top:8px; background:linear-gradient(135deg, #0284C7, #0369A1); font-weight:900; padding:11px; font-size:11.5px; border:none; border-radius:8px; color:#FFFFFF; cursor:pointer;" onclick="sendToRetailer('Payne Glasses', 'https://www.payneglasses.com'); closePartnerRetailerModal();">
-        OPEN ONLINE RETAILER (FROM $13.89 SHIPPED) ➔
+        OPEN ONLINE RETAILER (FROM $13.98 SHIPPED) ➔
       </button>
     </div>
   </div>
@@ -5156,7 +5212,7 @@
   <div id="rxToast" class="rx-toast"></div>
 <div id="printRxContainer" style="display:none;"></div>
 <script>
-const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.77";
+const PROJECT_EYES_BUILD_VERSION = "Build 6.0 Vers 11.78";
 var isRxUnlocked = false;
 
 // Official EyeRxNow Brand Logo Preload (Terrance Watkins Patent-Pending System)
@@ -8560,6 +8616,8 @@ function initRxCanvasZoomEngine() {
 }
 
 function unlockScreenZoomForRx() {
+  // MCM Single-Page Strict Lock: Never unlock zoom or scroll on MCM page
+  return;
   try {
     document.documentElement.classList.add('rx-zoom-unlocked');
     document.documentElement.style.setProperty('position', 'static', 'important');
@@ -8956,14 +9014,10 @@ function abodeSwitchBottomTab(tabName) {
       if (typeof initPretestGateway === 'function') initPretestGateway();
     }
   } else if (tabName === 'exam') {
-    if (gate) gate.style.display = 'none';
-    if (pretest) { pretest.classList.remove('active'); pretest.style.display = 'none'; }
-    if (mainExam && mainExam.style.display === 'flex') {
-      return;
-    }
-    if (welcome) {
-      welcome.style.display = 'flex';
-      welcome.classList.add('active');
+    if (typeof openPartnerRetailerModal === 'function') {
+      openPartnerRetailerModal();
+    } else {
+      window.open('https://www.payneglasses.com', '_blank', 'noopener,noreferrer');
     }
   } else if (tabName === 'saved') {
     if (gate) gate.style.display = 'none';
@@ -10044,6 +10098,25 @@ window.applyCheckoutPromoCode = applyCheckoutPromoCode;
   }
 })();
 
+
+// Strict MCM Single-Page Lock (No Scroll, No Zoom Anywhere)
+(function enforceMcmZeroScrollZoom() {
+  document.addEventListener('gesturestart', function(e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener('gesturechange', function(e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener('gestureend', function(e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener('touchmove', function(e) {
+    if (e.touches && e.touches.length > 1) {
+      e.preventDefault();
+      return;
+    }
+    e.preventDefault();
+  }, { passive: false });
+  window.addEventListener('scroll', function() {
+    if (window.scrollY !== 0 || window.scrollX !== 0) {
+      window.scrollTo(0, 0);
+    }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
